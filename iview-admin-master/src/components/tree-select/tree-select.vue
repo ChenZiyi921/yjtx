@@ -17,10 +17,10 @@
 </template>
 
 <script>
-import Emitter from 'iview/src/mixins/emitter'
-import TreeSelectTreeItem from './tree-select-tree.vue'
+import Emitter from "view-design/src/mixins/emitter";
+import TreeSelectTreeItem from "./tree-select-tree.vue";
 export default {
-  name: 'TreeSelect',
+  name: "TreeSelect",
   mixins: [Emitter],
   components: {
     TreeSelectTreeItem
@@ -36,31 +36,34 @@ export default {
     },
     loadData: Function
   },
-  data () {
+  data() {
     return {
       isChangedByTree: true,
       isInit: true
-    }
+    };
   },
-  provide () {
+  provide() {
     return {
       parent: this
-    }
+    };
   },
   methods: {
-    handleChange (selected) {
-      if (!this.isChangedByTree) this.$emit('input', selected)
-      this.isChangedByTree = false
+    handleChange(selected) {
+      if (!this.isChangedByTree) this.$emit("input", selected);
+      this.isChangedByTree = false;
     },
-    handleTreeCheck (selectedArray) {
-      this.isChangedByTree = true
-      this.$emit('input', selectedArray.map(item => item.id))
+    handleTreeCheck(selectedArray) {
+      this.isChangedByTree = true;
+      this.$emit(
+        "input",
+        selectedArray.map(item => item.id)
+      );
     },
-    handleClear () {
-      this.$refs.select.reset()
+    handleClear() {
+      this.$refs.select.reset();
     }
   }
-}
+};
 </script>
 
 <style lang="less">
