@@ -29,8 +29,8 @@ export default [
   },
   {
     path: '/',
-    name: '_home',
-    redirect: '/home',
+    name: 'Management',
+    redirect: '/Management',
     component: Main,
     meta: {
       hideInMenu: true,
@@ -38,15 +38,15 @@ export default [
     },
     children: [
       {
-        path: '/home',
-        name: 'home',
+        path: '/Management',
+        name: 'Management',
         meta: {
           hideInMenu: true,
-          title: '首页',
+          title: '{{ Management }}',
           notCache: true,
-          icon: 'md-home'
+          icon: 'md-menu'
         },
-        component: () => import('@/view/single-page/home')
+        component: () => import('@/view/Management/index.vue')
       }
     ]
   },
@@ -70,8 +70,8 @@ export default [
     ]
   },
   {
-    path: '/Target-Interception',
-    name: 'Target-Interception',
+    path: '/Target',
+    name: 'Target',
     meta: {
       hideInBread: true
     },
@@ -89,8 +89,8 @@ export default [
     ]
   },
   {
-    path: '/Full-Query',
-    name: 'Full-Query',
+    path: '/Full',
+    name: 'Full',
     meta: {
       hideInBread: true
     },
@@ -108,8 +108,8 @@ export default [
     ]
   },
   {
-    path: '/GIS-Application',
-    name: 'GIS-Application',
+    path: '/GIS',
+    name: 'GIS',
     meta: {
       hideInBread: true
     },
@@ -126,25 +126,6 @@ export default [
       }
     ]
   },
-  // {
-  //   path: '/i18n',
-  //   name: 'i18n',
-  //   meta: {
-  //     hideInBread: true
-  //   },
-  //   component: Main,
-  //   children: [
-  //     {
-  //       path: 'i18n_page',
-  //       name: 'i18n_page',
-  //       meta: {
-  //         icon: 'md-planet',
-  //         title: 'i18n - {{ i18n_page }}'
-  //       },
-  //       component: () => import('@/view/i18n/i18n-page.vue')
-  //     }
-  //   ]
-  // },
   // {
   //   path: '/directive',
   //   name: 'directive',
@@ -173,15 +154,6 @@ export default [
   //   },
   //   component: Main,
   //   children: [
-  //     {
-  //       path: 'level_2_1',
-  //       name: 'level_2_1',
-  //       meta: {
-  //         icon: 'md-funnel',
-  //         title: '二级-1'
-  //       },
-  //       component: () => import('@/view/multilevel/level-2-1.vue')
-  //     },
   //     {
   //       path: 'level_2_3',
   //       name: 'level_2_3',
