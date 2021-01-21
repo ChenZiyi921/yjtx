@@ -50,6 +50,82 @@ export default [
       }
     ]
   },
+  {
+    path: '/Management',
+    name: 'Management',
+    meta: {
+      hideInBread: true
+    },
+    component: Main,
+    children: [
+      {
+        path: 'Management',
+        name: 'Management',
+        meta: {
+          icon: 'md-menu',
+          title: '{{ Management }}'
+        },
+        component: () => import('@/view/Management/index.vue')
+      }
+    ]
+  },
+  {
+    path: '/Target-Interception',
+    name: 'Target-Interception',
+    meta: {
+      hideInBread: true
+    },
+    component: Main,
+    children: [
+      {
+        path: 'Target-Interception',
+        name: 'Target-Interception',
+        meta: {
+          icon: 'md-menu',
+          title: '{{ Target_Interception }}'
+        },
+        component: () => import('@/view/Interception/index.vue')
+      }
+    ]
+  },
+  {
+    path: '/Full-Query',
+    name: 'Full-Query',
+    meta: {
+      hideInBread: true
+    },
+    component: Main,
+    children: [
+      {
+        path: 'Full-Query',
+        name: 'Full-Query',
+        meta: {
+          icon: 'md-menu',
+          title: '{{ Full_Query }}'
+        },
+        component: () => import('@/view/Full-Query/index.vue')
+      }
+    ]
+  },
+  {
+    path: '/GIS-Application',
+    name: 'GIS-Application',
+    meta: {
+      hideInBread: true
+    },
+    component: Main,
+    children: [
+      {
+        path: 'GIS-Application',
+        name: 'GIS-Application',
+        meta: {
+          icon: 'md-menu',
+          title: '{{ GIS_Application }}'
+        },
+        component: () => import('@/view/GIS-Application/index.vue')
+      }
+    ]
+  },
   // {
   //   path: '/i18n',
   //   name: 'i18n',
@@ -69,54 +145,54 @@ export default [
   //     }
   //   ]
   // },
-  {
-    path: '/directive',
-    name: 'directive',
-    meta: {
-      hideInBread: true
-    },
-    component: Main,
-    children: [
-      {
-        path: 'directive_page',
-        name: 'directive_page',
-        meta: {
-          icon: 'ios-navigate',
-          title: '指令'
-        },
-        component: () => import('@/view/directive/directive.vue')
-      }
-    ]
-  },
-  {
-    path: '/multilevel',
-    name: 'multilevel',
-    meta: {
-      icon: 'md-menu',
-      title: '多级菜单'
-    },
-    component: Main,
-    children: [
-      {
-        path: 'level_2_1',
-        name: 'level_2_1',
-        meta: {
-          icon: 'md-funnel',
-          title: '二级-1'
-        },
-        component: () => import('@/view/multilevel/level-2-1.vue')
-      },
-      {
-        path: 'level_2_3',
-        name: 'level_2_3',
-        meta: {
-          icon: 'md-funnel',
-          title: '二级-3'
-        },
-        component: () => import('@/view/multilevel/level-2-3.vue')
-      }
-    ]
-  },
+  // {
+  //   path: '/directive',
+  //   name: 'directive',
+  //   meta: {
+  //     hideInBread: true
+  //   },
+  //   component: Main,
+  //   children: [
+  //     {
+  //       path: 'directive_page',
+  //       name: 'directive_page',
+  //       meta: {
+  //         icon: 'ios-navigate',
+  //         title: '指令'
+  //       },
+  //       component: () => import('@/view/directive/directive.vue')
+  //     }
+  //   ]
+  // },
+  // {
+  //   path: '/multilevel',
+  //   name: 'multilevel',
+  //   meta: {
+  //     icon: 'md-menu',
+  //     title: '多级菜单'
+  //   },
+  //   component: Main,
+  //   children: [
+  //     {
+  //       path: 'level_2_1',
+  //       name: 'level_2_1',
+  //       meta: {
+  //         icon: 'md-funnel',
+  //         title: '二级-1'
+  //       },
+  //       component: () => import('@/view/multilevel/level-2-1.vue')
+  //     },
+  //     {
+  //       path: 'level_2_3',
+  //       name: 'level_2_3',
+  //       meta: {
+  //         icon: 'md-funnel',
+  //         title: '二级-3'
+  //       },
+  //       component: () => import('@/view/multilevel/level-2-3.vue')
+  //     }
+  //   ]
+  // },
   {
     path: '/argu',
     name: 'argu',

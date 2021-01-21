@@ -16,13 +16,13 @@
         :collapsed="collapsed"
         @on-select="turnToPage"
         :menu-list="menuList"
-        style="padding-top: 20px;"
       >
         <!-- 需要放在菜单上面的内容，如Logo，写在side-menu标签内部，如下 -->
         <!-- <div class="logo-con">
           <img v-show="!collapsed" :src="maxLogo" key="max-logo" />
           <img v-show="collapsed" :src="minLogo" key="min-logo" />
         </div> -->
+        <div class="logo-content"></div>
       </side-menu>
     </Sider>
     <Layout>
@@ -43,14 +43,14 @@
       </Header>
       <Content class="main-content-con">
         <Layout class="main-layout-con">
-          <div class="tag-nav-wrapper">
+          <!-- <div class="tag-nav-wrapper">
             <tags-nav
               :value="$route"
               @input="handleClick"
               :list="tagNavList"
               @on-close="handleCloseTag"
             />
-          </div>
+          </div> -->
           <Content class="content-wrapper">
             <keep-alive :include="cacheList">
               <router-view />
@@ -220,3 +220,9 @@ export default {
   }
 };
 </script>
+<style lang="less" scoped>
+.logo-content {
+  height: 64px;
+  background: #fff;
+}
+</style>

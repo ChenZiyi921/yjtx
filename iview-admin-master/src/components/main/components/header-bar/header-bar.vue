@@ -1,15 +1,15 @@
 <template>
   <div class="header-bar">
-    <sider-trigger
+    <!-- <sider-trigger
       :collapsed="collapsed"
       icon="md-menu"
       @on-change="handleCollpasedChange"
-    ></sider-trigger>
-    <custom-bread-crumb
+    ></sider-trigger> -->
+    <!-- <custom-bread-crumb
       show-icon
       style="margin-left: 30px;"
       :list="breadCrumbList"
-    ></custom-bread-crumb>
+    ></custom-bread-crumb> -->
     <div class="custom-content-con">
       <slot></slot>
     </div>

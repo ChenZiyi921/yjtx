@@ -30,7 +30,7 @@ export default {
         "en-US": "Lang"
       },
       localList: {
-        "zh-CN": "中文简体",
+        "zh-CN": "中文",
         "en-US": "English"
       }
     };
