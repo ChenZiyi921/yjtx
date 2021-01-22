@@ -1,6 +1,8 @@
+import login from "./modules/login-en";
+
 export default {
   home: 'Home',
-  login: 'Login',
+  // login: 'Login',
   components: 'Components',
   count_to_page: 'Count-to',
   tables_page: 'Table',
@@ -43,5 +45,8 @@ export default {
   Management: "Management",
   Target_Interception: "Target Interception",
   Full_Query: "Full Query",
-  GIS_Application: "GIS Application"
+  GIS_Application: "GIS Application",
+
+
+  ...login
 }

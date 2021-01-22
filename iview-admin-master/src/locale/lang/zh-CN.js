@@ -1,6 +1,8 @@
+import login from "./modules/login-zh";
+
 export default {
   home: '首页',
-  login: '登录',
+  // login: '登录',
   components: '组件',
   count_to_page: '数字渐变',
   tables_page: '多功能表格',
@@ -43,5 +45,7 @@ export default {
   Management: "管理",
   Target_Interception: "目标侦控",
   Full_Query: "全量查询",
-  GIS_Application: "GIS应用"
+  GIS_Application: "GIS应用",
+
+  ...login
 }
