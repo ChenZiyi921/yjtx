@@ -6,7 +6,7 @@
     @keydown.enter.native="handleSubmit"
   >
     <FormItem prop="userName">
-      <Input size="large" v-model="form.userName" placeholder="请输入用户名">
+      <Input size="large" v-model="form.userName" placeholder="userName">
         <span slot="prepend">
           <Icon :size="16" type="ios-person"></Icon>
         </span>
@@ -17,7 +17,7 @@
         size="large"
         type="password"
         v-model="form.password"
-        placeholder="请输入密码"
+        placeholder="password"
       >
         <span slot="prepend">
           <Icon :size="14" type="md-lock"></Icon>
