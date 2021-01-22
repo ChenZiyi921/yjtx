@@ -1,5 +1,9 @@
 <template>
-  <div></div>
+  <div>
+    Target
+    <br />
+    Interception
+  </div>
 </template>
 
 <script>

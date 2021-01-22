@@ -1,5 +1,7 @@
 <template>
-  <div></div>
+  <div>
+    Full Query
+  </div>
 </template>
 
 <script>
