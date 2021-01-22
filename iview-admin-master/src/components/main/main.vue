@@ -3,7 +3,7 @@
     <Sider
       hide-trigger
       collapsible
-      :width="256"
+      :width="70"
       :collapsed-width="64"
       v-model="collapsed"
       class="left-sider"

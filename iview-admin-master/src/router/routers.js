@@ -62,7 +62,6 @@ export default [
         path: 'Management',
         name: 'Management',
         meta: {
-          icon: 'md-menu',
           title: '{{ Management }}'
         },
         component: () => import('@/view/Management/index.vue')
@@ -81,7 +80,6 @@ export default [
         path: 'Target-Interception',
         name: 'Target-Interception',
         meta: {
-          icon: 'md-menu',
           title: '{{ Target_Interception }}'
         },
         component: () => import('@/view/Interception/index.vue')
@@ -100,7 +98,6 @@ export default [
         path: 'Full-Query',
         name: 'Full-Query',
         meta: {
-          icon: 'md-menu',
           title: '{{ Full_Query }}'
         },
         component: () => import('@/view/Full-Query/index.vue')
@@ -119,7 +116,6 @@ export default [
         path: 'GIS-Application',
         name: 'GIS-Application',
         meta: {
-          icon: 'md-menu',
           title: '{{ GIS_Application }}'
         },
         component: () => import('@/view/GIS-Application/index.vue')
