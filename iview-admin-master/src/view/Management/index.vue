@@ -1,7 +1,9 @@
 <template>
   <div class="main-wrap management">
     <Tabs name="managementTable" value="Interception" :animated="false">
-      <TabPane label="Interception" name="Interception">标签一的内容</TabPane>
+      <TabPane label="Interception" name="Interception">
+        <Interception />
+      </TabPane>
       <TabPane label="Massive" name="Massive">标签二的内容</TabPane>
       <TabPane label="User" name="User">
         <User />
@@ -12,6 +14,7 @@
 
 <script>
 import User from "./pages/user";
+import Interception from "./pages/interception";
 
 export default {
   name: "",
@@ -19,7 +22,8 @@ export default {
     return {};
   },
   components: {
-    User
+    User,
+    Interception
   },
   computed: {}
 };
