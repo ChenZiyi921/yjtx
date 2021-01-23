@@ -17,6 +17,8 @@ import Main from '@/components/main'
  * }
  */
 
+// window.name = "http://localhost:8080/#/Management"
+
 export default [
   {
     path: '/login',
@@ -54,7 +56,8 @@ export default [
     path: '/Management',
     name: 'Management',
     meta: {
-      hideInBread: true
+      hideInBread: true,
+      href: "http://localhost:8080/#/Management",
     },
     component: Main,
     children: [
@@ -72,7 +75,8 @@ export default [
     path: '/Target',
     name: 'Target',
     meta: {
-      hideInBread: true
+      hideInBread: true,
+      href: "http://localhost:8080/#/Target/Target-Interception",
     },
     component: Main,
     children: [
@@ -90,7 +94,8 @@ export default [
     path: '/Full',
     name: 'Full',
     meta: {
-      hideInBread: true
+      hideInBread: true,
+      href: "http://localhost:8080/#/Full/Full-Query",
     },
     component: Main,
     children: [
@@ -108,7 +113,8 @@ export default [
     path: '/GIS',
     name: 'GIS',
     meta: {
-      hideInBread: true
+      hideInBread: true,
+      href: "http://localhost:8080/#/GIS/GIS-Application",
     },
     component: Main,
     children: [

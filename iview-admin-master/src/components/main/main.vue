@@ -155,8 +155,11 @@ export default {
         params = route.params;
         query = route.query;
       }
+      if (name.split("_")[1] === location.href) {
+        return;
+      }
       if (name.indexOf("isTurnByHref_") > -1) {
-        window.open(name.split("_")[1]);
+        window.open(name.split("_")[1], name.split("_")[1]);
         return;
       }
       this.$router.push({

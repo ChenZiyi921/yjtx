@@ -10,7 +10,13 @@ export default {
   data() {
     return {};
   },
-  computed: {}
+  computed: {},
+  mounted() {
+    // location.reload();
+  },
+  create() {
+    location.reload();
+  }
 };
 </script>
 

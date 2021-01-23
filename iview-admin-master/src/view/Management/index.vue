@@ -33,7 +33,14 @@ export default {
     User,
     Interception
   },
-  computed: {}
+  computed: {},
+  mounted() {
+    // location.reload();
+    window.name = "http://localhost:8080/#/Management";
+  },
+  create() {
+    location.reload();
+  }
 };
 </script>
 
