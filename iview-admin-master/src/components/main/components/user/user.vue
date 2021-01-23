@@ -10,9 +10,36 @@
         <!-- <DropdownItem name="message">
           消息中心<Badge style="margin-left: 10px" :count="messageUnreadCount"></Badge>
         </DropdownItem> -->
-        <DropdownItem name="logout">{{ $t("loginOutText") }}</DropdownItem>
+        <DropdownItem name="User_Information">{{
+          $t("User_Information")
+        }}</DropdownItem>
+        <DropdownItem name="Change_Password">{{
+          $t("Change_Password")
+        }}</DropdownItem>
+        <DropdownItem name="Logout">{{ $t("loginOutText") }}</DropdownItem>
       </DropdownMenu>
     </Dropdown>
+    <Modal
+      v-model="modal"
+      class-name="vertical-center-modal"
+      title="Change Password"
+    >
+      <Form :model="changePwd" label-position="left" :label-width="120">
+        <FormItem label="Old Password">
+          <Input type="password" password />
+        </FormItem>
+        <FormItem label="New Password">
+          <Input type="password" password />
+        </FormItem>
+        <FormItem label="Retype Password">
+          <Input type="password" password />
+        </FormItem>
+      </Form>
+      <div slot="footer">
+        <Button size="large" @click="modal = false">Cancel</Button>
+        <Button type="info" size="large" @click="modal = false">OK</Button>
+      </div>
+    </Modal>
   </div>
 </template>
 
@@ -31,6 +58,12 @@ export default {
       default: 0
     }
   },
+  data() {
+    return {
+      modal: false,
+      changePwd: {}
+    };
+  },
   methods: {
     ...mapActions(["handleLogOut"]),
     logout() {
@@ -47,11 +80,13 @@ export default {
     },
     handleClick(name) {
       switch (name) {
-        case "logout":
+        case "Logout":
           this.logout();
           break;
-        case "message":
-          this.message();
+        case "User_Information":
+          break;
+        case "Change_Password":
+          this.modal = true;
           break;
       }
     }

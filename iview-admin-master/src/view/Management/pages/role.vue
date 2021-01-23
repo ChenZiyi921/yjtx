@@ -123,4 +123,7 @@ export default {
 // .management {
 //   background: #fff;
 // }
+/deep/.ivu-tabs-nav-scroll {
+  float: left;
+}
 </style>

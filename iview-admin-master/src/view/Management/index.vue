@@ -1,6 +1,14 @@
 <template>
   <div class="main-wrap management">
-    <Tabs name="managementTable" value="Interception" :animated="false">
+    <Tabs
+      name="managementTable"
+      value="Statistics"
+      :animated="false"
+      class="tab1"
+    >
+      <TabPane label="Statistics" name="Statistics">
+        <!-- <Interception /> -->
+      </TabPane>
       <TabPane label="Interception" name="Interception">
         <Interception />
       </TabPane>
@@ -32,5 +40,8 @@ export default {
 <style lang="less" scoped>
 .management {
   background: #fff;
+  /deep/.ivu-tabs-nav-scroll {
+    float: right;
+  }
 }
 </style>

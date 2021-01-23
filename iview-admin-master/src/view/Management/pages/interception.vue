@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div id="interception">
     <Tabs name="Interception" value="List">
       <TabPane label="List" name="List" tab="Interception">
         <Tabs name="tab1" value="case">
@@ -37,4 +37,9 @@ export default {
 // .management {
 //   background: #fff;
 // }
+#interception {
+  /deep/.ivu-tabs-nav-scroll {
+    float: left;
+  }
+}
 </style>
