@@ -7,17 +7,20 @@ let loginApi = "";
 let queryUserByNameApi = "";
 let queryUserApi = "";
 let modifyUserApi = "";
+let queryRolesApi = "";
 
 if (debug) {
   loginApi = "/static/dbg/user/login.json";
   queryUserByNameApi = "/static/dbg/user/queryUserByName.json";
   queryUserApi = "/static/dbg/user/queryUser.json";
   modifyUserApi = "/static/dbg/user/modifyUser.json";
+  queryRolesApi = "/static/dbg/user/queryRoles.json";
 } else {
   loginApi = "";
   queryUserByNameApi = "";
   queryUserApi = "";
   modifyUserApi = "";
+  queryRolesApi = "";
 }
 
 export const login = params => {
@@ -28,6 +31,7 @@ export const login = params => {
   })
 }
 
+// 用户
 export const queryUserByName = params => {
   return axios.request({
     url: queryUserByNameApi,
@@ -49,5 +53,14 @@ export const modifyUser = data => {
     url: modifyUserApi,
     data,
     method: 'post'
+  })
+}
+
+// 角色
+export const queryRoles = params => {
+  return axios.request({
+    url: queryRolesApi,
+    params,
+    method: 'get'
   })
 }
