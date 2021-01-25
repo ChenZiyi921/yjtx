@@ -1,5 +1,5 @@
+import Vue from 'vue';
 import {
-  login,
   logout,
   getUserInfo,
   getMessage,
@@ -10,6 +10,7 @@ import {
   getUnreadCount
 } from '@/api/user'
 import { setToken, getToken } from '@/libs/util'
+import { login, queryUserByName } from "@/api/global"
 
 export default {
   state: {
@@ -77,17 +78,20 @@ export default {
     handleLogin({ commit }, { userName, password }) {
       userName = userName.trim()
       return new Promise((resolve, reject) => {
-        // login({
-        //   userName,
-        //   password
-        // }).then(res => {
-        //   const data = res.data
-        // commit('setToken', data.token)
-        commit('setToken', "admin")
-        resolve()
-        // }).catch(err => {
-        //   reject(err)
-        // })
+        login({
+          name: userName,
+          password
+        }).then(({ data }) => {
+          if (data.code === 200) {
+            commit('setToken', data.data.token)
+            commit('setUserName', data.data.user.loginname)
+            resolve(data)
+          } else {
+            resolve(data)
+          }
+        }).catch(err => {
+          reject(err)
+        })
       })
     },
     // 退出登录
@@ -109,30 +113,18 @@ export default {
     // 获取用户相关信息
     getUserInfo({ state, commit }) {
       return new Promise((resolve, reject) => {
-        // try {
-        // getUserInfo(state.token).then(res => {
-        //   const data = res.data
-        // console.log(JSON.stringify(data))
-        let data = {
-          name: "super_admin",
-          user_id: "1",
-          access: ["super_admin", "admin"],
-          token: "super_admin",
-          avatar:
-            "https://file.iviewui.com/dist/a0e88e83800f138b94d2414621bd9704.png"
-        };
-        commit('setAvatar', data.avatar)
-        commit('setUserName', data.name)
-        commit('setUserId', data.user_id)
-        commit('setAccess', data.access)
-        commit('setHasGetInfo', true)
-        resolve(data)
-        //   }).catch(err => {
-        //     reject(err)
-        //   })
-        // } catch (error) {
-        //   reject(error)
-        // }
+
+        // commit('setAvatar', data.avatar)
+        // commit('setUserName', data.name)
+        // commit('setUserId', data.user_id)
+        // commit('setAccess', data.access)
+        // commit('setHasGetInfo', true)
+
+        queryUserByName({ "loginname": state.userName }).then(({ data }) => {
+          if (data.code === 200) {
+            resolve(data)
+          }
+        });
       })
     },
     // 此方法用来获取未读消息条数，接口只返回数值，不返回消息列表

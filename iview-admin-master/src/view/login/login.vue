@@ -6,13 +6,19 @@
   <div class="login">
     <div class="login-con">
       <h1 class="login-title">ZiVA Intelligence Center</h1>
-      <!-- <Card icon="log-in" title="ZiVA Intelligence Center" :bordered="false"> -->
       <div class="form-con">
         <login-form @on-success-valid="handleSubmit"></login-form>
-        <!-- <p class="login-tip">输入任意用户名和密码即可</p> -->
       </div>
-      <!-- </Card> -->
     </div>
+    <Modal
+      title="Sorry, Login failure"
+      v-model="modal"
+      class-name="vertical-center-modal"
+      cancel-text=""
+      ok-text="Close"
+    >
+      <p>{{ content }}</p>
+    </Modal>
   </div>
 </template>
 
@@ -23,11 +29,22 @@ export default {
   components: {
     LoginForm
   },
+  data() {
+    return {
+      modal: false,
+      content: ""
+    };
+  },
   methods: {
     ...mapActions(["handleLogin", "getUserInfo"]),
     handleSubmit({ userName, password }) {
-      this.handleLogin({ userName, password }).then(res => {
-        this.getUserInfo().then(res => {
+      this.handleLogin({ userName, password }).then(data => {
+        if (data.code !== 200) {
+          this.modal = true;
+          this.content = data.msg;
+          return;
+        }
+        this.getUserInfo().then(data => {
           this.$router.push({
             name: this.$config.homeName
           });

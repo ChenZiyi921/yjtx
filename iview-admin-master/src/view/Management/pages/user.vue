@@ -11,6 +11,17 @@
         style="display: flex;"
       >
         <div style="flex: 1;">
+          <Form label-position="left" :label-width="0" inline>
+            <FormItem label="">
+              <Button type="success" ghost>Refresh</Button>
+            </FormItem>
+            <FormItem label="">
+              <Button type="success">New</Button>
+            </FormItem>
+            <!-- <FormItem label="">
+              <Button type="info">Search</Button>
+            </FormItem> -->
+          </Form>
           <Table border :columns="columns" :data="data">
             <template slot-scope="{ row }" slot="name">
               <strong>{{ row.name }}</strong>
@@ -26,6 +37,9 @@
               >
               <Button type="error" size="small" @click="delUserInfo(row)"
                 >Delete</Button
+              >
+              <Button type="error" size="small" @click="delUserInfo(row)" ghost
+                >Password</Button
               >
             </template>
           </Table>
@@ -198,7 +212,7 @@ export default {
         {
           title: "Action",
           slot: "action",
-          width: 150,
+          width: 240,
           align: "center"
         }
       ],
