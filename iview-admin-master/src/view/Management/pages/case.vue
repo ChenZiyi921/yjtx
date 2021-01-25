@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import { getTableData } from "@/api/global";
+// import { getTableData } from "@/api/global";
 
 export default {
   data() {
@@ -119,9 +119,9 @@ export default {
       // this.queryList();
     },
     queryList() {
-      getTableData().then(res => {
-        console.log(res);
-      });
+      // getTableData().then(res => {
+      //   console.log(res);
+      // });
     }
   }
 };

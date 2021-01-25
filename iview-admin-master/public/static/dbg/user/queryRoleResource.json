@@ -1,0 +1,23 @@
+{
+    "code": 200,
+    "msg": "Success",
+    "data": {
+        "content": [
+            {
+                "resourceid": "300100",
+                "resourcename": "user:add",
+                "resourceurl": "/user.html",
+                "resourcetype": "",
+                "parentid": "300",
+                "createdtime": "2020-09-15",
+                "status": "",
+                "image": "",
+                "sort": ""
+            }
+        ],
+        "currPage": 1,
+        "pageSize": 20,
+        "totalCount": 1,
+        "totalPage": 1
+    }
+}

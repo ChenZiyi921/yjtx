@@ -1,0 +1,20 @@
+{
+    "code": 200,
+    "msg": "Success",
+    "data": {
+        "content": [
+            {
+                "roleid": "345234t234",
+                "rolename": "Admin",
+                "rolestatus": "",
+                "createdate": "2020-09-15",
+                "modifydate": "2020-09-15",
+                "rolememo": "A test role"
+            }
+        ],
+        "currPage": 1,
+        "pageSize": 20,
+        "totalCount": 1,
+        "totalPage": 1
+    }
+}

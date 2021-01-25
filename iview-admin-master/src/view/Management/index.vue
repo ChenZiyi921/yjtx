@@ -12,7 +12,7 @@
       <TabPane label="Interception" name="Interception">
         <Interception />
       </TabPane>
-      <TabPane label="Massive" name="Massive">标签二的内容</TabPane>
+      <TabPane label="Massive" name="Massive"></TabPane>
       <TabPane label="User" name="User">
         <User />
       </TabPane>
@@ -35,7 +35,6 @@ export default {
   },
   computed: {},
   mounted() {
-    // location.reload();
     window.name = "http://localhost:8080/#/Management";
   },
   create() {

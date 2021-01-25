@@ -120,9 +120,6 @@ export default {
 </script>
 
 <style lang="less" scoped>
-// .management {
-//   background: #fff;
-// }
 /deep/.ivu-tabs-nav-scroll {
   float: left;
 }

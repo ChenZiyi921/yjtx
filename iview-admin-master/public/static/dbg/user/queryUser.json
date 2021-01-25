@@ -1,0 +1,46 @@
+{
+    "code": 200,
+    "msg": "Success",
+    "data": {
+        "content": [
+            {
+                "userid": 280,
+                "loginname": "ABC",
+                "firstname": null,
+                "lastname": null,
+                "userstatus": "EXPIRED",
+                "userlastlogin": "2020-09-15T03:07:34.000+00:00",
+                "userlastip": "192.168.26.131",
+                "usercreatedate": "2020-09-15T02:37:02.000+00:00",
+                "userexpiredate": null,
+                "userdept": null,
+                "usertitile": null,
+                "useraddr": null,
+                "usermemo": null,
+                "userphone": null,
+                "useremail": null
+            },
+            {
+                "userid": 81,
+                "loginname": "simon-operator",
+                "firstname": null,
+                "lastname": null,
+                "userstatus": "EXPIRED",
+                "userlastlogin": "2020-02-26T09:30:06.000+00:00",
+                "userlastip": "192.168.26.131",
+                "usercreatedate": "2013-06-26T10:02:04.000+00:00",
+                "userexpiredate": null,
+                "userdept": null,
+                "usertitile": null,
+                "useraddr": null,
+                "usermemo": null,
+                "userphone": null,
+                "useremail": null
+            }
+        ],
+        "currPage": 1,
+        "pageSize": 20,
+        "totalCount": 2,
+        "totalPage": 1
+    }
+}

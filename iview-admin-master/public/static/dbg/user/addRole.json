@@ -1,0 +1,12 @@
+{
+    "code": 200,
+    "msg": "Success",
+    "data": {
+        "roleid": "345234t235",
+        "rolename": "Admin1",
+        "rolestatus": "NORMAL",
+        "createdate": "2020-09-15",
+        "modifydate": "2020-09-15",
+        "rolememo": "A test role1"
+    }
+}
