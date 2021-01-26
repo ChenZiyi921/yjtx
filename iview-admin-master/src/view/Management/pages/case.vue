@@ -1,23 +1,16 @@
 <template>
   <div class="">
-    <Form
-      :model="queryForm"
-      label-position="left"
-      :label-width="60"
-      inline
-      style
-    >
-      <FormItem label :label-width="0">
-        <Button type="success" class="mr10">新增</Button>
+    <Form label-position="left" :label-width="0" inline>
+      <FormItem>
+        <Button type="success" class="mr10" ghost>Refresh</Button>
       </FormItem>
-      <FormItem label="ID">
-        <Input />
+      <FormItem>
+        <Button type="success" class="mr10">New</Button>
       </FormItem>
-      <FormItem label="Name">
-        <Input />
-      </FormItem>
-      <FormItem label :label-width="0">
-        <Button type="info" class="mr10">查询</Button>
+      <FormItem>
+        <Button type="info" class="mr10" @click="showSearchModal"
+          >Search</Button
+        >
       </FormItem>
     </Form>
     <Table border :columns="columns" :data="data">
@@ -28,7 +21,20 @@
         <Button type="info" ghost size="small" class="mr10" @click="show(index)"
           >Edit</Button
         >
-        <Button type="error" size="small" @click="remove(index)">Delete</Button>
+        <Button type="error" size="small" class="mr10" @click="remove(index)"
+          >Delete</Button
+        >
+        <Button
+          type="error"
+          size="small"
+          class="mr10"
+          @click="remove(index)"
+          ghost
+          >Close</Button
+        >
+        <Button type="success" ghost size="small" @click="remove(index)"
+          >Comment</Button
+        >
       </template>
     </Table>
     <Page
@@ -53,6 +59,69 @@
         <Button type="info" size="large" @click="modal = false">确定</Button>
       </div>
     </Modal>
+    <Modal
+      v-model="searchModal"
+      class-name="vertical-center-modal"
+      :closable="false"
+      title="Case Search"
+      width="1000"
+    >
+      <Form :model="queryForm" label-position="left" :label-width="100" inline>
+        <FormItem label="Case Name">
+          <Select style="width: 100px">
+            <Option
+              v-for="item in statusList"
+              :value="item.value"
+              :key="item.value"
+              >{{ item.label }}</Option
+            >
+          </Select>
+          <Input style="width: 200px" />
+        </FormItem>
+        <FormItem label="Create Date">
+          <DatePicker
+            type="datetimerange"
+            placeholder="Select date and time"
+            style="width: 300px"
+          ></DatePicker>
+        </FormItem>
+        <FormItem label="Target">
+          <Input style="width: 300px" />
+        </FormItem>
+        <FormItem label="Case Type">
+          <Select style="width: 300px">
+            <Option
+              v-for="item in statusList"
+              :value="item.value"
+              :key="item.value"
+              >{{ item.label }}</Option
+            >
+          </Select>
+        </FormItem>
+        <FormItem label="Create By">
+          <Input style="width: 300px" />
+        </FormItem>
+        <FormItem label="Status">
+          <Select style="width: 300px">
+            <Option
+              v-for="item in statusList"
+              :value="item.value"
+              :key="item.value"
+              >{{ item.label }}</Option
+            >
+          </Select>
+        </FormItem>
+        <FormItem label="Comments">
+          <Input style="width: 300px" />
+        </FormItem>
+      </Form>
+      <div slot="footer">
+        <Button size="large" @click="searchModal = false">Cancel</Button>
+        <Button type="info" size="large" @click="searchModal = false"
+          >Search</Button
+        >
+      </div>
+    </Modal>
   </div>
 </template>
 
@@ -63,6 +132,7 @@ export default {
   data() {
     return {
       modal: false,
+      searchModal: false,
       queryForm: {
         pageNum: 1,
         pageSize: 10,
@@ -70,25 +140,67 @@ export default {
       },
       columns: [
         {
-          title: "Name",
-          slot: "name"
+          title: "Index",
+          key: "name"
         },
         {
-          title: "Age",
+          title: "Name",
+          key: "name"
+        },
+        {
+          title: "Status",
           key: "age"
         },
         {
-          title: "Address",
+          title: "Type",
+          key: "age"
+        },
+        {
+          title: "Expired",
+          key: "address"
+        },
+        {
+          title: "Auto Active",
+          key: "address"
+        },
+        {
+          title: "Active Date",
+          key: "name"
+        },
+        {
+          title: "Close Date",
+          key: "age"
+        },
+        {
+          title: "Create Date",
+          key: "address"
+        },
+        {
+          title: "Creator",
+          key: "age"
+        },
+        {
+          title: "Comments",
           key: "address"
         },
         {
           title: "Action",
           slot: "action",
-          width: 150,
+          width: 300,
           align: "center"
         }
       ],
-      data: []
+      data: [],
+      statusList: [
+        {
+          value: "New York",
+          label: "New York"
+        },
+        {
+          value: "London",
+          label: "London"
+        }
+      ]
     };
   },
   mounted() {
@@ -122,13 +234,16 @@ export default {
       // getTableData().then(res => {
       //   console.log(res);
       // });
+    },
+    showSearchModal() {
+      this.searchModal = true;
     }
   }
 };
 </script>
 
-<style lang="less" scoped>
+<Button lang="less" scoped>
 // .management {
 //   background: #fff;
 // }
-</style>
+</Button>
