@@ -12,7 +12,9 @@
       <TabPane label="Interception" name="Interception">
         <Interception />
       </TabPane>
-      <TabPane label="Massive" name="Massive"></TabPane>
+      <TabPane label="Massive" name="Massive">
+        <Massive />
+      </TabPane>
       <TabPane label="User" name="User">
         <User />
       </TabPane>
@@ -23,6 +25,7 @@
 <script>
 import User from "./pages/user";
 import Interception from "./pages/interception";
+import Massive from "./pages/massive";
 
 export default {
   name: "",
@@ -31,7 +34,8 @@ export default {
   },
   components: {
     User,
-    Interception
+    Interception,
+    Massive
   },
   computed: {},
   mounted() {

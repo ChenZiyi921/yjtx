@@ -129,19 +129,6 @@
                 <template slot-scope="{ row }" slot="name">
                   <strong>{{ row.name }}</strong>
                 </template>
-                <!-- <template slot-scope="{ row, index }" slot="action">
-                  <Button
-                    type="info"
-                    ghost
-                    size="small"
-                    class="mr10"
-                    @click="show(index)"
-                    >Edit</Button
-                  >
-                  <Button type="error" size="small" @click="remove(index)"
-                    >Delete</Button
-                  >
-                </template> -->
               </Table>
               <Page
                 :current="queryForm.pageNum"
