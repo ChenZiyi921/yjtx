@@ -8,7 +8,7 @@
       style
     >
       <FormItem label :label-width="0">
-        <Button type="success" class="ml10">新增</Button>
+        <Button type="success" class="mr10">新增</Button>
       </FormItem>
       <FormItem label="ID">
         <Input />
@@ -17,7 +17,7 @@
         <Input />
       </FormItem>
       <FormItem label :label-width="0">
-        <Button type="info" class="ml10">查询</Button>
+        <Button type="info" class="mr10">查询</Button>
       </FormItem>
     </Form>
     <Table border :columns="columns" :data="data">
@@ -25,7 +25,7 @@
         <strong>{{ row.name }}</strong>
       </template>
       <template slot-scope="{ row, index }" slot="action">
-        <Button type="info" ghost size="small" class="ml10" @click="show(index)"
+        <Button type="info" ghost size="small" class="mr10" @click="show(index)"
           >Edit</Button
         >
         <Button type="error" size="small" @click="remove(index)">Delete</Button>

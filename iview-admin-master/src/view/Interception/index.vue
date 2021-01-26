@@ -1,18 +1,19 @@
 <template>
   <div>
     <Tabs name="tab1" value="Replay" :animated="false" class="tab1">
-      <TabPane label="Replay Console" name="Replay">
-        <Row>
-          <Col span="6"></Col>
-          <Col span="18" style="border: 1px solid #eee;"></Col>
-        </Row>
+      <TabPane
+        label="Replay Console"
+        name="Replay"
+        style="height: calc(100vh - 160px);"
+      >
+        <Replay />
       </TabPane>
       <TabPane
         label="Live Console"
         name="Live"
         style="height: calc(100vh - 160px);"
       >
-        <div class="demo-split">
+        <!-- <div class="demo-split">
           <ul class="top-content">
             <li v-for="(item, index) in liveListCard" :key="index">
               {{ item.index }}
@@ -26,7 +27,8 @@
             <div slot="top" class="demo-split-pane"></div>
             <div slot="bottom" class="demo-split-pane"></div>
           </Split>
-        </div>
+        </div> -->
+        <Live />
       </TabPane>
       <TabPane
         label="vHLR Console"
@@ -132,7 +134,7 @@
                     type="info"
                     ghost
                     size="small"
-                    class="ml10"
+                    class="mr10"
                     @click="show(index)"
                     >Edit</Button
                   >
@@ -162,9 +164,16 @@
 </template>
 
 <script>
+import Replay from "./pages/replay";
+import Live from "./pages/live";
+
 const cityOptions = ["Global Telecom", "SuperComm", "EasyComm", "Other"];
 export default {
   name: "",
+  components: {
+    Replay,
+    Live
+  },
   data() {
     return {
       split2: 1,
@@ -253,18 +262,9 @@ export default {
   // background: #fff;
   overflow: auto;
 }
-.top-content {
-  height: 560px;
-  background: #fff;
-  li {
-    width: 20%;
-    height: 140px;
-    float: left;
-    border: 1px solid #eee;
-    list-style: none;
-  }
+.ivu-form-item {
+  margin-bottom: 10px;
 }
-
 .vhlr-top-content {
   position: relative;
   height: 260px;
@@ -275,8 +275,5 @@ export default {
     right: 10px;
     top: 10px;
   }
-}
-.ivu-form-item {
-  margin-bottom: 10px;
 }
 </style>

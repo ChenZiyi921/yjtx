@@ -1,23 +1,180 @@
 {
-    "code": 200,
-    "msg": "Success",
-    "data": {
-        "content": [
+    "code":200,
+    "msg":"Success",
+    "data":{
+        "content":[
             {
-                "resourceid": "300100",
-                "resourcename": "user:add",
-                "resourceurl": "/user.html",
-                "resourcetype": "",
-                "parentid": "300",
-                "createdtime": "2020-09-15",
-                "status": "",
-                "image": "",
-                "sort": ""
+                "resourceid":"500",
+                "resourcei18n":null,
+                "resourcename":"Management",
+                "resourceurl":null,
+                "resourcetype":"3",
+                "parentid":"0",
+                "createtime":"2021-01-25",
+                "image":null,
+                "sort":null,
+                "status":null
+            },
+            {
+                "resourceid":"500104",
+                "resourcei18n":null,
+                "resourcename":"RoleManagement",
+                "resourceurl":null,
+                "resourcetype":"3",
+                "parentid":"500",
+                "createtime":"2021-01-25",
+                "image":null,
+                "sort":null,
+                "status":null
+            },
+            {
+                "resourceid":"500103",
+                "resourcei18n":null,
+                "resourcename":"User Management",
+                "resourceurl":null,
+                "resourcetype":"3",
+                "parentid":"500",
+                "createtime":"2021-01-25",
+                "image":null,
+                "sort":null,
+                "status":null
+            },
+            {
+                "resourceid":"500104001",
+                "resourcei18n":null,
+                "resourcename":"Add Role",
+                "resourceurl":null,
+                "resourcetype":"3",
+                "parentid":"500104",
+                "createtime":"2021-01-25",
+                "image":null,
+                "sort":null,
+                "status":null
+            },
+            {
+                "resourceid":"500104002",
+                "resourcei18n":null,
+                "resourcename":"Delete Role",
+                "resourceurl":null,
+                "resourcetype":"3",
+                "parentid":"500104",
+                "createtime":"2021-01-25",
+                "image":null,
+                "sort":null,
+                "status":null
+            },
+            {
+                "resourceid":"500104003",
+                "resourcei18n":null,
+                "resourcename":"Edit Role",
+                "resourceurl":null,
+                "resourcetype":"3",
+                "parentid":"500104",
+                "createtime":"2021-01-25",
+                "image":null,
+                "sort":null,
+                "status":null
+            },
+            {
+                "resourceid":"500105",
+                "resourcei18n":null,
+                "resourcename":"User Management",
+                "resourceurl":null,
+                "resourcetype":"3",
+                "parentid":"500",
+                "createtime":"2021-01-25",
+                "image":null,
+                "sort":null,
+                "status":null
+            },
+            {
+                "resourceid":"500105001",
+                "resourcei18n":null,
+                "resourcename":"New User",
+                "resourceurl":null,
+                "resourcetype":"3",
+                "parentid":"500105",
+                "createtime":"2021-01-25",
+                "image":null,
+                "sort":null,
+                "status":null
+            },
+            {
+                "resourceid":"500105002",
+                "resourcei18n":null,
+                "resourcename":"Delete User",
+                "resourceurl":null,
+                "resourcetype":"3",
+                "parentid":"500105",
+                "createtime":"2021-01-25",
+                "image":null,
+                "sort":null,
+                "status":null
+            },
+            {
+                "resourceid":"500105003",
+                "resourcei18n":null,
+                "resourcename":"Edit User",
+                "resourceurl":null,
+                "resourcetype":"3",
+                "parentid":"500105",
+                "createtime":"2021-01-25",
+                "image":null,
+                "sort":null,
+                "status":null
+            },
+            {
+                "resourceid":"500106",
+                "resourcei18n":null,
+                "resourcename":"Resource Management",
+                "resourceurl":null,
+                "resourcetype":"3",
+                "parentid":"500",
+                "createtime":"2021-01-25",
+                "image":null,
+                "sort":null,
+                "status":null
+            },
+            {
+                "resourceid":"500106001",
+                "resourcei18n":null,
+                "resourcename":"New Resource",
+                "resourceurl":null,
+                "resourcetype":"3",
+                "parentid":"500106",
+                "createtime":"2021-01-25",
+                "image":null,
+                "sort":null,
+                "status":null
+            },
+            {
+                "resourceid":"500106002",
+                "resourcei18n":null,
+                "resourcename":"Delete Resource",
+                "resourceurl":null,
+                "resourcetype":"3",
+                "parentid":"500106",
+                "createtime":"2021-01-25",
+                "image":null,
+                "sort":null,
+                "status":null
+            },
+            {
+                "resourceid":"500106003",
+                "resourcei18n":null,
+                "resourcename":"Edit Resource",
+                "resourceurl":null,
+                "resourcetype":"3",
+                "parentid":"500106",
+                "createtime":"2021-01-26",
+                "image":null,
+                "sort":null,
+                "status":null
             }
         ],
-        "currPage": 1,
-        "pageSize": 20,
-        "totalCount": 1,
-        "totalPage": 1
+        "currPage":1,
+        "pageSize":20,
+        "totalCount":14,
+        "totalPage":1
     }
 }

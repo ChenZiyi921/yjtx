@@ -31,7 +31,7 @@
                 type="info"
                 ghost
                 size="small"
-                class="ml10"
+                class="mr10"
                 @click="editUserInfo(row)"
                 >Edit</Button
               >
