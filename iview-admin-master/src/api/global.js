@@ -1,13 +1,14 @@
 import axios from '@/libs/api.request';
-import store from '@/store';
 
 const debug = true;
+let post = debug ? "get" : "post"
 
 let loginApi = "";
 let queryUserByNameApi = "";
 let queryUserApi = "";
 let modifyUserApi = "";
 let queryRolesApi = "";
+let changeUserPasswordApi = "";
 
 if (debug) {
   loginApi = "/static/dbg/user/login.json";
@@ -15,12 +16,15 @@ if (debug) {
   queryUserApi = "/static/dbg/user/queryUser.json";
   modifyUserApi = "/static/dbg/user/modifyUser.json";
   queryRolesApi = "/static/dbg/user/queryRoles.json";
+  changeUserPasswordApi = "/static/dbg/user/changeUserPassword.json";
+
 } else {
   loginApi = "";
   queryUserByNameApi = "";
   queryUserApi = "";
   modifyUserApi = "";
   queryRolesApi = "";
+  changeUserPasswordApi = "";
 }
 
 export const login = params => {
@@ -28,6 +32,14 @@ export const login = params => {
     url: loginApi,
     params,
     method: 'get'
+  })
+}
+
+export const changeUserPassword = params => {
+  return axios.request({
+    url: changeUserPasswordApi,
+    params,
+    method: post
   })
 }
 

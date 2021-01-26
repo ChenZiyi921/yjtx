@@ -13,7 +13,9 @@
         <div style="flex: 1;">
           <Form label-position="left" :label-width="0" inline>
             <FormItem label="">
-              <Button type="success" ghost>Refresh</Button>
+              <Button type="success" ghost @click="queryUserList"
+                >Refresh</Button
+              >
             </FormItem>
             <FormItem label="">
               <Button type="success">New</Button>
@@ -22,7 +24,7 @@
               <Button type="info">Search</Button>
             </FormItem> -->
           </Form>
-          <Table border :columns="columns" :data="data">
+          <Table border :columns="columns" :data="data" :loading="loading">
             <template slot-scope="{ row }" slot="name">
               <strong>{{ row.name }}</strong>
             </template>
@@ -35,10 +37,18 @@
                 @click="editUserInfo(row)"
                 >Edit</Button
               >
-              <Button type="error" size="small" @click="delUserInfo(row)"
+              <Button
+                type="error"
+                size="small"
+                class="mr10"
+                @click="delUserInfo(row)"
                 >Delete</Button
               >
-              <Button type="error" size="small" @click="delUserInfo(row)" ghost
+              <Button
+                type="error"
+                size="small"
+                @click="changeUserPwd(row)"
+                ghost
                 >Password</Button
               >
             </template>
@@ -145,12 +155,32 @@
         </div>
       </TabPane>
     </Tabs>
+    <Modal
+      v-model="modalChangePwd"
+      class-name="vertical-center-modal"
+      title="Change Password"
+    >
+      <Form :model="changePwd" label-position="left" :label-width="120">
+        <FormItem label="New Password">
+          <Input type="password" password v-model="changePwd.password" />
+        </FormItem>
+        <FormItem label="Retype Password">
+          <Input type="password" password v-model="password" />
+        </FormItem>
+      </Form>
+      <div slot="footer">
+        <Button size="large" @click="modalChangePwd = false">Cancel</Button>
+        <Button type="info" size="large" @click="changeUserPasswordSubmit"
+          >OK</Button
+        >
+      </div>
+    </Modal>
   </div>
 </template>
 
 <script>
 import Role from "./role";
-import { queryUser, modifyUser } from "@/api/global";
+import { queryUser, modifyUser, changeUserPassword } from "@/api/global";
 
 export default {
   name: "",
@@ -159,6 +189,13 @@ export default {
   },
   data() {
     return {
+      loading: false,
+      modalChangePwd: false,
+      changePwd: {
+        userid: "",
+        password: ""
+      },
+      password: "",
       queryForm: {
         currPage: 1,
         pageSize: 10,
@@ -244,9 +281,11 @@ export default {
   },
   methods: {
     queryUserList() {
+      this.loading = true;
       queryUser(this.queryForm).then(({ data }) => {
         if (data.code === 200) {
           const { content, currPage, totalCount } = data.data;
+          this.loading = false;
           this.data = content;
           this.queryForm = {
             currPage: currPage,
@@ -257,17 +296,29 @@ export default {
       });
     },
     pageSizeChange(pageSize) {
-      // this.loading = true;
       this.queryForm.pageSize = pageSize;
       this.queryUserList();
     },
     pageChange(index) {
-      // this.loading = true;
       this.queryForm.currPage = index;
       this.queryUserList();
     },
     editUserInfo(row) {},
-    delUserInfo(row) {}
+    delUserInfo(row) {},
+    changeUserPwd(row) {
+      const { userid } = row;
+      this.modalChangePwd = true;
+      this.changePwd.userid = userid;
+    },
+    changeUserPasswordSubmit() {
+      if (this.changePwd.password === this.password) {
+        changeUserPassword(this.changePwd).then(res => {
+          console.log(res);
+        });
+      } else {
+        this.$Message.error("Inconsistent password input!");
+      }
+    }
   }
 };
 </script>
