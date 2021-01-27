@@ -19,19 +19,6 @@
         <template slot-scope="{ row }" slot="name">
           <strong>{{ row.name }}</strong>
         </template>
-        <!-- <template slot-scope="{ row, index }" slot="action">
-          <Button
-            type="info"
-            ghost
-            size="small"
-            class="mr10"
-            @click.stop="editRole(row)"
-            >Edit</Button
-          >
-          <Button type="error" size="small" @click.stop="delRole(row)"
-            >Delete</Button
-          >
-        </template> -->
       </Table>
       <Page
         :current="queryForm.currPage"
@@ -77,7 +64,7 @@
 </template>
 
 <script>
-import { queryRoles, queryResources, deleteRole } from "@/api/global";
+import { queryRoles, queryResources, deleteRole, addRole } from "@/api/global";
 
 export default {
   name: "",
@@ -90,6 +77,14 @@ export default {
         currPage: 1,
         pageSize: 10,
         total: 100
+      },
+      roleDetail: {
+        roleid: "",
+        rolename: "",
+        rolestatus: "",
+        createdate: "",
+        modifydate: "",
+        rolememo: ""
       },
       roleid: "",
       disabled: true,
@@ -118,9 +113,6 @@ export default {
       treeData: [],
       //
       editIndex: -1,
-      // editName: "",
-      // editEmail: "",
-      // editStatus: "",
       column: [
         {
           type: "index",
@@ -135,15 +127,15 @@ export default {
           render: (h, { row, index }) => {
             let edit;
             if (this.editIndex === index) {
-              this.editName = row.name;
+              this.roleDetail.rolename = row.rolename;
               edit = [
                 h("Input", {
                   props: {
-                    value: row.name
+                    value: row.rolename
                   },
                   on: {
                     input: val => {
-                      this.editName = val;
+                      this.roleDetail.rolename = val;
                     }
                   }
                 })
@@ -160,15 +152,15 @@ export default {
           render: (h, { row, index }) => {
             let edit;
             if (this.editIndex === index) {
-              this.editStatus = row.status;
+              this.roleDetail.rolestatus = row.rolestatus;
               edit = [
                 h("Select", {
                   props: {
-                    value: row.status
+                    value: row.rolestatus
                   },
                   on: {
                     input: val => {
-                      this.editStatus = val;
+                      this.roleDetail.rolestatus = val;
                     }
                   }
                 })
@@ -185,15 +177,15 @@ export default {
           render: (h, { row, index }) => {
             let edit;
             if (this.editIndex === index) {
-              this.editEmail = row.email;
+              this.roleDetail.createdate = row.createdate;
               edit = [
                 h("Input", {
                   props: {
-                    value: row.email
+                    value: row.createdate
                   },
                   on: {
                     input: val => {
-                      this.editEmail = val;
+                      this.roleDetail.createdate = val;
                     }
                   }
                 })
@@ -210,15 +202,15 @@ export default {
           render: (h, { row, index }) => {
             let edit;
             if (this.editIndex === index) {
-              this.editEmail = row.email;
+              this.roleDetail.modifydate = row.modifydate;
               edit = [
                 h("Input", {
                   props: {
-                    value: row.email
+                    value: row.modifydate
                   },
                   on: {
                     input: val => {
-                      this.editEmail = val;
+                      this.roleDetail.modifydate = val;
                     }
                   }
                 })
@@ -242,11 +234,8 @@ export default {
                     },
                     on: {
                       click: () => {
-                        this.data[index].name = this.editName;
-                        this.data[index].email = this.editEmail;
-                        this.data[index].status = this.editStatus;
                         this.editIndex = -1;
-                        // save
+                        this.saveRole(row);
                       }
                     }
                   },
@@ -398,6 +387,8 @@ export default {
       this.isEdit = true;
       this.disabled = false;
       this.enableCheckbox();
+      this.roleDetail.roleid = row.roleid;
+      this.roleDetail.rolememo = row.rolememo;
     },
     modifyRoleCancel() {
       // this.onRowClick(this.userDetail);
@@ -419,11 +410,27 @@ export default {
         // });
       }
     },
+    saveRole(row) {
+      addRole(this.roleDetail).then(({ data }) => {
+        if (data.code === 200) {
+          this.$Message.success("Operation success!");
+          this.queryRolesList();
+        }
+      });
+    },
     newRole() {
       this.isEdit = true;
       this.disabled = false;
       this.enableCheckbox();
       this.data.push({});
+      // this.roleDetail = {
+      //   roleid: "",
+      //   rolename: "",
+      //   rolestatus: "",
+      //   createdate: "",
+      //   modifydate: "",
+      //   rolememo: ""
+      // };
     },
     delRole(row) {
       this.roleid = row.roleid;

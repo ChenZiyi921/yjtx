@@ -13,6 +13,7 @@ let modifyUserApi = "";
 let queryRolesApi = "";
 let queryResourcesApi = "";
 let deleteRoleApi = "";
+let addRoleApi = "";
 
 if (debug) {
   loginApi = "/static/dbg/user/login.json";
@@ -25,6 +26,7 @@ if (debug) {
   queryRolesApi = "/static/dbg/user/queryRoles.json";
   queryResourcesApi = "/static/dbg/user/queryResources.json";
   deleteRoleApi = "/static/dbg/user/deleteRole.json";
+  addRoleApi = "/static/dbg/user/addRole.json";
 } else {
   loginApi = "";
   changeUserPasswordApi = "";
@@ -36,6 +38,7 @@ if (debug) {
   queryRolesApi = "";
   queryResourcesApi = "";
   deleteRoleApi = "";
+  addRoleApi = "";
 }
 
 export const login = params => {
@@ -115,6 +118,14 @@ export const queryResources = params => {
 export const deleteRole = params => {
   return axios.request({
     url: deleteRoleApi,
+    params,
+    method: 'get'
+  })
+}
+
+export const addRole = params => {
+  return axios.request({
+    url: addRoleApi,
     params,
     method: 'get'
   })
