@@ -17,8 +17,6 @@ import Main from '@/components/main'
  * }
  */
 
-// window.name = "http://localhost:8080/#/Management"
-
 export default [
   {
     path: '/login',
@@ -125,76 +123,6 @@ export default [
           title: '{{ GIS_Application }}'
         },
         component: () => import('@/view/GIS-Application/index.vue')
-      }
-    ]
-  },
-  // {
-  //   path: '/directive',
-  //   name: 'directive',
-  //   meta: {
-  //     hideInBread: true
-  //   },
-  //   component: Main,
-  //   children: [
-  //     {
-  //       path: 'directive_page',
-  //       name: 'directive_page',
-  //       meta: {
-  //         icon: 'ios-navigate',
-  //         title: '指令'
-  //       },
-  //       component: () => import('@/view/directive/directive.vue')
-  //     }
-  //   ]
-  // },
-  // {
-  //   path: '/multilevel',
-  //   name: 'multilevel',
-  //   meta: {
-  //     icon: 'md-menu',
-  //     title: '多级菜单'
-  //   },
-  //   component: Main,
-  //   children: [
-  //     {
-  //       path: 'level_2_3',
-  //       name: 'level_2_3',
-  //       meta: {
-  //         icon: 'md-funnel',
-  //         title: '二级-3'
-  //       },
-  //       component: () => import('@/view/multilevel/level-2-3.vue')
-  //     }
-  //   ]
-  // },
-  {
-    path: '/argu',
-    name: 'argu',
-    meta: {
-      hideInMenu: true
-    },
-    component: Main,
-    children: [
-      {
-        path: 'params/:id',
-        name: 'params',
-        meta: {
-          icon: 'md-flower',
-          title: route => `{{ params }}-${route.params.id}`,
-          notCache: true,
-          beforeCloseName: 'before_close_normal'
-        },
-        component: () => import('@/view/argu-page/params.vue')
-      },
-      {
-        path: 'query',
-        name: 'query',
-        meta: {
-          icon: 'md-flower',
-          title: route => `{{ query }}-${route.query.id}`,
-          notCache: true
-        },
-        component: () => import('@/view/argu-page/query.vue')
       }
     ]
   },
