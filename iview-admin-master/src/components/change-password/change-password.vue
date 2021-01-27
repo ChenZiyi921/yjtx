@@ -52,7 +52,10 @@ export default {
       this.$emit("change-password-cancel");
     },
     changeUserPasswordSubmit() {
-      if (this.changePwd.password === this.password) {
+      if (
+        this.changePwd.password !== "" &&
+        this.changePwd.password === this.password
+      ) {
         this.changePwd.userid = this.userid;
         changeUserPassword(this.changePwd).then(res => {
           this.$Message.success("Operation success!");

@@ -364,6 +364,21 @@ export default {
       this.userDetailDisabled = false;
       this.showPassword = true;
       this.saveType = "new";
+      this.userDetail = {
+        userid: "",
+        loginname: "",
+        firstname: "",
+        lastname: "",
+        password: "",
+        userstatus: "",
+        userexpiredate: "",
+        userdept: "",
+        usertitile: "",
+        useraddr: "",
+        usermemo: "",
+        userphone: "",
+        useremail: ""
+      };
     },
     modifyUserCancel() {
       this.onRowClick(this.userDetail);
