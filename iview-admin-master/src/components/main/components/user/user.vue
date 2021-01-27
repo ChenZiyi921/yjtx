@@ -20,26 +20,6 @@
       </DropdownMenu>
     </Dropdown>
     <Modal
-      v-model="modalChangePwd"
-      class-name="vertical-center-modal"
-      title="Change Password"
-    >
-      <Form :model="changePwd" label-position="left" :label-width="120">
-        <FormItem label="New Password">
-          <Input type="password" password />
-        </FormItem>
-        <FormItem label="Retype Password">
-          <Input type="password" password />
-        </FormItem>
-      </Form>
-      <div slot="footer">
-        <Button size="large" @click="modalChangePwd = false">Cancel</Button>
-        <Button type="info" size="large" @click="modalChangePwd = false"
-          >OK</Button
-        >
-      </div>
-    </Modal>
-    <Modal
       v-model="modalUserInformation"
       class-name="vertical-center-modal"
       title="User Information"
@@ -91,6 +71,12 @@
         >
       </div>
     </Modal>
+    <change-password
+      :modalChangePwd="modalChangePwd"
+      :userid="userid"
+      @change-password-success="changePasswordSuccess"
+      @change-password-cancel="changePasswordCancel"
+    ></change-password>
   </div>
 </template>
 
@@ -98,9 +84,13 @@
 import "./user.less";
 import { mapActions } from "vuex";
 import { queryUserByName } from "@/api/global";
+import ChangePassword from "@/components/change-password/change-password";
 
 export default {
   name: "User",
+  components: {
+    ChangePassword
+  },
   props: {
     userAvatar: {
       type: String,
@@ -115,11 +105,12 @@ export default {
     return {
       modalChangePwd: false,
       modalUserInformation: false,
-      changePwd: {},
-      userInformation: {}
+      userInformation: {},
+      userid: 0
     };
   },
   mounted() {
+    this.userid = this.$store.state.user.userid;
     queryUserByName({ loginname: "admin" }).then(({ data }) => {
       if (data.code === 200) {
         this.userInformation = data.data.content[0];
@@ -139,6 +130,12 @@ export default {
       this.$router.push({
         name: "message_page"
       });
+    },
+    changePasswordSuccess() {
+      this.modalChangePwd = false;
+    },
+    changePasswordCancel() {
+      this.modalChangePwd = false;
     },
     handleClick(name) {
       switch (name) {

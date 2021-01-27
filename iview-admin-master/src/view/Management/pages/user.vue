@@ -155,52 +155,36 @@
         </div>
       </TabPane>
     </Tabs>
-    <Modal
-      v-model="modalChangePwd"
-      class-name="vertical-center-modal"
-      title="Change Password"
-    >
-      <Form :model="changePwd" label-position="left" :label-width="120">
-        <FormItem label="New Password">
-          <Input type="password" password v-model="changePwd.password" />
-        </FormItem>
-        <FormItem label="Retype Password">
-          <Input type="password" password v-model="password" />
-        </FormItem>
-      </Form>
-      <div slot="footer">
-        <Button size="large" @click="modalChangePwd = false">Cancel</Button>
-        <Button type="info" size="large" @click="changeUserPasswordSubmit"
-          >OK</Button
-        >
-      </div>
-    </Modal>
+    <change-password
+      :modalChangePwd="modalChangePwd"
+      :userid="userid"
+      @change-password-success="changePasswordSuccess"
+      @change-password-cancel="changePasswordCancel"
+    ></change-password>
   </div>
 </template>
 
 <script>
 import Role from "./role";
-import { queryUser, modifyUser, changeUserPassword } from "@/api/global";
+import ChangePassword from "@/components/change-password/change-password";
+import { queryUser, modifyUser } from "@/api/global";
 
 export default {
   name: "",
   components: {
-    Role
+    Role,
+    ChangePassword
   },
   data() {
     return {
       loading: false,
       modalChangePwd: false,
-      changePwd: {
-        userid: "",
-        password: ""
-      },
-      password: "",
       queryForm: {
         currPage: 1,
         pageSize: 10,
         total: 100
       },
+      userid: 0,
       userDetail: {
         userid: "",
         loginname: "",
@@ -308,16 +292,13 @@ export default {
     changeUserPwd(row) {
       const { userid } = row;
       this.modalChangePwd = true;
-      this.changePwd.userid = userid;
+      this.userid = userid;
     },
-    changeUserPasswordSubmit() {
-      if (this.changePwd.password === this.password) {
-        changeUserPassword(this.changePwd).then(res => {
-          console.log(res);
-        });
-      } else {
-        this.$Message.error("Inconsistent password input!");
-      }
+    changePasswordSuccess() {
+      this.modalChangePwd = false;
+    },
+    changePasswordCancel() {
+      this.modalChangePwd = false;
     }
   }
 };
