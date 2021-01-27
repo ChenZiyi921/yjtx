@@ -4,27 +4,33 @@ const debug = true;
 let post = debug ? "get" : "post"
 
 let loginApi = "";
+let changeUserPasswordApi = "";
+let addUserApi = "";
+let deleteUserApi = "";
 let queryUserByNameApi = "";
 let queryUserApi = "";
 let modifyUserApi = "";
 let queryRolesApi = "";
-let changeUserPasswordApi = "";
 
 if (debug) {
   loginApi = "/static/dbg/user/login.json";
+  changeUserPasswordApi = "/static/dbg/user/changeUserPassword.json";
+  addUserApi = "/static/dbg/user/addUser.json";
+  deleteUserApi = "/static/dbg/user/deleteUser.json";
   queryUserByNameApi = "/static/dbg/user/queryUserByName.json";
   queryUserApi = "/static/dbg/user/queryUser.json";
   modifyUserApi = "/static/dbg/user/modifyUser.json";
   queryRolesApi = "/static/dbg/user/queryRoles.json";
-  changeUserPasswordApi = "/static/dbg/user/changeUserPassword.json";
 
 } else {
   loginApi = "";
+  changeUserPasswordApi = "";
+  addUserApi = "";
+  deleteUserApi = "";
   queryUserByNameApi = "";
   queryUserApi = "";
   modifyUserApi = "";
   queryRolesApi = "";
-  changeUserPasswordApi = "";
 }
 
 export const login = params => {
@@ -44,6 +50,22 @@ export const changeUserPassword = params => {
 }
 
 // 用户
+export const addUser = data => {
+  return axios.request({
+    url: addUserApi,
+    data,
+    method: post
+  })
+}
+
+export const deleteUser = data => {
+  return axios.request({
+    url: deleteUserApi,
+    data,
+    method: post
+  })
+}
+
 export const queryUserByName = params => {
   return axios.request({
     url: queryUserByNameApi,
@@ -64,7 +86,7 @@ export const modifyUser = data => {
   return axios.request({
     url: modifyUserApi,
     data,
-    method: 'post'
+    method: post
   })
 }
 

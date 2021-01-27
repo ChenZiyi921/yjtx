@@ -177,8 +177,8 @@
             </FormItem>
           </Form>
           <div v-if="userDetailIsEdit" style="text-align: right;">
-            <Button class="mr10">Cancel</Button>
-            <Button type="info">Save</Button>
+            <Button class="mr10" @click="modifyUserCancel">Cancel</Button>
+            <Button type="info" @click="modifyUserSave">Save</Button>
           </div>
         </div>
       </TabPane>
@@ -189,13 +189,32 @@
       @change-password-success="changePasswordSuccess"
       @change-password-cancel="changePasswordCancel"
     ></change-password>
+    <Modal
+      v-model="delUserModal"
+      class-name="vertical-center-modal"
+      title="Warning"
+    >
+      <p class="role-del-modal-content">
+        Do you really want to delete User admin
+      </p>
+      <div slot="footer">
+        <Button size="large" @click="delUserModal = false">No</Button>
+        <Button size="large" @click="delUserSubmit" type="info">Yes</Button>
+      </div>
+    </Modal>
   </div>
 </template>
 
 <script>
 import Role from "./role";
 import ChangePassword from "@/components/change-password/change-password";
-import { queryUser, modifyUser, queryUserByName } from "@/api/global";
+import {
+  queryUser,
+  addUser,
+  deleteUser,
+  modifyUser,
+  queryUserByName
+} from "@/api/global";
 
 export default {
   name: "",
@@ -207,6 +226,7 @@ export default {
     return {
       loading: false,
       modalChangePwd: false,
+      delUserModal: false,
       queryForm: {
         currPage: 1,
         pageSize: 10,
@@ -337,6 +357,7 @@ export default {
       this.userDetailDisabled = false;
       this.showPassword = false;
       this.saveType = "edit";
+      this.queryUserInfo(row);
     },
     newUserInfo() {
       this.userDetailIsEdit = true;
@@ -344,7 +365,39 @@ export default {
       this.showPassword = true;
       this.saveType = "new";
     },
-    delUserInfo(row) {},
+    modifyUserCancel() {
+      this.onRowClick(this.userDetail);
+    },
+    modifyUserSave() {
+      if (this.saveType === "new") {
+        addUser(this.userDetail).then(({ data }) => {
+          if (data.code === 200) {
+            this.$Message.success("Operation success!");
+            this.queryUserList();
+          }
+        });
+      } else {
+        modifyUser(this.userDetail).then(({ data }) => {
+          if (data.code === 200) {
+            this.$Message.success("Operation success!");
+            this.queryUserList();
+          }
+        });
+      }
+    },
+    delUserInfo(row) {
+      this.userid = row.userid;
+      this.delUserModal = true;
+    },
+    delUserSubmit() {
+      deleteUser({ userid: this.userid }).then(({ data }) => {
+        if (data.code === 200) {
+          this.$Message.success("Operation success!");
+          this.queryUserList();
+          this.delUserModal = false;
+        }
+      });
+    },
     changeUserPwd(row) {
       const { userid } = row;
       this.modalChangePwd = true;
@@ -365,5 +418,6 @@ export default {
   width: 40%;
   padding: 20px;
   border: 1px solid #eee;
+  margin-left: 20px;
 }
 </style>

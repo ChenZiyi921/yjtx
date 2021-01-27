@@ -54,10 +54,10 @@
         Do you really want to delete User Role role-admin
       </p>
       <div slot="footer">
+        <Button size="large" @click="delRoleModal = false">No</Button>
         <Button size="large" @click="delRoleModal = false" type="info"
           >Yes</Button
         >
-        <Button size="large" @click="delRoleModal = false">No</Button>
       </div>
     </Modal>
   </div>
@@ -97,8 +97,8 @@ export default {
       columns: [
         {
           title: "ID",
-          key: "roleid",
-          width: 60
+          key: "roleid"
+          // width: 60
         },
         {
           title: "Name",
@@ -223,6 +223,7 @@ export default {
   width: 40%;
   padding: 20px;
   border: 1px solid #eee;
+  margin-left: 20px;
 }
 .role-detail-title {
   margin-bottom: 10px;
