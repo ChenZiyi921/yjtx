@@ -2,7 +2,9 @@
   <div class="">
     <Form label-position="left" :label-width="0" inline>
       <FormItem>
-        <Button type="success" class="mr10" ghost>Refresh</Button>
+        <Button type="success" class="mr10" ghost @click="queryCaseList"
+          >Refresh</Button
+        >
       </FormItem>
       <FormItem>
         <Button type="success" class="mr10" @click="showCreateModal"
@@ -15,7 +17,7 @@
         >
       </FormItem>
     </Form>
-    <Table border :columns="columns" :data="data">
+    <Table border :columns="columns" :data="data" :loading="loading">
       <template slot-scope="{ row }" slot="name">
         <strong>{{ row.name }}</strong>
       </template>
@@ -249,6 +251,7 @@
 export default {
   data() {
     return {
+      loading: false,
       modal: false,
       searchModal: false,
       createModal: false,
@@ -325,7 +328,7 @@ export default {
     };
   },
   mounted() {
-    this.queryList();
+    this.queryCaseList();
     for (let i = 0; i < 10; i++) {
       this.data.push({
         name: "Jon Snow",
@@ -342,16 +345,15 @@ export default {
       this.data.splice(index, 1);
     },
     pageSizeChange(pageSize) {
-      // this.loading = true;
       this.queryForm.pageSize = pageSize;
-      // this.queryList();
+      this.queryCaseList();
     },
     pageChange(index) {
-      // this.loading = true;
       this.queryForm.pageNum = index;
-      // this.queryList();
+      this.queryCaseList();
     },
-    queryList() {
+    queryCaseList() {
+      // this.loading = true;
       // getTableData().then(res => {
       //   console.log(res);
       // });
@@ -381,8 +383,4 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
-// .management {
-//   background: #fff;
-// }
-</style>
+<style lang="less" scoped></style>

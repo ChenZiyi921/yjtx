@@ -14,6 +14,7 @@ let queryRolesApi = "";
 let queryResourcesApi = "";
 let deleteRoleApi = "";
 let addRoleApi = "";
+let modifyRoleApi = "";
 
 if (debug) {
   loginApi = "/static/dbg/user/login.json";
@@ -27,6 +28,7 @@ if (debug) {
   queryResourcesApi = "/static/dbg/user/queryResources.json";
   deleteRoleApi = "/static/dbg/user/deleteRole.json";
   addRoleApi = "/static/dbg/user/addRole.json";
+  modifyRoleApi = "/static/dbg/user/modifyRole.json";
 } else {
   loginApi = "";
   changeUserPasswordApi = "";
@@ -39,6 +41,7 @@ if (debug) {
   queryResourcesApi = "";
   deleteRoleApi = "";
   addRoleApi = "";
+  modifyRoleApi = "";
 }
 
 export const login = params => {
@@ -49,29 +52,26 @@ export const login = params => {
   })
 }
 
-export const changeUserPassword = params => {
-  return axios.request({
+export const changeUserPassword = data => {
+  return axios.request(Object.assign({
     url: changeUserPasswordApi,
-    params,
     method: post
-  })
+  }, post ? { params: data } : { data }))
 }
 
 // 用户
 export const addUser = data => {
-  return axios.request({
+  return axios.request(Object.assign({
     url: addUserApi,
-    data,
     method: post
-  })
+  }, post ? { params: data } : { data }))
 }
 
 export const deleteUser = data => {
-  return axios.request({
+  return axios.request(Object.assign({
     url: deleteUserApi,
-    data,
     method: post
-  })
+  }, post ? { params: data } : { data }))
 }
 
 export const queryUserByName = params => {
@@ -91,11 +91,10 @@ export const queryUser = params => {
 }
 
 export const modifyUser = data => {
-  return axios.request({
+  return axios.request(Object.assign({
     url: modifyUserApi,
-    data,
     method: post
-  })
+  }, post ? { params: data } : { data }))
 }
 
 // 角色
@@ -126,6 +125,14 @@ export const deleteRole = params => {
 export const addRole = params => {
   return axios.request({
     url: addRoleApi,
+    params,
+    method: 'get'
+  })
+}
+
+export const modifyRole = params => {
+  return axios.request({
+    url: modifyRoleApi,
     params,
     method: 'get'
   })

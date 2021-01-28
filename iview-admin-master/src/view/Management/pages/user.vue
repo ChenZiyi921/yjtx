@@ -209,6 +209,7 @@
 import Role from "./role";
 import ChangePassword from "@/components/change-password/change-password";
 import {
+  queryRoles,
   queryUser,
   addUser,
   deleteUser,
@@ -313,8 +314,21 @@ export default {
   computed: {},
   mounted() {
     this.queryUserList();
+    this.queryRolesList();
   },
   methods: {
+    queryRolesList() {
+      queryRoles().then(({ data }) => {
+        if (data.code === 200) {
+          const { content } = data.data;
+          this.roleList = content;
+          this.roleList.map(item => {
+            item.value = item.rolename;
+            item.label = item.rolename;
+          });
+        }
+      });
+    },
     queryUserList() {
       this.loading = true;
       queryUser(this.queryForm).then(({ data }) => {
@@ -392,6 +406,7 @@ export default {
           }
         });
       } else {
+        console.log(this.userDetail);
         modifyUser(this.userDetail).then(({ data }) => {
           if (data.code === 200) {
             this.$Message.success("Operation success!");

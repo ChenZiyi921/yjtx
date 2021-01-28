@@ -64,7 +64,13 @@
 </template>
 
 <script>
-import { queryRoles, queryResources, deleteRole, addRole } from "@/api/global";
+import {
+  queryRoles,
+  queryResources,
+  deleteRole,
+  addRole,
+  modifyRole
+} from "@/api/global";
 
 export default {
   name: "",
@@ -229,21 +235,6 @@ export default {
                 h(
                   "Button",
                   {
-                    props: {
-                      type: "info"
-                    },
-                    on: {
-                      click: () => {
-                        this.editIndex = -1;
-                        this.saveRole(row);
-                      }
-                    }
-                  },
-                  "Save"
-                ),
-                h(
-                  "Button",
-                  {
                     props: {},
                     style: {
                       marginLeft: "10px"
@@ -269,6 +260,7 @@ export default {
                     on: {
                       click: e => {
                         e.stopPropagation();
+                        this.saveType = "edit";
                         this.editRole(row);
                         this.editIndex = index;
                       }
@@ -379,6 +371,7 @@ export default {
       this.queryRolesList();
     },
     onRowClick(row, index) {
+      this.editIndex = -1;
       this.isEdit = false;
       this.disabled = true;
       this.disableCheckbox();
@@ -387,50 +380,41 @@ export default {
       this.isEdit = true;
       this.disabled = false;
       this.enableCheckbox();
-      this.roleDetail.roleid = row.roleid;
-      this.roleDetail.rolememo = row.rolememo;
+      if (row.roleid) {
+        this.roleDetail.roleid = row.roleid;
+        this.roleDetail.rolememo = row.rolememo;
+      } else {
+        this.saveType = "new";
+      }
     },
     modifyRoleCancel() {
-      // this.onRowClick(this.userDetail);
+      this.onRowClick();
     },
     modifyRoleSave() {
       if (this.saveType === "new") {
-        // addUser(this.userDetail).then(({ data }) => {
-        //   if (data.code === 200) {
-        //     this.$Message.success("Operation success!");
-        //     this.queryUserList();
-        //   }
-        // });
+        addRole(this.roleDetail).then(({ data }) => {
+          if (data.code === 200) {
+            this.$Message.success("Operation success!");
+            this.onRowClick();
+            this.queryRolesList();
+          }
+        });
       } else {
-        // modifyUser(this.userDetail).then(({ data }) => {
-        //   if (data.code === 200) {
-        //     this.$Message.success("Operation success!");
-        //     this.queryUserList();
-        //   }
-        // });
+        modifyRole(this.roleDetail).then(({ data }) => {
+          if (data.code === 200) {
+            this.$Message.success("Operation success!");
+            this.onRowClick();
+            this.queryRolesList();
+          }
+        });
       }
     },
-    saveRole(row) {
-      addRole(this.roleDetail).then(({ data }) => {
-        if (data.code === 200) {
-          this.$Message.success("Operation success!");
-          this.queryRolesList();
-        }
-      });
-    },
     newRole() {
+      this.saveType = "new";
       this.isEdit = true;
       this.disabled = false;
       this.enableCheckbox();
       this.data.push({});
-      // this.roleDetail = {
-      //   roleid: "",
-      //   rolename: "",
-      //   rolestatus: "",
-      //   createdate: "",
-      //   modifydate: "",
-      //   rolememo: ""
-      // };
     },
     delRole(row) {
       this.roleid = row.roleid;
