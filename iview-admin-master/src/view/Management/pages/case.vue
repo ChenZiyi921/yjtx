@@ -24,6 +24,26 @@
       <template slot-scope="{ row, index }" slot="action">
         <template v-if="true">
           <Button
+            size="small"
+            class="mr10"
+            @click="showCommonModal(row, 'deactive')"
+            >DeActive</Button
+          >
+          <Button
+            type="info"
+            size="small"
+            class="mr10"
+            @click="showCommonModal(row, 'active')"
+            >Active</Button
+          >
+          <Button
+            type="success"
+            size="small"
+            class="mr10"
+            @click="showCommonModal(row, 'submit')"
+            >Submit</Button
+          >
+          <Button
             type="info"
             ghost
             size="small"
@@ -31,14 +51,15 @@
             @click="show(index)"
             >Edit</Button
           >
-          <Button type="error" size="small" class="mr10" @click="remove(index)"
+          <Button type="error" size="small" class="mr10" @click="delCase(row)"
             >Delete</Button
           >
           <Button
+            :disabled="row.casestatus === 'CLOSED'"
             type="error"
             size="small"
             class="mr10"
-            @click="remove(index)"
+            @click="closeCaseConfirm(row, 'close')"
             ghost
             >Close</Button
           >
@@ -48,19 +69,19 @@
             type="success"
             size="small"
             class="mr10"
-            @click="remove(index)"
+            @click="closeCaseConfirm(row, 'approve')"
             >Approve</Button
           >
-          <Button type="error" size="small" class="mr10" @click="remove(index)"
+          <Button
+            type="error"
+            size="small"
+            class="mr10"
+            @click="closeCaseConfirm(row, 'deny')"
             >Deny</Button
           >
         </template>
 
-        <Button
-          type="success"
-          ghost
-          size="small"
-          @click="showCommentModal(index)"
+        <Button type="success" ghost size="small" @click="showCommentModal(row)"
           >Comment</Button
         >
       </template>
@@ -214,9 +235,6 @@
             <Checkbox label="Analyze"></Checkbox>
           </CheckboxGroup>
         </FormItem>
-        <!-- <FormItem label="">
-          <Button></Button>
-        </FormItem> -->
       </Form>
       <div slot="footer">
         <Button size="large" @click="createModal = false">Cancel</Button>
@@ -233,11 +251,57 @@
       width="700"
     >
       <div>
-        <Input type="textarea" :rows="10" style="width: 600px" />
+        <Input
+          v-model="caseComment.comment"
+          type="textarea"
+          :rows="10"
+          style="width: 600px"
+        />
       </div>
       <div slot="footer">
         <Button size="large" @click="commentModal = false">Cancel</Button>
-        <Button type="info" size="large" @click="commentModal = false"
+        <Button type="info" size="large" @click="commentCaseSave">Save</Button>
+      </div>
+    </Modal>
+    <Modal
+      v-model="delModal"
+      class-name="vertical-center-modal"
+      :closable="false"
+      title="delete Case"
+      width="700"
+    >
+      <div>Are you sure you want to delete case {{ delCasename }} ?</div>
+      <div slot="footer">
+        <Button size="large" @click="delModal = false">Cancel</Button>
+        <Button type="info" size="large" @click="delCaseConfirm">Save</Button>
+      </div>
+    </Modal>
+    <Modal
+      v-model="closeModal"
+      class-name="vertical-center-modal"
+      :closable="false"
+      title="close"
+      width="700"
+    >
+      <div>Are you sure you want to close case {{ delCasename }} ?</div>
+      <div slot="footer">
+        <Button size="large" @click="closeModal = false">Cancel</Button>
+        <Button type="info" size="large" @click="caseOperationCommon"
+          >Save</Button
+        >
+      </div>
+    </Modal>
+    <Modal
+      v-model="commonModal.show"
+      class-name="vertical-center-modal"
+      :closable="false"
+      :title="commonModal.title"
+      width="700"
+    >
+      <div>{{ commonModal.content }}</div>
+      <div slot="footer">
+        <Button size="large" @click="commonModal.show = false">Cancel</Button>
+        <Button type="info" size="large" @click="caseOperationCommon"
           >Save</Button
         >
       </div>
@@ -246,70 +310,101 @@
 </template>
 
 <script>
-// import { getTableData } from "@/api/global";
+import {
+  queryCasesByUser,
+  deleteCase,
+  caseOperation,
+  commentCase
+} from "@/api/global";
 
 export default {
   data() {
     return {
       loading: false,
       modal: false,
+      delModal: false,
+      closeModal: false,
       searchModal: false,
       createModal: false,
       commentModal: false,
+      commonModal: {
+        title: "",
+        content: "",
+        show: false,
+        type: ""
+      },
+      delCasename: "",
+      caseid: "",
       queryForm: {
         pageNum: 1,
         pageSize: 10,
         total: 100
       },
+      caseOperatorForm: {
+        caseid: "",
+        operation: ""
+      },
+      caseComment: {
+        caseid: "",
+        comment: ""
+      },
       columns: [
         {
+          type: "index",
           title: "Index",
           key: "name"
         },
         {
           title: "Name",
-          key: "name"
+          key: "casename"
         },
         {
           title: "Status",
-          key: "age"
+          key: "casestatus"
         },
         {
           title: "Type",
-          key: "age"
+          key: "casetype"
         },
         {
           title: "Expired",
-          key: "address"
+          key: "caseexpireddate"
         },
         {
           title: "Auto Active",
-          key: "address"
+          key: "caseautoact"
         },
         {
           title: "Active Date",
-          key: "name"
+          key: "caseactivedate"
         },
         {
           title: "Close Date",
-          key: "age"
+          key: "caseclosedate"
         },
         {
           title: "Create Date",
-          key: "address"
+          key: "casecreatedate"
         },
         {
           title: "Creator",
-          key: "age"
+          key: "casecreator"
         },
         {
           title: "Comments",
-          key: "address"
+          key: "casememo",
+          render: (h, { row, index }) => {
+            return row.casememo ? (
+              <Icon type="ios-bulb" size="20" style="color: yellow;" />
+            ) : (
+              ""
+            );
+          }
         },
         {
           title: "Action",
           slot: "action",
-          width: 300,
+          width: 500,
           align: "center"
         }
       ],
@@ -329,20 +424,65 @@ export default {
   },
   mounted() {
     this.queryCaseList();
-    for (let i = 0; i < 10; i++) {
-      this.data.push({
-        name: "Jon Snow",
-        age: i,
-        address: "Ottawa No. 2 Lake Park"
-      });
-    }
   },
   methods: {
     show(index) {
       this.modal = true;
     },
-    remove(index) {
-      this.data.splice(index, 1);
+    delCase(row) {
+      this.delCasename = row.casename;
+      this.delModal = true;
+      this.caseid = row.caseid;
+    },
+    delCaseConfirm() {
+      deleteCase({
+        caseid: this.caseid
+      }).then(({ data }) => {
+        if (data.code === 200) {
+          this.delModal = false;
+          this.$Message.success("Operation success!");
+          this.queryCaseList();
+        }
+      });
+    },
+    setOperatorType(row, type) {
+      this.caseOperatorForm = {
+        caseid: row.caseid,
+        operation: type
+      };
+      this.delCasename = row.casename;
+    },
+    closeCaseConfirm(row, type) {
+      this.setOperatorType(row, type);
+      this.closeModal = true;
+    },
+    showCommonModal(row, type) {
+      this.setOperatorType(row, type);
+      this.commonModal = {
+        title: type,
+        content: `Are you sure you want to execute ${type}?`,
+        show: true,
+        type
+      };
+    },
+    caseOperationCommon() {
+      caseOperation(this.caseOperatorForm).then(({ data }) => {
+        if (data.code === 200) {
+          this.closeModal = false;
+          this.commonModal.show = false;
+          this.$Message.success("Operation success!");
+          this.queryCaseList();
+        }
+      });
+    },
+    commentCaseSave() {
+      commentCase(this.caseComment).then(({ data }) => {
+        if (data.code === 200) {
+          this.commentModal = false;
+          this.$Message.success("Operation success!");
+          this.queryCaseList();
+        }
+      });
     },
     pageSizeChange(pageSize) {
       this.queryForm.pageSize = pageSize;
@@ -353,10 +493,15 @@ export default {
       this.queryCaseList();
     },
     queryCaseList() {
-      // this.loading = true;
-      // getTableData().then(res => {
-      //   console.log(res);
-      // });
+      this.loading = true;
+      queryCasesByUser({
+        userid: 1
+      }).then(({ data }) => {
+        if (data.code === 200) {
+          this.loading = false;
+          this.data = data.data.content;
+        }
+      });
     },
     showCreateModal() {
       this.createModal = true;
@@ -376,8 +521,10 @@ export default {
       const index = this.tagList.indexOf(name);
       this.tagList.splice(index, 1);
     },
-    showCommentModal() {
+    showCommentModal(row) {
       this.commentModal = true;
+      this.caseComment.caseid = row.caseid;
+      this.caseComment.comment = row.casememo;
     }
   }
 };
