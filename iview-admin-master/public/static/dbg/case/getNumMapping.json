@@ -1,0 +1,8 @@
+{
+    "code": 200,
+    "msg": "Success",
+    "data": {
+		"number":"460000212233",
+		"type":"imsi",
+		"msisdn":"13800138000"
+}

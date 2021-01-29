@@ -1,0 +1,42 @@
+{
+    "code": 200,
+    "msg": "Success",
+    "data": {
+		"caseid":297,
+		"casename":"Case Test 167",
+		"casestatus":"EXPIRED",
+		"caseref":"1710457951",
+		"casetype":"Basic",
+		"caseactivedate":"2013-08-19",
+		"caseclosedate":null,
+		"caseexpireddate":"2013-08-21",
+		"casecreatedate":"2013-08-19",
+		"casedesc":null,
+		"casememo":null,
+		"caseowner":null,
+		"caseautoact":1,
+		"casecreator":"CaseManager11",
+		"targets":[
+			{
+				"targetid":431,
+				"targetname":"Case Test 167::tter",
+				"targetstatus":null,
+				"targetmemo":null,
+				"ics":[
+				]
+			}
+		],
+		"members":[
+			{
+				"oprid":506,
+				"caseid":297,
+				"userid":1,
+				"viewcase":1,
+				"managecase":1,
+				"analyzecase":1,
+				"monitorcase":1
+			}
+		]
+
+    }
+}

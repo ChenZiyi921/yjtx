@@ -1,0 +1,31 @@
+{
+	"caseid": 178,
+	"dutyconsole": 3,
+	"ics": [],
+	"targets": [{
+		"targetid": 226,
+		"ics": [{
+			"numbers": [{
+					"isdn": "",
+					"imsi": "",
+					"imei": "1234567890",
+					"networks": [
+						"NETONE",
+						"TELECEL"
+					],
+					"voice": true
+				},
+				{
+					"isdn": "33333333",
+					"imsi": "333333333",
+					"imei": "",
+					"networks": [
+						"NETONE",
+						"TELECEL"
+					],
+					"voice": false
+				}
+			]
+		}]
+	}]
+}

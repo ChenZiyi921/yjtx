@@ -1,0 +1,10 @@
+{
+    "casename":"case",
+	"casename-cond":"include",
+    "targetname":"Simon",
+    "caseowner":"Lion",
+	"status":"NEW",
+    "createdate-start":"2013-08-19",
+	"createdate-end":"2020-08-19",
+    "comment":"A word"
+}

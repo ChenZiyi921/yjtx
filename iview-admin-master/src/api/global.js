@@ -16,6 +16,8 @@ let deleteRoleApi = "";
 let addRoleApi = "";
 let modifyRoleApi = "";
 
+let queryCasesByUserApi = "";
+
 if (debug) {
   loginApi = "/static/dbg/user/login.json";
   changeUserPasswordApi = "/static/dbg/user/changeUserPassword.json";
@@ -29,6 +31,8 @@ if (debug) {
   deleteRoleApi = "/static/dbg/user/deleteRole.json";
   addRoleApi = "/static/dbg/user/addRole.json";
   modifyRoleApi = "/static/dbg/user/modifyRole.json";
+
+  queryCasesByUserApi = "/static/dbg/case/queryCasesByUser.json";
 } else {
   loginApi = "";
   changeUserPasswordApi = "";
@@ -42,6 +46,8 @@ if (debug) {
   deleteRoleApi = "";
   addRoleApi = "";
   modifyRoleApi = "";
+
+  queryCasesByUserApi = "";
 }
 
 export const login = params => {
@@ -136,4 +142,12 @@ export const modifyRole = params => {
     params,
     method: 'get'
   })
+}
+
+// 案件管理
+export const queryCasesByUser = data => {
+  return axios.request(Object.assign({
+    url: queryCasesByUserApi,
+    method: post
+  }, post ? { params: data } : { data }))
 }

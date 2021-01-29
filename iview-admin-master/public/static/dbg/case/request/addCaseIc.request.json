@@ -1,0 +1,16 @@
+{
+    "caseid": 178,
+	"dutyconsole":3,
+    "ics": [
+        {
+            "numbers": [],
+            "basestation": [
+                "NetCell-111-223",
+                "NetCell-111-223",
+                "NetCell-111-223",
+                "NetCell-111-223"
+            ]
+        }
+    ],
+    "targets": []
+}

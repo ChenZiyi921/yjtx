@@ -1,0 +1,43 @@
+{
+    "casename":"Case Test 167",
+    "casestatus":"EXPIRED",
+    "caseref":"1710457951",
+    "casetype":"Basic",
+    "caseactivedate":"2013-08-19",
+    "caseclosedate":null,
+    "caseexpireddate":"2013-08-21",
+    "casecreatedate":"2013-08-19",
+    "casedesc":"",
+    "casememo":"",
+    "caseowner":"",
+    "caseautoact":1,
+    "casecreator":"CaseManager11",
+    "targets":[
+        {
+            "targetname":"Case Test 167::tter",
+            "targetstatus":"",
+            "targetmemo":"",
+            "ics":[
+                {
+                    "icname":"IC-IMSI-E-648040602547745",
+                    "ictype":"IMSI",
+                    "icstatus":"ACTIVE",
+                    "iccreatedate":"2013-07-26",
+                    "iccreator":"CaseManager11",
+                    "icexpireddate":"2013-07-27",
+                    "icmemo":"Auto created with caseCase Test 166",
+                    "icprio":3
+                }
+            ]
+        }
+    ],
+    "members":[
+        {
+            "userid":1,
+            "viewcase":1,
+            "managecase":1,
+            "analyzecase":1,
+            "monitorcase":1
+        }
+    ]
+}
