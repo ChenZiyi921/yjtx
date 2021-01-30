@@ -1,6 +1,8 @@
 import axios from 'axios'
 import store from '@/store'
 // import { Spin } from 'view-design'
+import { Message } from 'view-design'
+
 const addErrorLog = errorInfo => {
   const { statusText, status, request: { responseURL } } = errorInfo
   let info = {
@@ -48,6 +50,17 @@ class HttpRequest {
     instance.interceptors.response.use(res => {
       this.destroy(url)
       const { data, status } = res;
+      switch (data.code) {
+        case 200:
+
+          break;
+        case 500:
+          Message.error(data.msg);
+          break;
+        default:
+          Message.warning(data.msg)
+          break;
+      }
       return { data, status }
     }, error => {
       this.destroy(url)

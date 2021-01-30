@@ -33,6 +33,21 @@
       />
     </div>
     <div class="role-detail">
+      <Form label-position="left" :label-width="60" inline>
+        <FormItem label="Name">
+          <Input :disabled="!isEdit" />
+        </FormItem>
+        <FormItem label="Status">
+          <Select :disabled="!isEdit" style="width: 162px;">
+            <Option
+              v-for="item in roleList"
+              :value="item.value"
+              :key="item.value"
+              >{{ item.label }}</Option
+            >
+          </Select>
+        </FormItem>
+      </Form>
       <div class="role-detail-title">Assignment Privileges</div>
       <Tree :data="treeData" show-checkbox multiple :select-node="false"></Tree>
       <div class="role-detail-title">Role Information</div>
@@ -53,7 +68,7 @@
       title="Warning"
     >
       <p class="role-del-modal-content">
-        Do you really want to delete User Role role-admin
+        Do you really want to delete User Role {{ roleName }}
       </p>
       <div slot="footer">
         <Button size="large" @click="delRoleModal = false">No</Button>
@@ -93,6 +108,7 @@ export default {
         rolememo: ""
       },
       roleid: "",
+      roleName: "",
       disabled: true,
       isEdit: false,
       saveType: "",
@@ -117,7 +133,6 @@ export default {
         }
       ],
       treeData: [],
-      //
       editIndex: -1,
       column: [
         {
@@ -131,100 +146,28 @@ export default {
           title: "Name",
           key: "rolename",
           render: (h, { row, index }) => {
-            let edit;
-            if (this.editIndex === index) {
-              this.roleDetail.rolename = row.rolename;
-              edit = [
-                h("Input", {
-                  props: {
-                    value: row.rolename
-                  },
-                  on: {
-                    input: val => {
-                      this.roleDetail.rolename = val;
-                    }
-                  }
-                })
-              ];
-            } else {
-              edit = row.rolename;
-            }
-            return h("div", [edit]);
+            return h("div", [row.rolename]);
           }
         },
         {
           title: "Status",
           key: "rolestatus",
           render: (h, { row, index }) => {
-            let edit;
-            if (this.editIndex === index) {
-              this.roleDetail.rolestatus = row.rolestatus;
-              edit = [
-                h("Select", {
-                  props: {
-                    value: row.rolestatus
-                  },
-                  on: {
-                    input: val => {
-                      this.roleDetail.rolestatus = val;
-                    }
-                  }
-                })
-              ];
-            } else {
-              edit = row.rolestatus;
-            }
-            return h("div", [edit]);
+            return h("div", [row.rolestatus]);
           }
         },
         {
           title: "Create Date",
           key: "createdate",
           render: (h, { row, index }) => {
-            let edit;
-            if (this.editIndex === index) {
-              this.roleDetail.createdate = row.createdate;
-              edit = [
-                h("Input", {
-                  props: {
-                    value: row.createdate
-                  },
-                  on: {
-                    input: val => {
-                      this.roleDetail.createdate = val;
-                    }
-                  }
-                })
-              ];
-            } else {
-              edit = row.createdate;
-            }
-            return h("div", [edit]);
+            return h("div", [row.createdate]);
           }
         },
         {
           title: "Modify Date",
           key: "modifydate",
           render: (h, { row, index }) => {
-            let edit;
-            if (this.editIndex === index) {
-              this.roleDetail.modifydate = row.modifydate;
-              edit = [
-                h("Input", {
-                  props: {
-                    value: row.modifydate
-                  },
-                  on: {
-                    input: val => {
-                      this.roleDetail.modifydate = val;
-                    }
-                  }
-                })
-              ];
-            } else {
-              edit = row.modifydate;
-            }
-            return h("div", [edit]);
+            return h("div", [row.modifydate]);
           }
         },
         {
@@ -236,9 +179,7 @@ export default {
                   "Button",
                   {
                     props: {},
-                    style: {
-                      marginLeft: "10px"
-                    },
+                    style: {},
                     on: {
                       click: () => {
                         this.editIndex = -1;
@@ -255,7 +196,8 @@ export default {
                   {
                     props: {
                       type: "info",
-                      ghost: true
+                      ghost: true,
+                      disabled: row.rolename ? false : true
                     },
                     on: {
                       click: e => {
@@ -414,9 +356,10 @@ export default {
       this.isEdit = true;
       this.disabled = false;
       this.enableCheckbox();
-      this.data.push({});
+      // this.data.push({});
     },
     delRole(row) {
+      this.roleName = row.rolename;
       this.roleid = row.roleid;
       this.delRoleModal = true;
     },

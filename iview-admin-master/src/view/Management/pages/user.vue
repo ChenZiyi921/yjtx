@@ -195,7 +195,7 @@
       title="Warning"
     >
       <p class="role-del-modal-content">
-        Do you really want to delete User admin
+        Do you really want to delete {{ userName }}
       </p>
       <div slot="footer">
         <Button size="large" @click="delUserModal = false">No</Button>
@@ -234,6 +234,7 @@ export default {
         total: 100
       },
       userid: 0,
+      userName: "",
       userDetail: {
         userid: "",
         loginname: "",
@@ -416,6 +417,7 @@ export default {
       }
     },
     delUserInfo(row) {
+      this.userName = row.loginname;
       this.userid = row.userid;
       this.delUserModal = true;
     },
