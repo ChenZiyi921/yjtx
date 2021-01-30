@@ -2,7 +2,7 @@
     "code": 200,
     "msg": "Success",
     "data": {
-        "roleid": "100",
-        "resourceid": "500"
+        "queryid": 134,
+        "queryname": "query-for-test"
     }
 }

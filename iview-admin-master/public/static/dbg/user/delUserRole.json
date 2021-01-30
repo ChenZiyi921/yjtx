@@ -1,8 +1,8 @@
 {
-    "code": 200,
-    "msg": "Success",
+    "code": 500,
+    "msg": "Failed to delete",
     "data": {
-        "roleid": "345234t234",
-        "userid": 0
+        "userid": 280,
+        "roleid": "100"
     }
 }

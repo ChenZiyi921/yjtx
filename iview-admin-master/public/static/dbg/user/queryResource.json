@@ -2,18 +2,15 @@
     "code": 200,
     "msg": "Success",
     "data": {
-        "content": [
-            {
-                "resourceid": "300100",
-                "resourcename": "user:add",
-                "resourceurl": "/user.html",
-                "resourcetype": "",
-                "parentid": "300",
-                "createdtime": "2020-09-15",
-                "status": "",
-                "image": "",
-                "sort": ""
-            }
-        ]
+        "resourceid": "500",
+        "resourcei18n": null,
+        "resourcename": "Management",
+        "resourceurl": null,
+        "resourcetype": "3",
+        "parentid": "0",
+        "createtime": "2021-01-25",
+        "image": null,
+        "sort": null,
+        "status": null
     }
 }

@@ -4,17 +4,57 @@
     "data": {
         "content": [
             {
-                "roleid": "345234t234",
-                "rolename": "Admin",
-                "rolestatus": "",
+                "roleid": "100",
+                "rolename": "Administrator",
                 "createdate": "2020-09-15",
                 "modifydate": "2020-09-15",
+                "rolestatus": "normal",
+                "rolememo": "User and role management"
+            },
+            {
+                "roleid": "200",
+                "rolename": "CaseManager",
+                "createdate": "2020-09-15",
+                "modifydate": "2020-09-15",
+                "rolestatus": null,
+                "rolememo": "Manage the cases"
+            },
+            {
+                "roleid": "300",
+                "rolename": "CaseApprover",
+                "createdate": "2020-09-15",
+                "modifydate": "2020-09-15",
+                "rolestatus": null,
+                "rolememo": "Approve the cases"
+            },
+            {
+                "roleid": "400",
+                "rolename": "Analyzer",
+                "createdate": "2020-09-15",
+                "modifydate": "2020-09-15",
+                "rolestatus": null,
+                "rolememo": "Analyzer the cases"
+            },
+            {
+                "roleid": "aaaaaa",
+                "rolename": "Admin",
+                "createdate": "2020-09-15",
+                "modifydate": "2020-09-15",
+                "rolestatus": null,
                 "rolememo": "A test role"
+            },
+            {
+                "roleid": "500",
+                "rolename": "Administrator",
+                "createdate": "2020-09-15",
+                "modifydate": "2020-09-15",
+                "rolestatus": "normal",
+                "rolememo": "User and role management"
             }
         ],
         "currPage": 1,
-        "pageSize": 20,
-        "totalCount": 1,
+        "pageSize": 6,
+        "totalCount": 6,
         "totalPage": 1
     }
 }

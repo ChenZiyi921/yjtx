@@ -2,11 +2,11 @@
     "code": 200,
     "msg": "Success",
     "data": {
-        "roleid": "345234t234",
-        "rolename": "Admin",
-        "rolestatus": "",
+        "roleid": "100",
+        "rolename": "Administrator",
         "createdate": "2020-09-15",
         "modifydate": "2020-09-15",
-        "rolememo": "A test role"
+        "rolestatus": "normal",
+        "rolememo": "User and role management"
     }
 }

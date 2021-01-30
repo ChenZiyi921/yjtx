@@ -1,7 +1,7 @@
 {
-    "code": 200,
-    "msg": "Success",
+    "code": 500,
+    "msg": "Sys role is not existed,libe role is not existed",
     "data": {
-        "roleid": "345234t235"
+        "roleid": "700"
     }
 }

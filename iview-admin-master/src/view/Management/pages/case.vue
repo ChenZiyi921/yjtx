@@ -48,7 +48,7 @@
             ghost
             size="small"
             class="mr10"
-            @click="show(index)"
+            @click="showCreateModal"
             >Edit</Button
           >
           <Button type="error" size="small" class="mr10" @click="delCase(row)"
@@ -87,7 +87,7 @@
       </template>
     </Table>
     <Page
-      :current="queryForm.pageNum"
+      :current="queryForm.currPage"
       :total="queryForm.total"
       :page-size="queryForm.pageSize"
       @on-change="pageChange"
@@ -97,17 +97,6 @@
       show-total
       style="margin-top:10px;"
     />
-    <Modal
-      v-model="modal"
-      class-name="vertical-center-modal"
-      :closable="false"
-      title="编辑权限"
-    >
-      <div slot="footer">
-        <Button size="large" @click="modal = false">取消</Button>
-        <Button type="info" size="large" @click="modal = false">确定</Button>
-      </div>
-    </Modal>
     <Modal
       v-model="searchModal"
       class-name="vertical-center-modal"
@@ -176,9 +165,9 @@
       class-name="vertical-center-modal"
       :closable="false"
       title="Create/Edit"
-      width="700"
+      fullscreen
     >
-      <Form :model="queryForm" label-position="left" :label-width="100" inline>
+      <Form :model="queryForm" label-position="left" :label-width="100">
         <FormItem label="Case Name">
           <Input style="width: 300px" class="mr10" />
           <Button type="warning" ghost>Check</Button>
@@ -194,16 +183,16 @@
           <Input type="textarea" :rows="4" style="width: 300px" />
         </FormItem>
         <FormItem label="Target Name">
-          <Input style="width: 150px" class="mr10" />
+          <Input style="width: 150px; float: left;" class="mr10" />
           <Button
             type="success"
             class="mr10"
-            style="width: 32px; height: 32px; text-align: center; padding: 0; font-size: 16px;"
+            style="float: left; width: 32px; height: 32px; text-align: center; padding: 0; font-size: 16px;"
             @click="handleAdd"
             >+</Button
           >
           <div
-            style="width: 200px; min-height: 100px; float: right; padding: 0 20px; border: 1px solid #eee;"
+            style="float: left; width: 200px; min-height: 100px; padding: 0 20px; border: 1px solid #eee;"
           >
             <Tag
               type="dot"
@@ -227,15 +216,32 @@
             >
           </Select>
         </FormItem>
-        <FormItem label="Authorization">
+        <!-- <FormItem label="Authorization">
           <CheckboxGroup @on-change="checkAllGroupChange">
             <Checkbox label="Manage"></Checkbox>
             <Checkbox label="Monitor"></Checkbox>
             <Checkbox label="View"></Checkbox>
             <Checkbox label="Analyze"></Checkbox>
           </CheckboxGroup>
+        </FormItem> -->
+        <FormItem label="Authorization">
+          <div style="width: 1200px; text-align: right;">
+            <Button type="success" @click="createData.push({})">Add</Button>
+          </div>
+          <Table
+            border
+            :columns="createColumns"
+            :data="createData"
+            class="mt10"
+            width="1200"
+          >
+            <template slot-scope="{ row }" slot="name">
+              <strong>{{ row.name }}</strong>
+            </template>
+          </Table>
         </FormItem>
       </Form>
+
       <div slot="footer">
         <Button size="large" @click="createModal = false">Cancel</Button>
         <Button type="info" size="large" @click="createModal = false"
@@ -321,7 +327,6 @@ export default {
   data() {
     return {
       loading: false,
-      modal: false,
       delModal: false,
       closeModal: false,
       searchModal: false,
@@ -336,7 +341,7 @@ export default {
       delCasename: "",
       caseid: "",
       queryForm: {
-        pageNum: 1,
+        currPage: 1,
         pageSize: 10,
         total: 100
       },
@@ -419,16 +424,212 @@ export default {
           label: "London"
         }
       ],
-      tagList: []
+      tagList: [],
+      rowData: {},
+      editIndex: -1,
+      createColumns: [
+        {
+          type: "index",
+          width: 100,
+          align: "center",
+          title: "ID",
+          key: "roleid"
+        },
+        {
+          title: "Name",
+          key: "rolename",
+          render: (h, { row, index }) => {
+            let edit;
+            if (this.editIndex === index) {
+              // this.roleDetail.rolename = row.rolename;
+              edit = [
+                h("Input", {
+                  props: {
+                    value: row.rolename
+                  },
+                  on: {
+                    input: val => {
+                      this.roleDetail.rolename = val;
+                    }
+                  }
+                })
+              ];
+            } else {
+              edit = row.rolename;
+            }
+            return h("div", [edit]);
+          }
+        },
+        {
+          title: "Manage",
+          key: "rolestatus",
+          render: (h, { row, index }) => {
+            let edit;
+            if (this.editIndex === index) {
+              // this.roleDetail.rolestatus = row.rolestatus;
+              edit = [
+                h("Select", {
+                  props: {
+                    value: row.rolestatus
+                  },
+                  on: {
+                    input: val => {
+                      this.roleDetail.rolestatus = val;
+                    }
+                  }
+                })
+              ];
+            } else {
+              edit = row.rolestatus;
+            }
+            return h("div", [edit]);
+          }
+        },
+        {
+          title: "Monitor",
+          key: "createdate",
+          render: (h, { row, index }) => {
+            let edit;
+            if (this.editIndex === index) {
+              // this.roleDetail.createdate = row.createdate;
+              edit = [
+                h("Input", {
+                  props: {
+                    value: row.createdate
+                  },
+                  on: {
+                    input: val => {
+                      this.roleDetail.createdate = val;
+                    }
+                  }
+                })
+              ];
+            } else {
+              edit = row.createdate;
+            }
+            return h("div", [edit]);
+          }
+        },
+        {
+          title: "View",
+          key: "modifydate",
+          render: (h, { row, index }) => {
+            let edit;
+            if (this.editIndex === index) {
+              // this.roleDetail.modifydate = row.modifydate;
+              edit = [
+                h("Input", {
+                  props: {
+                    value: row.modifydate
+                  },
+                  on: {
+                    input: val => {
+                      this.roleDetail.modifydate = val;
+                    }
+                  }
+                })
+              ];
+            } else {
+              edit = row.modifydate;
+            }
+            return h("div", [edit]);
+          }
+        },
+        {
+          title: "Analyze",
+          key: "modifydate",
+          render: (h, { row, index }) => {
+            let edit;
+            if (this.editIndex === index) {
+              // this.roleDetail.modifydate = row.modifydate;
+              edit = [
+                h("Input", {
+                  props: {
+                    value: row.modifydate
+                  },
+                  on: {
+                    input: val => {
+                      this.roleDetail.modifydate = val;
+                    }
+                  }
+                })
+              ];
+            } else {
+              edit = row.modifydate;
+            }
+            return h("div", [edit]);
+          }
+        },
+        {
+          title: "Action",
+          width: 180,
+          render: (h, { row, index }) => {
+            if (this.editIndex === index) {
+              return [
+                h(
+                  "Button",
+                  {
+                    props: {},
+                    style: {},
+                    on: {
+                      click: () => {
+                        this.editIndex = -1;
+                      }
+                    }
+                  },
+                  "Cancel"
+                )
+              ];
+            } else {
+              return [
+                h(
+                  "Button",
+                  {
+                    props: {
+                      type: "info",
+                      ghost: true
+                    },
+                    on: {
+                      click: e => {
+                        e.stopPropagation();
+                        this.saveType = "edit";
+                        // this.editRole(row);
+                        this.editIndex = index;
+                      }
+                    }
+                  },
+                  "Edit"
+                ),
+                h(
+                  "Button",
+                  {
+                    props: {
+                      type: "error"
+                    },
+                    style: {
+                      marginLeft: "10px"
+                    },
+                    on: {
+                      click: () => {
+                        this.createData.splice(index, 1);
+                      }
+                    }
+                  },
+                  "Delete"
+                )
+              ];
+            }
+          }
+        }
+      ],
+      createData: []
     };
   },
   mounted() {
     this.queryCaseList();
+    this.createData.push({});
   },
   methods: {
-    show(index) {
-      this.modal = true;
-    },
     delCase(row) {
       this.delCasename = row.casename;
       this.delModal = true;
@@ -489,7 +690,7 @@ export default {
       this.queryCaseList();
     },
     pageChange(index) {
-      this.queryForm.pageNum = index;
+      this.queryForm.currPage = index;
       this.queryCaseList();
     },
     queryCaseList() {

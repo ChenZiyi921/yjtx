@@ -1,0 +1,29 @@
+{
+	"general": {
+		"imsi-min": "460000001",
+		"imei-esn": "6890766555",
+		"msisdn-mldn": "138000000"
+	},
+	"fuzzy": {
+		"user": {
+			"domestic": true,
+			"overseas": false
+		},
+		"basestation": [{
+			"lai": "3de45",
+			"cellid": "2345"
+		}],
+		"datetime": {
+			"time": {
+				"val": 30
+			},
+			"history": {
+				"starttime": "2014-01-01 00:00:00",
+				"endtime": "2015-01-01 00:00:00"
+			}
+		},
+		"operator": ["global-telcom", "supercomm", "easycomm", "other"]
+	},
+	"currPage":1,
+	"pageSize":10
+}

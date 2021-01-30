@@ -4,25 +4,26 @@
     "data": {
         "content": [
             {
-                "userid": 280,
-                "loginname": "ABC",
-                "firstname": null,
-                "lastname": null,
-                "userstatus": "EXPIRED",
-                "userlastlogin": "2020-09-15T03:07:34.000+00:00",
-                "userlastip": "192.168.26.131",
-                "usercreatedate": "2020-09-15T02:37:02.000+00:00",
-                "userexpiredate": null,
-                "userdept": null,
-                "usertitile": null,
-                "useraddr": null,
-                "usermemo": null,
-                "userphone": null,
-                "useremail": null
+                "userid": 320,
+                "loginname": "Admin-to-delete",
+                "firstname": "0",
+                "lastname": "0",
+                "userstatus": "OFFLINE",
+                "userlastlogin": "2021-01-15 23:50:24",
+                "userlastip": "192.168.118.127",
+                "usercreatedate": "2013-06-03",
+                "userdept": "0",
+                "usertitile": "0",
+                "useraddr": "0",
+                "usermemo": "0",
+                "userphone": "0",
+                "useremail": "0",
+                "userexpiredate": "2022-11-30",
+                "logincnt": 0
             }
         ],
         "currPage": 1,
-        "pageSize": 20,
+        "pageSize": 1,
         "totalCount": 1,
         "totalPage": 1
     }

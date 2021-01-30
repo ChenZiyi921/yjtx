@@ -4,6 +4,7 @@
     "data": [
         {
             "resourceid": "500",
+            "resourcei18n": null,
             "resourcename": "Management",
             "resourceurl": null,
             "resourcetype": "3",

@@ -40,7 +40,7 @@
               </template>
             </Table>
             <Page
-              :current="queryForm.pageNum"
+              :current="queryForm.currPage"
               :total="queryForm.total"
               :page-size="queryForm.pageSize"
               @on-change="pageChange"
@@ -229,7 +229,7 @@ export default {
       replayModal1: false,
       single: false,
       queryForm: {
-        pageNum: 1,
+        currPage: 1,
         pageSize: 10,
         total: 100
       },
@@ -322,14 +322,12 @@ export default {
       rd.readAsBinaryString(f);
     },
     pageSizeChange(pageSize) {
-      // this.loading = true;
       this.queryForm.pageSize = pageSize;
-      // this.queryList();
+      this.queryCasesByUserList();
     },
     pageChange(index) {
-      // this.loading = true;
-      this.queryForm.pageNum = index;
-      // this.queryList();
+      this.queryForm.currPage = index;
+      this.queryCasesByUserList();
     },
     addTaskSubmit() {},
     queryCasesByUserList() {

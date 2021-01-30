@@ -4,17 +4,33 @@
     "data": {
         "content": [
             {
-                "roleid": "345234t234",
-                "rolename": "Admin",
-                "rolestatus": "",
+                "roleid": "200",
+                "rolename": "CaseManager",
                 "createdate": "2020-09-15",
                 "modifydate": "2020-09-15",
-                "rolememo": "A test role"
+                "rolestatus": null,
+                "rolememo": "Manage the cases"
+            },
+            {
+                "roleid": "300",
+                "rolename": "CaseApprover",
+                "createdate": "2020-09-15",
+                "modifydate": "2020-09-15",
+                "rolestatus": null,
+                "rolememo": "Approve the cases"
+            },
+            {
+                "roleid": "400",
+                "rolename": "Analyzer",
+                "createdate": "2020-09-15",
+                "modifydate": "2020-09-15",
+                "rolestatus": null,
+                "rolememo": "Analyzer the cases"
             }
         ],
         "currPage": 1,
-        "pageSize": 20,
-        "totalCount": 1,
+        "pageSize": 3,
+        "totalCount": 3,
         "totalPage": 1
     }
 }

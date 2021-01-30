@@ -2,7 +2,7 @@
     "code": 200,
     "msg": "Success",
     "data": {
-        "roleid": "100",
-        "resourceid": "500"
+        "userid": 280,
+        "roleid": "400"
     }
 }

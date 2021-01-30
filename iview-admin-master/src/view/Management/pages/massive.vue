@@ -39,7 +39,7 @@ export default {
       queryFormGeneral: {},
       queryFormFuzzy: {},
       queryForm: {
-        pageNum: 1,
+        currPage: 1,
         pageSize: 10,
         total: 100
       },
@@ -95,7 +95,7 @@ export default {
     },
     pageChange(index) {
       // this.loading = true;
-      this.queryForm.pageNum = index;
+      this.queryForm.currPage = index;
       // this.queryList();
     },
     handleCheckedCitiesChange(value) {
