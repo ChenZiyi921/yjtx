@@ -20,6 +20,9 @@ let queryCasesByUserApi = "";
 let deleteCaseApi = "";
 let caseOperationApi = "";
 let commentCaseApi = "";
+let searchCaseApi = "";
+let addCaseApi = "";
+let checkCaseNameApi = "";
 
 if (debug) {
   loginApi = "/static/dbg/user/login.json";
@@ -39,6 +42,9 @@ if (debug) {
   deleteCaseApi = "/static/dbg/case/deleteCase.json";
   caseOperationApi = "/static/dbg/case/caseOperation.json";
   commentCaseApi = "/static/dbg/case/commentCase.json";
+  searchCaseApi = "/static/dbg/case/searchCase.json";
+  addCaseApi = "/static/dbg/case/addCase.json";
+  checkCaseNameApi = "/static/dbg/case/checkCaseName.json";
 } else {
   loginApi = "";
   changeUserPasswordApi = "";
@@ -57,6 +63,9 @@ if (debug) {
   deleteCaseApi = "";
   caseOperationApi = "";
   commentCaseApi = "";
+  searchCaseApi = "";
+  addCaseApi = "";
+  checkCaseNameApi = "";
 }
 
 export const login = params => {
@@ -178,6 +187,27 @@ export const caseOperation = data => {
 export const commentCase = data => {
   return axios.request(Object.assign({
     url: commentCaseApi,
+    method: post
+  }, post ? { params: data } : { data }))
+}
+
+export const searchCase = data => {
+  return axios.request(Object.assign({
+    url: searchCaseApi,
+    method: post
+  }, post ? { params: data } : { data }))
+}
+
+export const addCase = data => {
+  return axios.request(Object.assign({
+    url: addCaseApi,
+    method: post
+  }, post ? { params: data } : { data }))
+}
+
+export const checkCaseName = data => {
+  return axios.request(Object.assign({
+    url: checkCaseNameApi,
     method: post
   }, post ? { params: data } : { data }))
 }

@@ -106,30 +106,31 @@
     >
       <Form :model="queryForm" label-position="left" :label-width="100" inline>
         <FormItem label="Case Name">
-          <Select style="width: 100px">
+          <Select style="width: 100px" v-model="queryForm['casename-cond']">
             <Option
-              v-for="item in statusList"
+              v-for="item in caseNameList"
               :value="item.value"
               :key="item.value"
               >{{ item.label }}</Option
             >
           </Select>
-          <Input style="width: 200px" />
+          <Input v-model="queryForm.casename" style="width: 200px" />
         </FormItem>
         <FormItem label="Create Date">
           <DatePicker
+            @on-change="queryFormDateChange"
             type="datetimerange"
             placeholder="Select date and time"
             style="width: 300px"
           ></DatePicker>
         </FormItem>
         <FormItem label="Target">
-          <Input style="width: 300px" />
+          <Input v-model="queryForm.targetname" style="width: 300px" />
         </FormItem>
         <FormItem label="Case Type">
-          <Select style="width: 300px">
+          <Select v-model="queryForm.casetype" style="width: 300px">
             <Option
-              v-for="item in statusList"
+              v-for="item in caseTypeList"
               :value="item.value"
               :key="item.value"
               >{{ item.label }}</Option
@@ -137,10 +138,10 @@
           </Select>
         </FormItem>
         <FormItem label="Create By">
-          <Input style="width: 300px" />
+          <Input v-model="queryForm.caseowner" style="width: 300px" />
         </FormItem>
         <FormItem label="Status">
-          <Select style="width: 300px">
+          <Select v-model="queryForm.status" style="width: 300px">
             <Option
               v-for="item in statusList"
               :value="item.value"
@@ -150,12 +151,12 @@
           </Select>
         </FormItem>
         <FormItem label="Comments">
-          <Input style="width: 300px" />
+          <Input v-model="queryForm.comment" style="width: 300px" />
         </FormItem>
       </Form>
       <div slot="footer">
         <Button size="large" @click="searchModal = false">Cancel</Button>
-        <Button type="info" size="large" @click="searchModal = false"
+        <Button type="info" size="large" @click="searchCaseConfirm"
           >Search</Button
         >
       </div>
@@ -170,7 +171,7 @@
       <Form :model="queryForm" label-position="left" :label-width="100">
         <FormItem label="Case Name">
           <Input style="width: 300px" class="mr10" />
-          <Button type="warning" ghost>Check</Button>
+          <Button type="warning" ghost @click="checkCaseName">Check</Button>
         </FormItem>
         <FormItem label="Expired Date">
           <DatePicker
@@ -244,9 +245,7 @@
 
       <div slot="footer">
         <Button size="large" @click="createModal = false">Cancel</Button>
-        <Button type="info" size="large" @click="createModal = false"
-          >Save</Button
-        >
+        <Button type="info" size="large" @click="addCaseSave">Save</Button>
       </div>
     </Modal>
     <Modal
@@ -320,7 +319,10 @@ import {
   queryCasesByUser,
   deleteCase,
   caseOperation,
-  commentCase
+  commentCase,
+  searchCase,
+  addCase,
+  checkCaseName
 } from "@/api/global";
 
 export default {
@@ -343,7 +345,16 @@ export default {
       queryForm: {
         currPage: 1,
         pageSize: 10,
-        total: 100
+        total: 100,
+        casename: "",
+        "casename-cond": "include",
+        targetname: "",
+        caseowner: "",
+        status: "NEW",
+        "createdate-start": "",
+        "createdate-end": "",
+        comment: "",
+        casetype: "basic"
       },
       caseOperatorForm: {
         caseid: "",
@@ -414,14 +425,54 @@ export default {
         }
       ],
       data: [],
-      statusList: [
+      caseNameList: [
         {
-          value: "New York",
-          label: "New York"
+          value: "include",
+          label: "include"
         },
         {
-          value: "London",
-          label: "London"
+          value: "exact",
+          label: "exact"
+        }
+      ],
+      caseTypeList: [
+        {
+          value: "basic",
+          label: "basic"
+        }
+      ],
+      statusList: [
+        {
+          value: "NEW",
+          label: "NEW"
+        },
+        {
+          value: "ACTIVE",
+          label: "ACTIVE"
+        },
+        {
+          value: "DEACTIVE",
+          label: "DEACTIVE"
+        },
+        {
+          value: "EXPIRED",
+          label: "EXPIRED"
+        },
+        {
+          value: "CLOSED",
+          label: "CLOSED"
+        },
+        {
+          value: "COMPLETE",
+          label: "COMPLETE"
+        },
+        {
+          value: "PENDING",
+          label: "PENDING"
+        },
+        {
+          value: "DENIED",
+          label: "DENIED"
         }
       ],
       tagList: [],
@@ -622,7 +673,10 @@ export default {
           }
         }
       ],
-      createData: []
+      createData: [],
+      createDataForm: {},
+      checkName: false,
+      saveType: ""
     };
   },
   mounted() {
@@ -693,6 +747,15 @@ export default {
       this.queryForm.currPage = index;
       this.queryCaseList();
     },
+    searchCaseConfirm() {
+      this.loading = true;
+      searchCase(this.queryForm).then(({ data }) => {
+        if (data.code === 200) {
+          this.loading = false;
+          this.data = data.data.content;
+        }
+      });
+    },
     queryCaseList() {
       this.loading = true;
       queryCasesByUser({
@@ -701,8 +764,35 @@ export default {
         if (data.code === 200) {
           this.loading = false;
           this.data = data.data.content;
+          this.searchModal = false;
         }
       });
+    },
+    checkCaseName() {
+      checkCaseName().then(({ data }) => {
+        if (data.code === 200) {
+          this.checkName = true;
+        }
+      });
+    },
+    addCaseSave() {
+      if (this.saveType === "new") {
+        if (this.checkName) {
+          addCase(this.createDataForm).then(({ data }) => {
+            if (data.code === 200) {
+              this.$Message.success("Operation success!");
+              this.queryCaseList();
+            }
+          });
+        }
+      } else {
+        modifyCase(this.createDataForm).then(({ data }) => {
+          if (data.code === 200) {
+            this.$Message.success("Operation success!");
+            this.queryCaseList();
+          }
+        });
+      }
     },
     showCreateModal() {
       this.createModal = true;
@@ -726,9 +816,17 @@ export default {
       this.commentModal = true;
       this.caseComment.caseid = row.caseid;
       this.caseComment.comment = row.casememo;
+    },
+    queryFormDateChange(date) {
+      this.queryForm["createdate-start"] = date[0];
+      this.queryForm["createdate-end"] = date[1];
     }
   }
 };
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+/deep/.ivu-table-wrapper {
+  overflow: auto;
+}
+</style>

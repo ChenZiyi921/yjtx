@@ -1,7 +1,0 @@
-{
-    "code": 400,
-    "msg": "Case is not existed",
-    "data": {
-		"caseid":297
-    }
-}
