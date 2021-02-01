@@ -40,14 +40,15 @@
           <div>LOC：{{ "Railway station-2" }}</div>
         </li>
       </ul>
-      <Split
+      <div style="height: calc(100vh - 720px);"></div>
+      <!-- <Split
         v-model="split2"
         mode="vertical"
-        style="height: calc(100vh - 720px);"
+        
       >
         <div slot="top" class="demo-split-pane"></div>
         <div slot="bottom" class="demo-split-pane"></div>
-      </Split>
+      </Split> -->
     </div>
   </div>
 </template>

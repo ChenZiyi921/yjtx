@@ -23,6 +23,7 @@ let commentCaseApi = "";
 let searchCaseApi = "";
 let addCaseApi = "";
 let checkCaseNameApi = "";
+let queryVhlrApi = "";
 
 if (debug) {
   loginApi = "/static/dbg/user/login.json";
@@ -45,6 +46,8 @@ if (debug) {
   searchCaseApi = "/static/dbg/case/searchCase.json";
   addCaseApi = "/static/dbg/case/addCase.json";
   checkCaseNameApi = "/static/dbg/case/checkCaseName.json";
+
+  queryVhlrApi = "/static/dbg/cdr/queryVhlr.json";
 } else {
   loginApi = "";
   changeUserPasswordApi = "";
@@ -66,6 +69,8 @@ if (debug) {
   searchCaseApi = "";
   addCaseApi = "";
   checkCaseNameApi = "";
+
+  queryVhlrApi = "";
 }
 
 export const login = params => {
@@ -208,6 +213,14 @@ export const addCase = data => {
 export const checkCaseName = data => {
   return axios.request(Object.assign({
     url: checkCaseNameApi,
+    method: post
+  }, post ? { params: data } : { data }))
+}
+
+// 
+export const queryVhlr = data => {
+  return axios.request(Object.assign({
+    url: queryVhlrApi,
     method: post
   }, post ? { params: data } : { data }))
 }
