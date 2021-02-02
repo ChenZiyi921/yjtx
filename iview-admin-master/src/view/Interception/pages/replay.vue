@@ -58,6 +58,7 @@
               border
               :columns="columns"
               :data="data"
+              :loading="loading"
               class="mt10"
               style="background: #fff;"
             >
@@ -98,6 +99,7 @@ export default {
   name: "",
   data() {
     return {
+      loading: false,
       showType: "tree",
       split1: "500px",
       split2: 0.9,
@@ -149,27 +151,27 @@ export default {
           key: "",
           render: (h, { row, index }) => {
             if (row.ifHeard && row.ifKeep) {
-            return h("div", [
-              h("img", {
-                style: {
-                  width: "20px",
-                  verticalAlign: "middle",
-                  marginRight: "10px"
-                },
-                attrs: {
-                  src: require("@/assets/images/i-heard.png")
-                }
-              }),
-              h("img", {
-                style: {
-                  width: "20px",
-                  verticalAlign: "middle"
-                },
-                attrs: {
-                  src: require("@/assets/images/i-keep.png")
-                }
-              })
-            ]);
+              return h("div", [
+                h("img", {
+                  style: {
+                    width: "20px",
+                    verticalAlign: "middle",
+                    marginRight: "10px"
+                  },
+                  attrs: {
+                    src: require("@/assets/images/i-heard.png")
+                  }
+                }),
+                h("img", {
+                  style: {
+                    width: "20px",
+                    verticalAlign: "middle"
+                  },
+                  attrs: {
+                    src: require("@/assets/images/i-keep.png")
+                  }
+                })
+              ]);
             } else if (row.ifHeard) {
               return h("div", [
                 h("img", {
@@ -213,7 +215,84 @@ export default {
         },
         {
           title: "ActType",
-          key: "acttype"
+          key: "acttype",
+          // 101	位置更新	NLU
+          // 102	周期更新	PLU
+          // 103	开机	PON
+          // 104	关机	POFF
+          // 107	附着	AAH
+          // 108	去附着	ADH
+          // 10a	专载去激活	BAH
+          // 10b	专载激活	BDH
+          // 301	主叫	VO
+          // 302	被叫	VT
+          // 303	发短信	MO
+          // 304	收短信	MT
+          // 305	切换	HOVR
+          // 306	被寻呼	PTO
+          // 30a	发彩信	MMO
+          // 30b	收彩信	MMT
+          // 400	补充业务	SUPP
+          render: (h, { row, index }) => {
+            let acttypeStr = "";
+            switch (row.acttype) {
+              case "101":
+                acttypeStr = "NLU";
+                break;
+              case "102":
+                acttypeStr = "PLU";
+                break;
+              case "103":
+                acttypeStr = "PON";
+                break;
+              case "104":
+                acttypeStr = "POFF";
+                break;
+              case "107":
+                acttypeStr = "AAH";
+                break;
+              case "108":
+                acttypeStr = "ADH";
+                break;
+              case "10a":
+                acttypeStr = "BAH";
+                break;
+              case "10b":
+                acttypeStr = "BDH";
+                break;
+              case "301":
+                acttypeStr = "VO";
+                break;
+              case "302":
+                acttypeStr = "VT";
+                break;
+              case "303":
+                acttypeStr = "MO";
+                break;
+              case "304":
+                acttypeStr = "MT";
+                break;
+              case "305":
+                acttypeStr = "HOVR";
+                break;
+              case "306":
+                acttypeStr = "PTO";
+                break;
+              case "30a":
+                acttypeStr = "MMO";
+                break;
+              case "30b":
+                acttypeStr = "MMT";
+                break;
+              case "400":
+                acttypeStr = "SUPP";
+                break;
+              default:
+                acttypeStr = row.acttype;
+                break;
+            }
+            return <span>{acttypeStr}</span>;
+          }
         },
         {
           title: "Partner No.",
@@ -389,6 +468,7 @@ export default {
       });
     },
     queryCdrByIc() {
+      this.loading = true;
       queryCdrByIc(this.queryForm).then(({ data }) => {
         if (data.code === 200) {
           this.loading = false;
@@ -437,7 +517,6 @@ export default {
       // this.queryList();
     },
     pageChange(index) {
-      // this.loading = true;
       this.queryForm.currPage = index;
       // this.queryList();
     }

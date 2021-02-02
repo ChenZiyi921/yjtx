@@ -28,6 +28,8 @@ let queryVhlrApi = "";
 let queryCdrByIcApi = "";
 let execQueryApi = "";
 let queryQueryApi = "";
+let addQueryApi = "";
+let deleteQueryApi = "";
 
 if (debug) {
   loginApi = "/static/dbg/user/login.json";
@@ -55,32 +57,36 @@ if (debug) {
   queryCdrByIcApi = "/static/dbg/cdr/queryCdrByIc.json";
   execQueryApi = "/static/dbg/cdr/execQuery.json";
   queryQueryApi = "/static/dbg/cdr/queryQuery.json";
+  addQueryApi = "/static/dbg/cdr/addQuery.json";
+  deleteQueryApi = "/static/dbg/cdr/deleteQuery.json";
 } else {
-  loginApi = "/api/user/login.json";
-  changeUserPasswordApi = "/api/user/changeUserPassword.json";
-  addUserApi = "/api/user/addUser.json";
-  deleteUserApi = "/api/user/deleteUser.json";
-  queryUserByNameApi = "/api/user/queryUserByName.json";
-  queryUserApi = "/api/user/queryUser.json";
-  modifyUserApi = "/api/user/modifyUser.json";
-  queryRolesApi = "/api/user/queryRoles.json";
-  queryResourcesApi = "/api/user/queryResources.json";
-  deleteRoleApi = "/api/user/deleteRole.json";
-  addRoleApi = "/api/user/addRole.json";
-  modifyRoleApi = "/api/user/modifyRole.json";
+  loginApi = "/api/user/login.do";
+  changeUserPasswordApi = "/api/user/changeUserPassword.do";
+  addUserApi = "/api/user/addUser.do";
+  deleteUserApi = "/api/user/deleteUser.do";
+  queryUserByNameApi = "/api/user/queryUserByName.do";
+  queryUserApi = "/api/user/queryUser.do";
+  modifyUserApi = "/api/user/modifyUser.do";
+  queryRolesApi = "/api/user/queryRoles.do";
+  queryResourcesApi = "/api/user/queryResources.do";
+  deleteRoleApi = "/api/user/deleteRole.do";
+  addRoleApi = "/api/user/addRole.do";
+  modifyRoleApi = "/api/user/modifyRole.do";
 
-  queryCasesByUserApi = "/api/case/queryCasesByUser.json";
-  deleteCaseApi = "/api/case/deleteCase.json";
-  caseOperationApi = "/api/case/caseOperation.json";
-  commentCaseApi = "/api/case/commentCase.json";
-  searchCaseApi = "/api/case/searchCase.json";
-  addCaseApi = "/api/case/addCase.json";
-  checkCaseNameApi = "/api/case/checkCaseName.json";
+  queryCasesByUserApi = "/api/case/queryCasesByUser.do";
+  deleteCaseApi = "/api/case/deleteCase.do";
+  caseOperationApi = "/api/case/caseOperation.do";
+  commentCaseApi = "/api/case/commentCase.do";
+  searchCaseApi = "/api/case/searchCase.do";
+  addCaseApi = "/api/case/addCase.do";
+  checkCaseNameApi = "/api/case/checkCaseName.do";
 
-  queryVhlrApi = "/api/cdr/queryVhlr.json";
-  queryCdrByIcApi = "/api/cdr/queryCdrByIc.json";
-  execQueryApi = "/api/cdr/execQuery.json";
-  queryQueryApi = "/api/cdr/queryQuery.json";
+  queryVhlrApi = "/api/cdr/queryVhlr.do";
+  queryCdrByIcApi = "/api/cdr/queryCdrByIc.do";
+  execQueryApi = "/api/cdr/execQuery.do";
+  queryQueryApi = "/api/cdr/queryQuery.do";
+  addQueryApi = "/api/cdr/addQuery.do";
+  deleteQueryApi = "/api/cdr/deleteQuery.do";
 }
 
 export const login = params => {
@@ -252,6 +258,20 @@ export const execQuery = data => {
 export const queryQuery = data => {
   return axios.request(Object.assign({
     url: queryQueryApi,
+    method: post
+  }, post ? { params: data } : { data }))
+}
+
+export const addQuery = data => {
+  return axios.request(Object.assign({
+    url: addQueryApi,
+    method: post
+  }, post ? { params: data } : { data }))
+}
+
+export const deleteQuery = data => {
+  return axios.request(Object.assign({
+    url: deleteQueryApi,
     method: post
   }, post ? { params: data } : { data }))
 }
