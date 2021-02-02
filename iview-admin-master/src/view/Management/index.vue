@@ -7,14 +7,14 @@
       class="tab1"
     >
       <TabPane label="Statistics" name="Statistics">
-        <!-- <Interception /> -->
+        <Statistics />
       </TabPane>
       <TabPane label="Interception" name="Interception">
         <Interception />
       </TabPane>
-      <TabPane label="Massive" name="Massive">
+      <!-- <TabPane label="Massive" name="Massive">
         <Massive />
-      </TabPane>
+      </TabPane> -->
       <TabPane label="User" name="User">
         <User />
       </TabPane>
@@ -24,6 +24,7 @@
 
 <script>
 import User from "./pages/user";
+import Statistics from "./pages/statistics";
 import Interception from "./pages/interception";
 import Massive from "./pages/massive";
 
@@ -34,6 +35,7 @@ export default {
   },
   components: {
     User,
+    Statistics,
     Interception,
     Massive
   },

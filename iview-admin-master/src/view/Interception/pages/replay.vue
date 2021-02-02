@@ -4,23 +4,45 @@
       <div
         slot="left"
         class="demo-split-pane"
-        style="height: 100%; background: #fff;"
+        style="height: 100%; background: #fff; overflow-y: auto;"
       >
         <div>
-          <Button class="mr10">Tree</Button>
-          <Button>Cond</Button>
+          <Button
+            class="mr10"
+            @click="
+              (showType = 'tree'), (treeBtnType = 'info'), (condBtnType = '')
+            "
+            :type="treeBtnType"
+            >Tree</Button
+          >
+          <Button
+            @click="
+              (showType = 'cond'), (condBtnType = 'info'), (treeBtnType = '')
+            "
+            :type="condBtnType"
+            >Cond</Button
+          >
         </div>
-        <div>
-          <span class="mr10">date</span>
-          <DatePicker
-            type="datetimerange"
-            placeholder="Select date and time"
-            class="mt10"
-            style="width: 300px; display: inline-block;"
-          ></DatePicker>
+        <div v-if="showType === 'tree'">
+          <div>
+            <span class="mr10">date</span>
+            <DatePicker
+              type="datetimerange"
+              placeholder="Select date and time"
+              class="mt10"
+              style="width: 300px; display: inline-block;"
+            ></DatePicker>
+          </div>
+          <Checkbox v-model="single" class="mt10">Call & Voice</Checkbox>
+          <Tree :data="myCaseTreeData" expand-node></Tree>
         </div>
-        <Checkbox v-model="single" class="mt10">Call & Voice</Checkbox>
-        <Tree :data="myCaseTreeData" expand-node></Tree>
+        <div v-else>
+          <Tree
+            :data="queryTreeData"
+            :render="renderContent"
+            class="demo-tree-render"
+          ></Tree>
+        </div>
       </div>
       <div slot="right" class="demo-split-pane no-padding">
         <Split v-model="split2" mode="vertical">
@@ -65,46 +87,29 @@
 </template>
 
 <script>
-import { queryCdrByIc, execQuery, queryCasesByUser } from "@/api/global";
+import {
+  queryCdrByIc,
+  execQuery,
+  queryCasesByUser,
+  queryQuery
+} from "@/api/global";
 
 export default {
   name: "",
   data() {
     return {
+      showType: "tree",
       split1: "500px",
       split2: 0.9,
       replayModal1: false,
       single: false,
+      treeBtnType: "info",
+      condBtnType: "",
       myCaseTreeData: [
         {
-          title: "parent 1",
+          title: "My Case",
           expand: true,
-          children: [
-            {
-              title: "parent 1-1",
-              expand: true,
-              children: [
-                {
-                  title: "leaf 1-1-1"
-                },
-                {
-                  title: "leaf 1-1-2"
-                }
-              ]
-            },
-            {
-              title: "parent 1-2",
-              expand: true,
-              children: [
-                {
-                  title: "leaf 1-2-1"
-                },
-                {
-                  title: "leaf 1-2-1"
-                }
-              ]
-            }
-          ]
+          children: []
         }
       ],
       queryForm: {
@@ -145,32 +150,172 @@ export default {
           title: "Partner No.",
           key: "age"
         }
-        // {
-        //   title: "Action",
-        //   slot: "action",
-        //   width: 150,
-        //   align: "center"
-        // }
       ],
-      data: []
+      data: [],
+      queryTreeData: [
+        {
+          title: "Query",
+          expand: true,
+          render: (h, { root, node, data }) => {
+            return h(
+              "span",
+              {
+                style: {
+                  display: "inline-block",
+                  width: "100%"
+                }
+              },
+              [
+                h("span", [
+                  h("Icon", {
+                    props: {
+                      type: "ios-folder-outline"
+                    },
+                    style: {
+                      marginRight: "8px"
+                    }
+                  }),
+                  h("span", data.title)
+                ]),
+                h(
+                  "span",
+                  {
+                    style: {
+                      display: "inline-block",
+                      float: "right",
+                      marginRight: "32px"
+                    }
+                  },
+                  [
+                    h("Button", {
+                      props: Object.assign({}, this.buttonProps, {
+                        icon: "ios-add",
+                        type: "primary"
+                      }),
+                      style: {
+                        width: "64px"
+                      },
+                      on: {
+                        click: () => {
+                          this.append(data);
+                        }
+                      }
+                    })
+                  ]
+                )
+              ]
+            );
+          },
+          children: []
+        }
+      ],
+      buttonProps: {
+        type: "default",
+        size: "small"
+      }
     };
   },
   computed: {},
   mounted() {
     this.queryCdrByIc();
     this.execQuery();
+    this.queryQuery();
     this.queryCasesByUser();
   },
   create() {},
   methods: {
+    renderContent(h, { root, node, data }) {
+      return h(
+        "span",
+        {
+          style: {
+            display: "inline-block",
+            width: "100%"
+          }
+        },
+        [
+          h("span", [
+            h("Icon", {
+              props: {
+                type: "ios-paper-outline"
+              },
+              style: {
+                marginRight: "8px"
+              }
+            }),
+            h("span", data.title)
+          ]),
+          h(
+            "span",
+            {
+              style: {
+                display: "inline-block",
+                float: "right",
+                marginRight: "32px"
+              }
+            },
+            [
+              h("Button", {
+                props: Object.assign({}, this.buttonProps, {
+                  icon: "ios-add"
+                }),
+                style: {
+                  marginRight: "8px"
+                },
+                on: {
+                  click: () => {
+                    this.append(data);
+                  }
+                }
+              }),
+              h("Button", {
+                props: Object.assign({}, this.buttonProps, {
+                  icon: "ios-remove"
+                }),
+                on: {
+                  click: () => {
+                    this.remove(root, node, data);
+                  }
+                }
+              })
+            ]
+          )
+        ]
+      );
+    },
+    append(data) {
+      const children = data.children || [];
+      children.push({
+        title: "appended node",
+        expand: true
+      });
+      this.$set(data, "children", children);
+    },
+    remove(root, node, data) {
+      const parentKey = root.find(el => el === node).parent;
+      const parent = root.find(el => el.nodeKey === parentKey).node;
+      const index = parent.children.indexOf(data);
+      parent.children.splice(index, 1);
+    },
     queryCasesByUser() {
       queryCasesByUser({
         userid: 1
       }).then(({ data }) => {
         if (data.code === 200) {
-          // this.loading = false;
-          // this.data = data.data.content;
-          // this.searchModal = false;
+          for (let index = 0; index < data.data.content.length; index++) {
+            data.data.content[index].title = data.data.content[index].casename;
+            data.data.content[index].children =
+              data.data.content[index].targets;
+            data.data.content[index].children.map(item => {
+              item.title = item.targetname;
+              item.children = item.ics;
+              item.children.map(item => {
+                item.title = item.icname;
+              });
+            });
+          }
+          this.myCaseTreeData[0].children = data.data.content;
+          console.log(this.myCaseTreeData);
         }
       });
     },
@@ -194,8 +339,31 @@ export default {
         }
       });
     },
+    queryQuery() {
+      queryQuery().then(({ data }) => {
+        if (data.code === 200) {
+          //   this.queryTreeData[0].children = data.data;
+          //   let newData = [];
+          //   for (const key in data.data) {
+          //     data.data[key].title = key;
+          //     newData.push(data.data[key]);
+          //     let dataItem = [];
+          //     for (const k in data.data[key]) {
+          //       if (k !== "title") {
+          //         for (let i = 0; i < data.data[key][k].length; i++) {
+          //           data.data[key][k][i].title = data.data[key][k][i].queryname;
+          //           dataItem.push(data.data[key][k][i]);
+          //         }
+          //         data.data[key].children = dataItem;
+          //       }
+          //     }
+          //   }
+          //   // JSON.stringify(data.data)
+          //   console.log(newData);
+        }
+      });
+    },
     pageSizeChange(pageSize) {
-      // this.loading = true;
       this.queryForm.pageSize = pageSize;
       // this.queryList();
     },
@@ -219,5 +387,8 @@ export default {
 .demo-split-pane.no-padding {
   height: 100%;
   padding: 0;
+}
+.demo-tree-render /deep/.ivu-tree-title {
+  width: 100%;
 }
 </style>

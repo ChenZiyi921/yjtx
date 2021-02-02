@@ -27,6 +27,7 @@ let checkCaseNameApi = "";
 let queryVhlrApi = "";
 let queryCdrByIcApi = "";
 let execQueryApi = "";
+let queryQueryApi = "";
 
 if (debug) {
   loginApi = "/static/dbg/user/login.json";
@@ -53,31 +54,33 @@ if (debug) {
   queryVhlrApi = "/static/dbg/cdr/queryVhlr.json";
   queryCdrByIcApi = "/static/dbg/cdr/queryCdrByIc.json";
   execQueryApi = "/static/dbg/cdr/execQuery.json";
+  queryQueryApi = "/static/dbg/cdr/queryQuery.json";
 } else {
-  loginApi = "";
-  changeUserPasswordApi = "";
-  addUserApi = "";
-  deleteUserApi = "";
-  queryUserByNameApi = "";
-  queryUserApi = "";
-  modifyUserApi = "";
-  queryRolesApi = "";
-  queryResourcesApi = "";
-  deleteRoleApi = "";
-  addRoleApi = "";
-  modifyRoleApi = "";
+  loginApi = "/api/user/login.json";
+  changeUserPasswordApi = "/api/user/changeUserPassword.json";
+  addUserApi = "/api/user/addUser.json";
+  deleteUserApi = "/api/user/deleteUser.json";
+  queryUserByNameApi = "/api/user/queryUserByName.json";
+  queryUserApi = "/api/user/queryUser.json";
+  modifyUserApi = "/api/user/modifyUser.json";
+  queryRolesApi = "/api/user/queryRoles.json";
+  queryResourcesApi = "/api/user/queryResources.json";
+  deleteRoleApi = "/api/user/deleteRole.json";
+  addRoleApi = "/api/user/addRole.json";
+  modifyRoleApi = "/api/user/modifyRole.json";
 
-  queryCasesByUserApi = "";
-  deleteCaseApi = "";
-  caseOperationApi = "";
-  commentCaseApi = "";
-  searchCaseApi = "";
-  addCaseApi = "";
-  checkCaseNameApi = "";
+  queryCasesByUserApi = "/api/case/queryCasesByUser.json";
+  deleteCaseApi = "/api/case/deleteCase.json";
+  caseOperationApi = "/api/case/caseOperation.json";
+  commentCaseApi = "/api/case/commentCase.json";
+  searchCaseApi = "/api/case/searchCase.json";
+  addCaseApi = "/api/case/addCase.json";
+  checkCaseNameApi = "/api/case/checkCaseName.json";
 
-  queryVhlrApi = "";
-  queryCdrByIcApi = "";
-  execQueryApi = "";
+  queryVhlrApi = "/api/cdr/queryVhlr.json";
+  queryCdrByIcApi = "/api/cdr/queryCdrByIc.json";
+  execQueryApi = "/api/cdr/execQuery.json";
+  queryQueryApi = "/api/cdr/queryQuery.json";
 }
 
 export const login = params => {
@@ -242,6 +245,13 @@ export const queryCdrByIc = data => {
 export const execQuery = data => {
   return axios.request(Object.assign({
     url: execQueryApi,
+    method: post
+  }, post ? { params: data } : { data }))
+}
+
+export const queryQuery = data => {
+  return axios.request(Object.assign({
+    url: queryQueryApi,
     method: post
   }, post ? { params: data } : { data }))
 }
