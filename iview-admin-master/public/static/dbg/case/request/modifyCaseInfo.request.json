@@ -1,0 +1,16 @@
+{
+  "caseid": 471,
+  "casename": "test-case",
+  "casestatus": "NEW",
+  "caseref": "1710457951",
+  "casetype": "Basic",
+  "caseactivedate": "2013-08-19",
+  "caseclosedate": null,
+  "caseexpireddate": "2013-08-21",
+  "casecreatedate": "2013-08-19",
+  "casedesc": "1",
+  "casememo": "",
+  "caseowner": "",
+  "caseautoact": 1,
+  "casecreator": "CaseManager11"
+}

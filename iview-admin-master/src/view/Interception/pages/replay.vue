@@ -10,13 +10,17 @@
           <Button class="mr10">Tree</Button>
           <Button>Cond</Button>
         </div>
-        <DatePicker
-          type="datetimerange"
-          placeholder="Select date and time"
-          class="mt10"
-          style="width: 300px; display: block;"
-        ></DatePicker>
+        <div>
+          <span class="mr10">date</span>
+          <DatePicker
+            type="datetimerange"
+            placeholder="Select date and time"
+            class="mt10"
+            style="width: 300px; display: inline-block;"
+          ></DatePicker>
+        </div>
         <Checkbox v-model="single" class="mt10">Call & Voice</Checkbox>
+        <Tree :data="myCaseTreeData" expand-node></Tree>
       </div>
       <div slot="right" class="demo-split-pane no-padding">
         <Split v-model="split2" mode="vertical">
@@ -61,6 +65,8 @@
 </template>
 
 <script>
+import { queryCdrByIc, execQuery, queryCasesByUser } from "@/api/global";
+
 export default {
   name: "",
   data() {
@@ -69,6 +75,38 @@ export default {
       split2: 0.9,
       replayModal1: false,
       single: false,
+      myCaseTreeData: [
+        {
+          title: "parent 1",
+          expand: true,
+          children: [
+            {
+              title: "parent 1-1",
+              expand: true,
+              children: [
+                {
+                  title: "leaf 1-1-1"
+                },
+                {
+                  title: "leaf 1-1-2"
+                }
+              ]
+            },
+            {
+              title: "parent 1-2",
+              expand: true,
+              children: [
+                {
+                  title: "leaf 1-2-1"
+                },
+                {
+                  title: "leaf 1-2-1"
+                }
+              ]
+            }
+          ]
+        }
+      ],
       queryForm: {
         currPage: 1,
         pageSize: 10,
@@ -118,9 +156,44 @@ export default {
     };
   },
   computed: {},
-  mounted() {},
+  mounted() {
+    this.queryCdrByIc();
+    this.execQuery();
+    this.queryCasesByUser();
+  },
   create() {},
   methods: {
+    queryCasesByUser() {
+      queryCasesByUser({
+        userid: 1
+      }).then(({ data }) => {
+        if (data.code === 200) {
+          // this.loading = false;
+          // this.data = data.data.content;
+          // this.searchModal = false;
+        }
+      });
+    },
+    queryCdrByIc() {
+      queryCdrByIc(this.queryForm).then(({ data }) => {
+        if (data.code === 200) {
+          this.loading = false;
+          this.data = data.data.content;
+          this.queryForm.currPage = data.data.currPage;
+          this.queryForm.total = data.data.totalCount;
+        }
+      });
+    },
+    execQuery() {
+      execQuery().then(({ data }) => {
+        if (data.code === 200) {
+          // this.loading = false;
+          // this.data = data.data.content;
+          // this.queryForm.currPage = data.data.currPage;
+          // this.queryForm.total = data.data.totalCount;
+        }
+      });
+    },
     pageSizeChange(pageSize) {
       // this.loading = true;
       this.queryForm.pageSize = pageSize;

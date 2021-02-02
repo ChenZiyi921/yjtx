@@ -141,7 +141,7 @@
 import { queryVhlr } from "@/api/global";
 
 const cityOptions = ["Global Telecom", "SuperComm", "EasyComm", "Other"];
-// 30min 1hour 8hour  1day 1week 1month 1year
+
 export default {
   data() {
     return {

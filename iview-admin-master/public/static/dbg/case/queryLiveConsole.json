@@ -1,0 +1,45 @@
+{
+    "code": 200,
+    "msg": "Success",
+    "data": [
+        {
+            "userid": 1,
+            "consolenum": 1,
+            "caseid": 178,
+            "targetid": 123,
+            "casename": "fwe",
+            "targetname": "rre",
+            "icid": 121,
+            "icnum": "1238657658",
+            "network": "456423",
+            "status": null,
+            "updatetime": null
+        },
+        {
+            "userid": 1,
+            "consolenum": 5,
+            "caseid": 178,
+            "targetid": 112,
+            "casename": "aaaa",
+            "targetname": "Asd",
+            "icid": 321,
+            "icnum": null,
+            "network": null,
+            "status": null,
+            "updatetime": null
+        },
+        {
+            "userid": 1,
+            "consolenum": 6,
+            "caseid": 178,
+            "targetid": 113,
+            "casename": "case2",
+            "targetname": "qq",
+            "icid": 322,
+            "icnum": null,
+            "network": null,
+            "status": null,
+            "updatetime": null
+        }
+    ]
+}

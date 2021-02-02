@@ -1,0 +1,26 @@
+{
+	"caseid": 178,
+    "members":[
+        {
+            "userid":1,
+            "viewcase":1,
+            "managecase":1,
+            "analyzecase":1,
+            "monitorcase":1
+        },
+		{
+            "userid":2,
+            "viewcase":1,
+            "managecase":0,
+            "analyzecase":1,
+            "monitorcase":1
+        },
+		{
+            "userid":3,
+            "viewcase":1,
+            "managecase":0,
+            "analyzecase":0,
+            "monitorcase":1
+        }
+    ]
+}

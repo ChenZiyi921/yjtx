@@ -23,7 +23,10 @@ let commentCaseApi = "";
 let searchCaseApi = "";
 let addCaseApi = "";
 let checkCaseNameApi = "";
+
 let queryVhlrApi = "";
+let queryCdrByIcApi = "";
+let execQueryApi = "";
 
 if (debug) {
   loginApi = "/static/dbg/user/login.json";
@@ -48,6 +51,8 @@ if (debug) {
   checkCaseNameApi = "/static/dbg/case/checkCaseName.json";
 
   queryVhlrApi = "/static/dbg/cdr/queryVhlr.json";
+  queryCdrByIcApi = "/static/dbg/cdr/queryCdrByIc.json";
+  execQueryApi = "/static/dbg/cdr/execQuery.json";
 } else {
   loginApi = "";
   changeUserPasswordApi = "";
@@ -71,6 +76,8 @@ if (debug) {
   checkCaseNameApi = "";
 
   queryVhlrApi = "";
+  queryCdrByIcApi = "";
+  execQueryApi = "";
 }
 
 export const login = params => {
@@ -221,6 +228,20 @@ export const checkCaseName = data => {
 export const queryVhlr = data => {
   return axios.request(Object.assign({
     url: queryVhlrApi,
+    method: post
+  }, post ? { params: data } : { data }))
+}
+
+export const queryCdrByIc = data => {
+  return axios.request(Object.assign({
+    url: queryCdrByIcApi,
+    method: post
+  }, post ? { params: data } : { data }))
+}
+
+export const execQuery = data => {
+  return axios.request(Object.assign({
+    url: execQueryApi,
     method: post
   }, post ? { params: data } : { data }))
 }

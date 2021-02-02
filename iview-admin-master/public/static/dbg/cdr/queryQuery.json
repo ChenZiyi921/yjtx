@@ -1,0 +1,172 @@
+{
+    "code": 200,
+    "msg": "Success",
+    "data": {
+        "2013-01-02": {
+            "query-for-test-5": [
+                {
+                    "duration": {
+                        "min": 0,
+                        "max": 20
+                    },
+                    "querydate": "2013-01-02",
+                    "numbers": {
+                        "imei": "",
+                        "imsi": "460000020202",
+                        "msisdn": ""
+                    },
+                    "sms": "china",
+                    "acttype": "MO",
+                    "endtime": "2014-01-01",
+                    "queryname": "query-for-test-5",
+                    "starttime": "2013-01-01",
+                    "cellid": "3550",
+                    "userid": 1,
+                    "lac": "4ffef3e",
+                    "network": [
+                        "NETONE",
+                        "ECONET",
+                        "TELECEL"
+                    ]
+                }
+            ],
+            "query-for-test-4": [
+                {
+                    "duration": {
+                        "min": 0,
+                        "max": 20
+                    },
+                    "querydate": "2013-01-02",
+                    "numbers": {
+                        "imei": "",
+                        "imsi": "460000020202",
+                        "msisdn": ""
+                    },
+                    "sms": "china",
+                    "acttype": "MO",
+                    "endtime": "2014-01-01",
+                    "queryname": "query-for-test-4",
+                    "starttime": "2013-01-01",
+                    "cellid": "3550",
+                    "userid": 1,
+                    "lac": "4ffef3e",
+                    "network": [
+                        "NETONE",
+                        "ECONET",
+                        "TELECEL"
+                    ]
+                }
+            ],
+            "query-for-test-3": [
+                {
+                    "duration": {
+                        "min": 0,
+                        "max": 20
+                    },
+                    "querydate": "2013-01-02",
+                    "numbers": {
+                        "imei": "",
+                        "imsi": "460000020202",
+                        "msisdn": ""
+                    },
+                    "sms": "china",
+                    "acttype": "MO",
+                    "endtime": "2014-01-01",
+                    "queryname": "query-for-test-3",
+                    "starttime": "2013-01-01",
+                    "cellid": "3550",
+                    "userid": 1,
+                    "lac": "4ffef3e",
+                    "network": [
+                        "NETONE",
+                        "ECONET",
+                        "TELECEL"
+                    ]
+                }
+            ]
+        },
+        "2013-01-01": {
+            "query-for-test": [
+                {
+                    "duration": {
+                        "min": 0,
+                        "max": 20
+                    },
+                    "querydate": "2013-01-01",
+                    "numbers": {
+                        "imei": "",
+                        "imsi": "460000020202",
+                        "msisdn": ""
+                    },
+                    "sms": "china",
+                    "acttype": "MO",
+                    "endtime": "2014-01-01",
+                    "queryname": "query-for-test",
+                    "starttime": "2013-01-01",
+                    "cellid": "3550",
+                    "userid": 1,
+                    "lac": "4ffef3e",
+                    "network": [
+                        "NETONE",
+                        "ECONET",
+                        "TELECEL"
+                    ]
+                }
+            ],
+            "query-for-test-2": [
+                {
+                    "duration": {
+                        "min": 0,
+                        "max": 20
+                    },
+                    "querydate": "2013-01-01",
+                    "numbers": {
+                        "imei": "",
+                        "imsi": "460000020202",
+                        "msisdn": ""
+                    },
+                    "sms": "china",
+                    "acttype": "MO",
+                    "endtime": "2014-01-01",
+                    "queryname": "query-for-test-2",
+                    "starttime": "2013-01-01",
+                    "cellid": "3550",
+                    "userid": 1,
+                    "lac": "4ffef3e",
+                    "network": [
+                        "NETONE",
+                        "ECONET",
+                        "TELECEL"
+                    ]
+                }
+            ],
+            "query-for-test-1": [
+                {
+                    "duration": {
+                        "min": 0,
+                        "max": 20
+                    },
+                    "querydate": "2013-01-01",
+                    "numbers": {
+                        "imei": "",
+                        "imsi": "460000020202",
+                        "msisdn": ""
+                    },
+                    "sms": "china",
+                    "acttype": "MO",
+                    "endtime": "2014-01-01",
+                    "queryname": "query-for-test-1",
+                    "starttime": "2013-01-01",
+                    "cellid": "3550",
+                    "userid": 1,
+                    "lac": "4ffef3e",
+                    "network": [
+                        "NETONE",
+                        "ECONET",
+                        "TELECEL"
+                    ]
+                }
+            ]
+        }
+    }
+}
