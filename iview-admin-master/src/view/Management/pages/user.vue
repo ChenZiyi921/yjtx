@@ -34,7 +34,7 @@
             <template slot-scope="{ row }" slot="name">
               <strong>{{ row.name }}</strong>
             </template>
-            <template slot-scope="{ row, index }" slot="action">
+            <template slot-scope="{ row }" slot="action">
               <Button
                 type="info"
                 ghost

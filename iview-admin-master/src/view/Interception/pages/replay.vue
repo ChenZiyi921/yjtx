@@ -119,36 +119,105 @@ export default {
       },
       columns: [
         {
+          type: "index",
           title: "Index",
           key: "name"
         },
         {
           title: "VOC",
-          key: "age"
+          key: "",
+          render: (h, { row, index }) => {
+            if (row.fileName) {
+              return h("div", [
+                h("img", {
+                  style: {
+                    width: "20px",
+                    verticalAlign: "middle"
+                  },
+                  attrs: {
+                    src: require("@/assets/images/i-music.png")
+                  }
+                })
+              ]);
+            } else {
+              return "";
+            }
+          }
         },
         {
           title: "Status",
-          key: "address"
+          key: "",
+          render: (h, { row, index }) => {
+            if (row.ifHeard && row.ifKeep) {
+            return h("div", [
+              h("img", {
+                style: {
+                  width: "20px",
+                  verticalAlign: "middle",
+                  marginRight: "10px"
+                },
+                attrs: {
+                  src: require("@/assets/images/i-heard.png")
+                }
+              }),
+              h("img", {
+                style: {
+                  width: "20px",
+                  verticalAlign: "middle"
+                },
+                attrs: {
+                  src: require("@/assets/images/i-keep.png")
+                }
+              })
+            ]);
+            } else if (row.ifHeard) {
+              return h("div", [
+                h("img", {
+                  style: {
+                    width: "20px",
+                    verticalAlign: "middle"
+                  },
+                  attrs: {
+                    src: require("@/assets/images/i-heard.png")
+                  }
+                })
+              ]);
+            } else if (row.ifKeep) {
+              return h("div", [
+                h("img", {
+                  style: {
+                    width: "20px",
+                    verticalAlign: "middle"
+                  },
+                  attrs: {
+                    src: require("@/assets/images/i-keep.png")
+                  }
+                })
+              ]);
+            } else {
+              return "";
+            }
+          }
         },
         {
           title: "MSISDN",
-          key: "name"
+          key: "msisdn"
         },
         {
           title: "IMSI",
-          key: "age"
+          key: "imsi"
         },
         {
           title: "IMEI",
-          key: "address"
+          key: "imei"
         },
         {
           title: "ActType",
-          key: "name"
+          key: "acttype"
         },
         {
           title: "Partner No.",
-          key: "age"
+          key: "objNbr"
         }
       ],
       data: [],

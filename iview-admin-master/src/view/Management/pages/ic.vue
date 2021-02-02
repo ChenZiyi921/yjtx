@@ -23,15 +23,10 @@
       </template>
       <template slot-scope="{ row, index }" slot="action">
         <template v-if="true">
-          <Button
-            type="info"
-            ghost
-            size="small"
-            class="mr10"
-            @click="show(index)"
+          <Button type="info" ghost size="small" class="mr10" @click="show(row)"
             >Copy</Button
           >
-          <Button type="info" size="small" class="mr10" @click="show(index)"
+          <Button type="info" size="small" class="mr10" @click="show(row)"
             >Submit</Button
           >
           <Button type="error" size="small" class="mr10" @click="remove(index)"
@@ -370,7 +365,7 @@ export default {
     }
   },
   methods: {
-    show(index) {
+    show(row) {
       this.modal = true;
     },
     remove(index) {
