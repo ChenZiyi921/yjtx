@@ -27,6 +27,8 @@
           <div>
             <span class="mr10">date</span>
             <DatePicker
+              :clearable="false"
+              v-model="date"
               type="datetimerange"
               placeholder="Select date and time"
               class="mt10"
@@ -34,7 +36,10 @@
             ></DatePicker>
           </div>
           <Checkbox v-model="single" class="mt10">Call & Voice</Checkbox>
-          <Tree :data="myCaseTreeData" expand-node></Tree>
+          <Tree
+            :data="myCaseTreeData"
+            @on-select-change="myCaseTreeDataChange"
+          ></Tree>
         </div>
         <div v-else>
           <Tree
@@ -49,9 +54,20 @@
           <div slot="top" class="demo-split-pane">
             <div>
               <Button class="mr10">Track</Button>
-              <Button class="mr10" type="success" ghost>Position</Button>
-              <Button class="mr10" type="success">Refresh</Button>
+              <Button class="mr10" type="success">Position</Button>
+              <Button
+                class="mr10"
+                type="success"
+                @click="
+                  () => {
+                    queryCdrByIcForm.caseid !== '' && this.queryCdrByIc();
+                  }
+                "
+                ghost
+                >Refresh</Button
+              >
               <Button class="mr10" type="info">Export</Button>
+              <Button class="mr10" type="info">Archive</Button>
               <Button type="info" ghost>Comment</Button>
             </div>
             <Table
@@ -94,6 +110,7 @@ import {
   queryCasesByUser,
   queryQuery
 } from "@/api/global";
+import dayjs from "dayjs";
 
 export default {
   name: "",
@@ -114,6 +131,30 @@ export default {
           children: []
         }
       ],
+      date: [
+        dayjs(
+          new Date(new Date().getTime() - 24 * 60 * 60 * 1000).setHours(
+            0,
+            0,
+            0,
+            0
+          )
+        ).format("YYYY-MM-DD HH:mm:ss"),
+        dayjs(new Date()).format("YYYY-MM-DD HH:mm:ss")
+      ],
+      queryCdrByIcForm: {
+        caseid: "",
+        icid: "",
+        starttime: dayjs(
+          new Date(new Date().getTime() - 24 * 60 * 60 * 1000).setHours(
+            0,
+            0,
+            0,
+            0
+          )
+        ).format("YYYY-MM-DD HH:mm:ss"),
+        endtime: dayjs(new Date()).format("YYYY-MM-DD HH:mm:ss")
+      },
       queryForm: {
         currPage: 1,
         pageSize: 10,
@@ -365,13 +406,22 @@ export default {
   },
   computed: {},
   mounted() {
-    this.queryCdrByIc();
     this.execQuery();
     this.queryQuery();
     this.queryCasesByUser();
   },
   create() {},
   methods: {
+    myCaseTreeDataChange(curArr, cur) {
+      console.log(cur);
+      if (cur.icid) {
+        this.queryCdrByIcForm.icid = cur.icid;
+        this.queryCdrByIcForm.caseid = this.myCaseTreeData[0].children[
+          cur.index
+        ].caseid;
+        this.queryCdrByIc();
+      }
+    },
     renderContent(h, { root, node, data }) {
       return h(
         "span",
@@ -452,24 +502,28 @@ export default {
         if (data.code === 200) {
           for (let index = 0; index < data.data.content.length; index++) {
             data.data.content[index].title = data.data.content[index].casename;
-            data.data.content[index].children =
-              data.data.content[index].targets;
+            data.data.content[index].children = data.data.content[
+              index
+            ].targets.concat(data.data.content[index].ics);
             data.data.content[index].children.map(item => {
-              item.title = item.targetname;
-              item.children = item.ics;
-              item.children.map(item => {
-                item.title = item.icname;
-              });
+              item.title = item.targetname || item.icname;
+              item.index = index;
+              if (item.targetname) {
+                item.children = item.ics;
+                item.children.map(item => {
+                  item.title = item.icname;
+                  item.index = index;
+                });
+              }
             });
           }
           this.myCaseTreeData[0].children = data.data.content;
-          console.log(this.myCaseTreeData);
         }
       });
     },
     queryCdrByIc() {
       this.loading = true;
-      queryCdrByIc(this.queryForm).then(({ data }) => {
+      queryCdrByIc(this.queryCdrByIcForm).then(({ data }) => {
         if (data.code === 200) {
           this.loading = false;
           this.data = data.data.content;

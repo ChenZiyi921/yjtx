@@ -3,9 +3,9 @@
     "msg": "Success",
     "data": {
         "currPage": 1,
-        "pageSize": 36,
-        "totalCount": 36,
-        "totalPage": 1,
+        "pageSize": 20,
+        "totalCount": 37,
+        "totalPage": 2,
         "content": [
             {
                 "caseid": 297,
@@ -22,10 +22,23 @@
                 "caseowner": null,
                 "caseautoact": 1,
                 "casecreator": "CaseManager11",
+                "ics": [
+                    {
+                        "icid": 97,
+                        "icname": "IC-MSISDN-E-+26377863446",
+                        "ictype": "MSISDN",
+                        "icstatus": "INACTIVE",
+                        "iccreatedate": "2013-06-14",
+                        "iccreator": "CaseManager11",
+                        "icexpireddate": "2013-06-16",
+                        "icmemo": "Auto created with case2013-06-14-Test",
+                        "icprio": 3
+                    }
+                ],
                 "targets": [
                     {
                         "targetid": 431,
-                        "targetname": "Case Test 167::tter",
+                        "targetname": "tter",
                         "targetstatus": null,
                         "targetmemo": null,
                         "ics": [
@@ -70,10 +83,11 @@
                 "caseowner": null,
                 "caseautoact": 1,
                 "casecreator": "CaseManager11",
+                "ics": [],
                 "targets": [
                     {
                         "targetid": 546,
-                        "targetname": "Test Case 178::t4ees",
+                        "targetname": "t4ees",
                         "targetstatus": null,
                         "targetmemo": null,
                         "ics": [
@@ -129,10 +143,11 @@
                 "caseowner": null,
                 "caseautoact": 1,
                 "casecreator": "CaseManager11",
+                "ics": [],
                 "targets": [
                     {
                         "targetid": 309,
-                        "targetname": "errerer::ewrewr",
+                        "targetname": "ewrewr",
                         "targetstatus": null,
                         "targetmemo": null,
                         "ics": [
@@ -197,10 +212,11 @@
                 "caseowner": null,
                 "caseautoact": 1,
                 "casecreator": "CaseManager11",
+                "ics": [],
                 "targets": [
                     {
                         "targetid": 311,
-                        "targetname": "sssd::sddssd",
+                        "targetname": "sddssd",
                         "targetstatus": null,
                         "targetmemo": null,
                         "ics": [
@@ -245,10 +261,11 @@
                 "caseowner": null,
                 "caseautoact": 1,
                 "casecreator": "CaseManager11",
+                "ics": [],
                 "targets": [
                     {
                         "targetid": 312,
-                        "targetname": "sasas::asasa",
+                        "targetname": "asasa",
                         "targetstatus": null,
                         "targetmemo": null,
                         "ics": [
@@ -293,10 +310,11 @@
                 "caseowner": null,
                 "caseautoact": 1,
                 "casecreator": "CaseManager11",
+                "ics": [],
                 "targets": [
                     {
                         "targetid": 313,
-                        "targetname": "zsdfsf::asasd",
+                        "targetname": "asasd",
                         "targetstatus": null,
                         "targetmemo": null,
                         "ics": [
@@ -352,10 +370,11 @@
                 "caseowner": null,
                 "caseautoact": 1,
                 "casecreator": "CaseManager11",
+                "ics": [],
                 "targets": [
                     {
                         "targetid": 459,
-                        "targetname": "TestCase169::mmmk",
+                        "targetname": "mmmk",
                         "targetstatus": null,
                         "targetmemo": null,
                         "ics": [
@@ -411,10 +430,11 @@
                 "caseowner": null,
                 "caseautoact": 1,
                 "casecreator": "CaseManager11",
+                "ics": [],
                 "targets": [
                     {
                         "targetid": 442,
-                        "targetname": "Test Case171::ey",
+                        "targetname": "ey",
                         "targetstatus": null,
                         "targetmemo": null,
                         "ics": [
@@ -470,10 +490,11 @@
                 "caseowner": null,
                 "caseautoact": 1,
                 "casecreator": "CaseManager11",
+                "ics": [],
                 "targets": [
                     {
                         "targetid": 460,
-                        "targetname": "TestCase172::wqdsa",
+                        "targetname": "wqdsa",
                         "targetstatus": null,
                         "targetmemo": null,
                         "ics": [
@@ -518,10 +539,11 @@
                 "caseowner": null,
                 "caseautoact": 1,
                 "casecreator": "CaseManager11",
+                "ics": [],
                 "targets": [
                     {
                         "targetid": 462,
-                        "targetname": "sadsadsad21::safd4w33",
+                        "targetname": "safd4w33",
                         "targetstatus": null,
                         "targetmemo": null,
                         "ics": [
@@ -566,10 +588,11 @@
                 "caseowner": null,
                 "caseautoact": 1,
                 "casecreator": "CaseManager11",
+                "ics": [],
                 "targets": [
                     {
                         "targetid": 18,
-                        "targetname": "Basic Case 13::bc13tg1",
+                        "targetname": "bc13tg1",
                         "targetstatus": null,
                         "targetmemo": null,
                         "ics": [
@@ -623,10 +646,11 @@
                 "caseowner": null,
                 "caseautoact": 1,
                 "casecreator": "CaseManager11",
+                "ics": [],
                 "targets": [
                     {
                         "targetid": 41,
-                        "targetname": "Basic Case 19::bc19tg1",
+                        "targetname": "bc19tg1",
                         "targetstatus": null,
                         "targetmemo": null,
                         "ics": [
@@ -671,10 +695,11 @@
                 "caseowner": null,
                 "caseautoact": 1,
                 "casecreator": "CaseManager11",
+                "ics": [],
                 "targets": [
                     {
                         "targetid": 40,
-                        "targetname": "Basic Case 18::bc18tg2",
+                        "targetname": "bc18tg2",
                         "targetstatus": null,
                         "targetmemo": null,
                         "ics": [
@@ -705,6 +730,43 @@
                 ]
             },
             {
+                "caseid": 502,
+                "casename": "443",
+                "casestatus": "EXPIRED",
+                "caseref": "1710457951",
+                "casetype": "Basic",
+                "caseactivedate": "2013-08-19",
+                "caseclosedate": "2013-08-19",
+                "caseexpireddate": "2013-08-21",
+                "casecreatedate": "2013-08-19",
+                "casedesc": null,
+                "casememo": null,
+                "caseowner": null,
+                "caseautoact": 1,
+                "casecreator": "CaseManager11",
+                "ics": [],
+                "targets": [
+                    {
+                        "targetid": 803,
+                        "targetname": "Simon",
+                        "targetstatus": null,
+                        "targetmemo": null,
+                        "ics": []
+                    }
+                ],
+                "members": [
+                    {
+                        "oprid": 781,
+                        "caseid": 502,
+                        "userid": 1,
+                        "viewcase": 1,
+                        "managecase": 1,
+                        "analyzecase": 1,
+                        "monitorcase": 1
+                    }
+                ]
+            },
+            {
                 "caseid": 38,
                 "casename": "Expert Case 2",
                 "casestatus": "EXPIRED",
@@ -719,10 +781,11 @@
                 "caseowner": null,
                 "caseautoact": 0,
                 "casecreator": "CaseManager11",
+                "ics": [],
                 "targets": [
                     {
                         "targetid": 43,
-                        "targetname": "1819261896",
+                        "targetname": "default",
                         "targetstatus": null,
                         "targetmemo": null,
                         "ics": []
@@ -773,10 +836,11 @@
                 "caseowner": null,
                 "caseautoact": 1,
                 "casecreator": "CaseManager11",
+                "ics": [],
                 "targets": [
                     {
                         "targetid": 49,
-                        "targetname": "Basic Case 21::bc21tg1",
+                        "targetname": "bc21tg1",
                         "targetstatus": null,
                         "targetmemo": null,
                         "ics": [
@@ -821,10 +885,11 @@
                 "caseowner": null,
                 "caseautoact": 1,
                 "casecreator": "CaseManager11",
+                "ics": [],
                 "targets": [
                     {
                         "targetid": 4,
-                        "targetname": "Basic Case 1::bc1tg1",
+                        "targetname": "bc1tg1",
                         "targetstatus": null,
                         "targetmemo": null,
                         "ics": [
@@ -887,10 +952,11 @@
                 "caseowner": null,
                 "caseautoact": 1,
                 "casecreator": "CaseManager11",
+                "ics": [],
                 "targets": [
                     {
                         "targetid": 5,
-                        "targetname": "Basic Case 2::bc2tg1",
+                        "targetname": "bc2tg1",
                         "targetstatus": null,
                         "targetmemo": null,
                         "ics": [
@@ -944,10 +1010,11 @@
                 "caseowner": null,
                 "caseautoact": 1,
                 "casecreator": "CaseManager11",
+                "ics": [],
                 "targets": [
                     {
                         "targetid": 6,
-                        "targetname": "Basic Case 3::bc3tg1",
+                        "targetname": "bc3tg1",
                         "targetstatus": null,
                         "targetmemo": null,
                         "ics": [
@@ -992,10 +1059,11 @@
                 "caseowner": null,
                 "caseautoact": 1,
                 "casecreator": "CaseManager11",
+                "ics": [],
                 "targets": [
                     {
                         "targetid": 16,
-                        "targetname": "Basic Case 12::bc 12 tg 3",
+                        "targetname": "bc 12 tg 3",
                         "targetstatus": null,
                         "targetmemo": null,
                         "ics": [
@@ -1021,1182 +1089,6 @@
                         "viewcase": 1,
                         "managecase": 1,
                         "analyzecase": 1,
-                        "monitorcase": 1
-                    }
-                ]
-            },
-            {
-                "caseid": 1,
-                "casename": "Expert Case 1",
-                "casestatus": "EXPIRED",
-                "caseref": "1355642533",
-                "casetype": "Basic",
-                "caseactivedate": null,
-                "caseclosedate": null,
-                "caseexpireddate": "2013-06-01",
-                "casecreatedate": "2013-05-31",
-                "casedesc": null,
-                "casememo": null,
-                "caseowner": null,
-                "caseautoact": 0,
-                "casecreator": "CaseManager12",
-                "targets": [
-                    {
-                        "targetid": 1,
-                        "targetname": "1355642533",
-                        "targetstatus": null,
-                        "targetmemo": null,
-                        "ics": []
-                    }
-                ],
-                "members": [
-                    {
-                        "oprid": 1,
-                        "caseid": 1,
-                        "userid": 4,
-                        "viewcase": 1,
-                        "managecase": 0,
-                        "analyzecase": 0,
-                        "monitorcase": 1
-                    },
-                    {
-                        "oprid": 2,
-                        "caseid": 1,
-                        "userid": 6,
-                        "viewcase": 1,
-                        "managecase": 0,
-                        "analyzecase": 1,
-                        "monitorcase": 1
-                    },
-                    {
-                        "oprid": 3,
-                        "caseid": 1,
-                        "userid": 1,
-                        "viewcase": 1,
-                        "managecase": 1,
-                        "analyzecase": 1,
-                        "monitorcase": 1
-                    }
-                ]
-            },
-            {
-                "caseid": 8,
-                "casename": "Basic Case 5",
-                "casestatus": "COMPLETE",
-                "caseref": "338552706",
-                "casetype": "Basic",
-                "caseactivedate": "2013-06-13",
-                "caseclosedate": "2013-07-11",
-                "caseexpireddate": "2013-06-26",
-                "casecreatedate": "2013-06-03",
-                "casedesc": null,
-                "casememo": "[CaseManager11] 13/06/2013 11:02:46 AM:\nPlease continue monitoring this target with high priority, I am activating the case again.\n\n[Monitoring11] 13/06/2013 11:03:13 AM:\nWill do so!\n\n\n\n",
-                "caseowner": null,
-                "caseautoact": 1,
-                "casecreator": "CaseManager11",
-                "targets": [
-                    {
-                        "targetid": 8,
-                        "targetname": "Basic Case 5::bc5tg1",
-                        "targetstatus": null,
-                        "targetmemo": null,
-                        "ics": [
-                            {
-                                "icid": 9,
-                                "icname": "IC-MSISDN-E-07765443243",
-                                "ictype": "MSISDN",
-                                "icstatus": "EXPIRED",
-                                "iccreatedate": "2013-06-03",
-                                "iccreator": "CaseManager11",
-                                "icexpireddate": "2013-06-11",
-                                "icmemo": "Auto created with caseBasic Case 5",
-                                "icprio": 3
-                            }
-                        ]
-                    }
-                ],
-                "members": [
-                    {
-                        "oprid": 99,
-                        "caseid": 8,
-                        "userid": 4,
-                        "viewcase": 1,
-                        "managecase": 0,
-                        "analyzecase": 0,
-                        "monitorcase": 1
-                    },
-                    {
-                        "oprid": 11,
-                        "caseid": 8,
-                        "userid": 1,
-                        "viewcase": 1,
-                        "managecase": 1,
-                        "analyzecase": 1,
-                        "monitorcase": 1
-                    }
-                ]
-            },
-            {
-                "caseid": 12,
-                "casename": "Basic Case 9",
-                "casestatus": "EXPIRED",
-                "caseref": "327966913",
-                "casetype": "Basic",
-                "caseactivedate": "2013-06-03",
-                "caseclosedate": null,
-                "caseexpireddate": "2013-06-11",
-                "casecreatedate": "2013-06-03",
-                "casedesc": null,
-                "casememo": null,
-                "caseowner": null,
-                "caseautoact": 0,
-                "casecreator": "CaseManager11",
-                "targets": [
-                    {
-                        "targetid": 12,
-                        "targetname": "Basic Case 9::bc9tg1",
-                        "targetstatus": null,
-                        "targetmemo": null,
-                        "ics": [
-                            {
-                                "icid": 13,
-                                "icname": "IC-MSISDN-E-0776453722",
-                                "ictype": "MSISDN",
-                                "icstatus": "EXPIRED",
-                                "iccreatedate": "2013-06-03",
-                                "iccreator": "CaseManager11",
-                                "icexpireddate": "2013-06-11",
-                                "icmemo": "Auto created with caseBasic Case 9",
-                                "icprio": 3
-                            }
-                        ]
-                    }
-                ],
-                "members": [
-                    {
-                        "oprid": 15,
-                        "caseid": 12,
-                        "userid": 1,
-                        "viewcase": 1,
-                        "managecase": 1,
-                        "analyzecase": 1,
-                        "monitorcase": 1
-                    }
-                ]
-            },
-            {
-                "caseid": 10,
-                "casename": "Basic Case 7",
-                "casestatus": "EXPIRED",
-                "caseref": "763889897",
-                "casetype": "Basic",
-                "caseactivedate": "2013-06-03",
-                "caseclosedate": null,
-                "caseexpireddate": "2013-06-14",
-                "casecreatedate": "2013-06-03",
-                "casedesc": null,
-                "casememo": "[CaseManager11] 13/06/2013 10:51:44 AM:\nCM: Please continue monitoring this target with high priority, I am activating the case again. Let me know ASAP if he leaves Harare!\n\n",
-                "caseowner": null,
-                "caseautoact": 1,
-                "casecreator": "CaseManager11",
-                "targets": [
-                    {
-                        "targetid": 10,
-                        "targetname": "Basic Case 7::bc7tg1",
-                        "targetstatus": null,
-                        "targetmemo": null,
-                        "ics": [
-                            {
-                                "icid": 11,
-                                "icname": "IC-MSISDN-E-0777133522",
-                                "ictype": "MSISDN",
-                                "icstatus": "EXPIRED",
-                                "iccreatedate": "2013-06-03",
-                                "iccreator": "CaseManager11",
-                                "icexpireddate": "2013-06-14",
-                                "icmemo": "Auto created with caseBasic Case 7",
-                                "icprio": 3
-                            }
-                        ]
-                    }
-                ],
-                "members": [
-                    {
-                        "oprid": 13,
-                        "caseid": 10,
-                        "userid": 1,
-                        "viewcase": 1,
-                        "managecase": 1,
-                        "analyzecase": 1,
-                        "monitorcase": 1
-                    }
-                ]
-            },
-            {
-                "caseid": 13,
-                "casename": "Basic Case 10",
-                "casestatus": "EXPIRED",
-                "caseref": "448728662",
-                "casetype": "Basic",
-                "caseactivedate": "2013-06-13",
-                "caseclosedate": null,
-                "caseexpireddate": "2013-06-27",
-                "casecreatedate": "2013-06-04",
-                "casedesc": null,
-                "casememo": null,
-                "caseowner": null,
-                "caseautoact": 1,
-                "casecreator": "CaseManager11",
-                "targets": [
-                    {
-                        "targetid": 13,
-                        "targetname": "Basic Case 10::bc10tg1",
-                        "targetstatus": null,
-                        "targetmemo": null,
-                        "ics": [
-                            {
-                                "icid": 14,
-                                "icname": "IC-MSISDN-E-0777453625",
-                                "ictype": "MSISDN",
-                                "icstatus": "EXPIRED",
-                                "iccreatedate": "2013-06-04",
-                                "iccreator": "CaseManager11",
-                                "icexpireddate": "2013-06-05",
-                                "icmemo": "Auto created with caseBasic Case 10",
-                                "icprio": 3
-                            }
-                        ]
-                    }
-                ],
-                "members": [
-                    {
-                        "oprid": 16,
-                        "caseid": 13,
-                        "userid": 1,
-                        "viewcase": 1,
-                        "managecase": 1,
-                        "analyzecase": 1,
-                        "monitorcase": 1
-                    }
-                ]
-            },
-            {
-                "caseid": 14,
-                "casename": "Basic Case 11",
-                "casestatus": "EXPIRED",
-                "caseref": "775424508",
-                "casetype": "Basic",
-                "caseactivedate": "2013-06-13",
-                "caseclosedate": null,
-                "caseexpireddate": "2013-06-20",
-                "casecreatedate": "2013-06-04",
-                "casedesc": null,
-                "casememo": null,
-                "caseowner": null,
-                "caseautoact": 1,
-                "casecreator": "CaseManager11",
-                "targets": [
-                    {
-                        "targetid": 14,
-                        "targetname": "Basic Case 11::bc11tg1",
-                        "targetstatus": null,
-                        "targetmemo": null,
-                        "ics": [
-                            {
-                                "icid": 15,
-                                "icname": "IC-MSISDN-E-0777655544",
-                                "ictype": "MSISDN",
-                                "icstatus": "EXPIRED",
-                                "iccreatedate": "2013-06-04",
-                                "iccreator": "CaseManager11",
-                                "icexpireddate": "2013-06-05",
-                                "icmemo": "Auto created with caseBasic Case 11",
-                                "icprio": 3
-                            }
-                        ]
-                    }
-                ],
-                "members": [
-                    {
-                        "oprid": 17,
-                        "caseid": 14,
-                        "userid": 1,
-                        "viewcase": 1,
-                        "managecase": 1,
-                        "analyzecase": 1,
-                        "monitorcase": 1
-                    }
-                ]
-            },
-            {
-                "caseid": 19,
-                "casename": "Basic Case 14",
-                "casestatus": "EXPIRED",
-                "caseref": "73612507",
-                "casetype": "Basic",
-                "caseactivedate": "2013-06-13",
-                "caseclosedate": null,
-                "caseexpireddate": "2013-06-25",
-                "casecreatedate": "2013-06-04",
-                "casedesc": "xzcvgfvgfgfgtf tytyty tytyty",
-                "casememo": "[CaseManager11] 13/06/2013 11:01:43 AM:\nDelete all\n",
-                "caseowner": null,
-                "caseautoact": 1,
-                "casecreator": "CaseManager11",
-                "targets": [
-                    {
-                        "targetid": 20,
-                        "targetname": "Basic Case 14::bc15tg1",
-                        "targetstatus": null,
-                        "targetmemo": null,
-                        "ics": [
-                            {
-                                "icid": 20,
-                                "icname": "IC-MSISDN-E-0777453627",
-                                "ictype": "MSISDN",
-                                "icstatus": "EXPIRED",
-                                "iccreatedate": "2013-06-04",
-                                "iccreator": "CaseManager11",
-                                "icexpireddate": "2013-06-06",
-                                "icmemo": "Auto created with caseBasic Case 14",
-                                "icprio": 3
-                            }
-                        ]
-                    }
-                ],
-                "members": [
-                    {
-                        "oprid": 22,
-                        "caseid": 19,
-                        "userid": 1,
-                        "viewcase": 1,
-                        "managecase": 1,
-                        "analyzecase": 1,
-                        "monitorcase": 1
-                    },
-                    {
-                        "oprid": 101,
-                        "caseid": 19,
-                        "userid": 4,
-                        "viewcase": 1,
-                        "managecase": 0,
-                        "analyzecase": 0,
-                        "monitorcase": 1
-                    }
-                ]
-            },
-            {
-                "caseid": 63,
-                "casename": "Basic Case 23",
-                "casestatus": "EXPIRED",
-                "caseref": "254532019",
-                "casetype": "Basic",
-                "caseactivedate": null,
-                "caseclosedate": null,
-                "caseexpireddate": "2013-06-11",
-                "casecreatedate": "2013-06-07",
-                "casedesc": "wesdfsdsd sdsdd",
-                "casememo": null,
-                "caseowner": null,
-                "caseautoact": 1,
-                "casecreator": "CaseManager11",
-                "targets": [
-                    {
-                        "targetid": 63,
-                        "targetname": "Basic Case 23::bc23tg5",
-                        "targetstatus": null,
-                        "targetmemo": null,
-                        "ics": [
-                            {
-                                "icid": 62,
-                                "icname": "IC-IMEI-E-357398065454356",
-                                "ictype": "IMEI",
-                                "icstatus": "EXPIRED",
-                                "iccreatedate": "2013-06-07",
-                                "iccreator": "CaseManager11",
-                                "icexpireddate": "2013-06-11",
-                                "icmemo": "Auto created with caseBasic Case 23",
-                                "icprio": 3
-                            }
-                        ]
-                    },
-                    {
-                        "targetid": 64,
-                        "targetname": "Basic Case 23::bc23tg1",
-                        "targetstatus": null,
-                        "targetmemo": null,
-                        "ics": [
-                            {
-                                "icid": 63,
-                                "icname": "IC-MSISDN-E-077238838",
-                                "ictype": "MSISDN",
-                                "icstatus": "EXPIRED",
-                                "iccreatedate": "2013-06-07",
-                                "iccreator": "CaseManager11",
-                                "icexpireddate": "2013-06-11",
-                                "icmemo": "Auto created with caseBasic Case 23",
-                                "icprio": 3
-                            }
-                        ]
-                    },
-                    {
-                        "targetid": 65,
-                        "targetname": "Basic Case 23::bc23tg2",
-                        "targetstatus": null,
-                        "targetmemo": null,
-                        "ics": [
-                            {
-                                "icid": 64,
-                                "icname": "IC-MSISDN-E-077588473",
-                                "ictype": "MSISDN",
-                                "icstatus": "EXPIRED",
-                                "iccreatedate": "2013-06-07",
-                                "iccreator": "CaseManager11",
-                                "icexpireddate": "2013-06-11",
-                                "icmemo": "Auto created with caseBasic Case 23",
-                                "icprio": 3
-                            }
-                        ]
-                    },
-                    {
-                        "targetid": 66,
-                        "targetname": "Basic Case 23::bc23tg4",
-                        "targetstatus": null,
-                        "targetmemo": null,
-                        "ics": [
-                            {
-                                "icid": 65,
-                                "icname": "IC-IMSI-E-892637493937574",
-                                "ictype": "IMSI",
-                                "icstatus": "EXPIRED",
-                                "iccreatedate": "2013-06-07",
-                                "iccreator": "CaseManager11",
-                                "icexpireddate": "2013-06-11",
-                                "icmemo": "Auto created with caseBasic Case 23",
-                                "icprio": 3
-                            }
-                        ]
-                    },
-                    {
-                        "targetid": 67,
-                        "targetname": "Basic Case 23::bc23tg3",
-                        "targetstatus": null,
-                        "targetmemo": null,
-                        "ics": [
-                            {
-                                "icid": 66,
-                                "icname": "IC-MSISDN-E-0775463746",
-                                "ictype": "MSISDN",
-                                "icstatus": "EXPIRED",
-                                "iccreatedate": "2013-06-07",
-                                "iccreator": "CaseManager11",
-                                "icexpireddate": "2013-06-11",
-                                "icmemo": "Auto created with caseBasic Case 23",
-                                "icprio": 3
-                            }
-                        ]
-                    }
-                ],
-                "members": [
-                    {
-                        "oprid": 64,
-                        "caseid": 63,
-                        "userid": 1,
-                        "viewcase": 1,
-                        "managecase": 1,
-                        "analyzecase": 1,
-                        "monitorcase": 1
-                    },
-                    {
-                        "oprid": 65,
-                        "caseid": 63,
-                        "userid": 4,
-                        "viewcase": 1,
-                        "managecase": 0,
-                        "analyzecase": 0,
-                        "monitorcase": 1
-                    }
-                ]
-            },
-            {
-                "caseid": 101,
-                "casename": "2013-06-14-Test",
-                "casestatus": "EXPIRED",
-                "caseref": "1173735427",
-                "casetype": "Basic",
-                "caseactivedate": "2013-06-14",
-                "caseclosedate": null,
-                "caseexpireddate": "2013-06-16",
-                "casecreatedate": "2013-06-14",
-                "casedesc": "Case for testing pupposes",
-                "casememo": "[Operator11] 6/15/2013 11:21:30 PM:\nDelete all\n[Operator11] 6/15/2013 11:21:45 PM:\nrrr\n\n[Operator11] 6/15/2013 11:31:21 PM:\nHello\n\n[Operator5] 17/06/2013 9:00:45 AM:\nop1, confirm you have loged in\n\n\n",
-                "caseowner": null,
-                "caseautoact": 1,
-                "casecreator": "CaseManager11",
-                "targets": [
-                    {
-                        "targetid": 101,
-                        "targetname": "2013-06-14-Test::Mr. Big",
-                        "targetstatus": null,
-                        "targetmemo": null,
-                        "ics": [
-                            {
-                                "icid": 97,
-                                "icname": "IC-MSISDN-E-+26377863446",
-                                "ictype": "MSISDN",
-                                "icstatus": "INACTIVE",
-                                "iccreatedate": "2013-06-14",
-                                "iccreator": "CaseManager11",
-                                "icexpireddate": "2013-06-16",
-                                "icmemo": "Auto created with case2013-06-14-Test",
-                                "icprio": 3
-                            },
-                            {
-                                "icid": 98,
-                                "icname": "IC-IMSI-E-648064533872765",
-                                "ictype": "IMSI",
-                                "icstatus": "INACTIVE",
-                                "iccreatedate": "2013-06-14",
-                                "iccreator": "CaseManager11",
-                                "icexpireddate": "2013-06-16",
-                                "icmemo": "Auto created with case2013-06-14-Test",
-                                "icprio": 3
-                            }
-                        ]
-                    },
-                    {
-                        "targetid": 102,
-                        "targetname": "2013-06-14-Test::Mr. Small",
-                        "targetstatus": null,
-                        "targetmemo": null,
-                        "ics": [
-                            {
-                                "icid": 99,
-                                "icname": "IC-IMSI-E-896754493823434",
-                                "ictype": "IMSI",
-                                "icstatus": "INACTIVE",
-                                "iccreatedate": "2013-06-14",
-                                "iccreator": "CaseManager11",
-                                "icexpireddate": "2013-06-16",
-                                "icmemo": "Auto created with case2013-06-14-Test",
-                                "icprio": 3
-                            }
-                        ]
-                    }
-                ],
-                "members": [
-                    {
-                        "oprid": 110,
-                        "caseid": 101,
-                        "userid": 66,
-                        "viewcase": 1,
-                        "managecase": 0,
-                        "analyzecase": 0,
-                        "monitorcase": 1
-                    },
-                    {
-                        "oprid": 111,
-                        "caseid": 101,
-                        "userid": 64,
-                        "viewcase": 1,
-                        "managecase": 0,
-                        "analyzecase": 0,
-                        "monitorcase": 1
-                    },
-                    {
-                        "oprid": 108,
-                        "caseid": 101,
-                        "userid": 1,
-                        "viewcase": 1,
-                        "managecase": 1,
-                        "analyzecase": 1,
-                        "monitorcase": 1
-                    },
-                    {
-                        "oprid": 109,
-                        "caseid": 101,
-                        "userid": 72,
-                        "viewcase": 1,
-                        "managecase": 0,
-                        "analyzecase": 0,
-                        "monitorcase": 1
-                    },
-                    {
-                        "oprid": 112,
-                        "caseid": 101,
-                        "userid": 63,
-                        "viewcase": 1,
-                        "managecase": 0,
-                        "analyzecase": 0,
-                        "monitorcase": 1
-                    },
-                    {
-                        "oprid": 113,
-                        "caseid": 101,
-                        "userid": 61,
-                        "viewcase": 1,
-                        "managecase": 0,
-                        "analyzecase": 0,
-                        "monitorcase": 1
-                    },
-                    {
-                        "oprid": 114,
-                        "caseid": 101,
-                        "userid": 71,
-                        "viewcase": 1,
-                        "managecase": 0,
-                        "analyzecase": 0,
-                        "monitorcase": 1
-                    },
-                    {
-                        "oprid": 115,
-                        "caseid": 101,
-                        "userid": 70,
-                        "viewcase": 1,
-                        "managecase": 0,
-                        "analyzecase": 0,
-                        "monitorcase": 1
-                    },
-                    {
-                        "oprid": 116,
-                        "caseid": 101,
-                        "userid": 69,
-                        "viewcase": 1,
-                        "managecase": 0,
-                        "analyzecase": 0,
-                        "monitorcase": 1
-                    },
-                    {
-                        "oprid": 117,
-                        "caseid": 101,
-                        "userid": 68,
-                        "viewcase": 1,
-                        "managecase": 0,
-                        "analyzecase": 0,
-                        "monitorcase": 1
-                    },
-                    {
-                        "oprid": 118,
-                        "caseid": 101,
-                        "userid": 67,
-                        "viewcase": 1,
-                        "managecase": 0,
-                        "analyzecase": 0,
-                        "monitorcase": 1
-                    },
-                    {
-                        "oprid": 119,
-                        "caseid": 101,
-                        "userid": 65,
-                        "viewcase": 1,
-                        "managecase": 0,
-                        "analyzecase": 0,
-                        "monitorcase": 1
-                    },
-                    {
-                        "oprid": 120,
-                        "caseid": 101,
-                        "userid": 62,
-                        "viewcase": 1,
-                        "managecase": 0,
-                        "analyzecase": 0,
-                        "monitorcase": 1
-                    }
-                ]
-            },
-            {
-                "caseid": 100,
-                "casename": "expert case 7",
-                "casestatus": "EXPIRED",
-                "caseref": "980380138",
-                "casetype": "Expert",
-                "caseactivedate": null,
-                "caseclosedate": null,
-                "caseexpireddate": "2013-06-25",
-                "casecreatedate": "2013-06-13",
-                "casedesc": null,
-                "casememo": null,
-                "caseowner": null,
-                "caseautoact": 0,
-                "casecreator": "CaseManager11",
-                "targets": [
-                    {
-                        "targetid": 100,
-                        "targetname": "980380138",
-                        "targetstatus": null,
-                        "targetmemo": null,
-                        "ics": []
-                    }
-                ],
-                "members": [
-                    {
-                        "oprid": 107,
-                        "caseid": 100,
-                        "userid": 1,
-                        "viewcase": 1,
-                        "managecase": 1,
-                        "analyzecase": 1,
-                        "monitorcase": 1
-                    }
-                ]
-            },
-            {
-                "caseid": 62,
-                "casename": "Expert Case 4",
-                "casestatus": "EXPIRED",
-                "caseref": "368812544",
-                "casetype": "Expert",
-                "caseactivedate": null,
-                "caseclosedate": null,
-                "caseexpireddate": "2013-06-12",
-                "casecreatedate": "2013-06-07",
-                "casedesc": null,
-                "casememo": null,
-                "caseowner": null,
-                "caseautoact": 0,
-                "casecreator": "CaseManager11",
-                "targets": [
-                    {
-                        "targetid": 62,
-                        "targetname": "368812544",
-                        "targetstatus": null,
-                        "targetmemo": null,
-                        "ics": []
-                    }
-                ],
-                "members": [
-                    {
-                        "oprid": 62,
-                        "caseid": 62,
-                        "userid": 1,
-                        "viewcase": 1,
-                        "managecase": 1,
-                        "analyzecase": 1,
-                        "monitorcase": 1
-                    },
-                    {
-                        "oprid": 63,
-                        "caseid": 62,
-                        "userid": 22,
-                        "viewcase": 1,
-                        "managecase": 1,
-                        "analyzecase": 1,
-                        "monitorcase": 1
-                    }
-                ]
-            },
-            {
-                "caseid": 113,
-                "casename": "Basic Case 27",
-                "casestatus": "EXPIRED",
-                "caseref": "1879585323",
-                "casetype": "Basic",
-                "caseactivedate": "2013-06-19",
-                "caseclosedate": null,
-                "caseexpireddate": "2013-06-19",
-                "casecreatedate": "2013-06-18",
-                "casedesc": null,
-                "casememo": "[CaseApprover11] 6/19/2013 8:30:24 PM:\nApproed by me\n\n",
-                "caseowner": null,
-                "caseautoact": 1,
-                "casecreator": "CaseManager11",
-                "targets": [
-                    {
-                        "targetid": 120,
-                        "targetname": "Basic Case 27::sdassadsad",
-                        "targetstatus": null,
-                        "targetmemo": null,
-                        "ics": [
-                            {
-                                "icid": 122,
-                                "icname": "IC-MSISDN-E-+263776546352",
-                                "ictype": "MSISDN",
-                                "icstatus": "ACTIVE",
-                                "iccreatedate": "2013-06-18",
-                                "iccreator": "CaseManager11",
-                                "icexpireddate": "2013-06-19",
-                                "icmemo": "Auto created with caseBasic Case 27",
-                                "icprio": 3
-                            }
-                        ]
-                    }
-                ],
-                "members": [
-                    {
-                        "oprid": 174,
-                        "caseid": 113,
-                        "userid": 1,
-                        "viewcase": 1,
-                        "managecase": 1,
-                        "analyzecase": 1,
-                        "monitorcase": 1
-                    },
-                    {
-                        "oprid": 175,
-                        "caseid": 113,
-                        "userid": 4,
-                        "viewcase": 1,
-                        "managecase": 0,
-                        "analyzecase": 0,
-                        "monitorcase": 1
-                    },
-                    {
-                        "oprid": 176,
-                        "caseid": 113,
-                        "userid": 9,
-                        "viewcase": 1,
-                        "managecase": 0,
-                        "analyzecase": 0,
-                        "monitorcase": 1
-                    }
-                ]
-            },
-            {
-                "caseid": 306,
-                "casename": "TestCase170",
-                "casestatus": "EXPIRED",
-                "caseref": "846725184",
-                "casetype": "Basic",
-                "caseactivedate": "2013-10-24",
-                "caseclosedate": null,
-                "caseexpireddate": "2013-10-30",
-                "casecreatedate": "2013-08-21",
-                "casedesc": null,
-                "casememo": null,
-                "caseowner": null,
-                "caseautoact": 1,
-                "casecreator": "CaseManager11",
-                "targets": [
-                    {
-                        "targetid": 441,
-                        "targetname": "TestCase170::avr",
-                        "targetstatus": null,
-                        "targetmemo": null,
-                        "ics": [
-                            {
-                                "icid": 123,
-                                "icname": "IC-MSISDN-E-+263779714516",
-                                "ictype": "MSISDN",
-                                "icstatus": "ACTIVE",
-                                "iccreatedate": "2013-06-18",
-                                "iccreator": "CaseManager11",
-                                "icexpireddate": "2013-06-18",
-                                "icmemo": "Auto created with caseTestAvram",
-                                "icprio": 3
-                            },
-                            {
-                                "icid": 539,
-                                "icname": "IC-IMSI-E-648040602227046",
-                                "ictype": "IMSI",
-                                "icstatus": "ACTIVE",
-                                "iccreatedate": "2013-08-21",
-                                "iccreator": "CaseManager11",
-                                "icexpireddate": "2013-08-23",
-                                "icmemo": "Auto created with caseTestCase170",
-                                "icprio": 3
-                            }
-                        ]
-                    }
-                ],
-                "members": [
-                    {
-                        "oprid": 517,
-                        "caseid": 306,
-                        "userid": 1,
-                        "viewcase": 1,
-                        "managecase": 1,
-                        "analyzecase": 1,
-                        "monitorcase": 1
-                    },
-                    {
-                        "oprid": 518,
-                        "caseid": 306,
-                        "userid": 4,
-                        "viewcase": 1,
-                        "managecase": 0,
-                        "analyzecase": 0,
-                        "monitorcase": 1
-                    }
-                ]
-            },
-            {
-                "caseid": 134,
-                "casename": "SAT4",
-                "casestatus": "ACTIVE",
-                "caseref": "1330665621",
-                "casetype": "Basic",
-                "caseactivedate": "2021-01-15",
-                "caseclosedate": null,
-                "caseexpireddate": "2022-08-29",
-                "casecreatedate": "2013-06-21",
-                "casedesc": null,
-                "casememo": null,
-                "caseowner": null,
-                "caseautoact": 1,
-                "casecreator": "CaseManager12",
-                "targets": [
-                    {
-                        "targetid": 141,
-                        "targetname": "SAT4::LS",
-                        "targetstatus": null,
-                        "targetmemo": null,
-                        "ics": [
-                            {
-                                "icid": 69,
-                                "icname": "IC-IMSI-E-648040500128302",
-                                "ictype": "IMSI",
-                                "icstatus": "ACTIVE",
-                                "iccreatedate": "2013-06-08",
-                                "iccreator": "test-casemgr",
-                                "icexpireddate": "2013-08-10",
-                                "icmemo": "Auto created with casetest-003",
-                                "icprio": 4
-                            },
-                            {
-                                "icid": 120,
-                                "icname": "IC-MSISDN-E-+263771128293",
-                                "ictype": "MSISDN",
-                                "icstatus": "ACTIVE",
-                                "iccreatedate": "2013-06-18",
-                                "iccreator": "test-casemgr",
-                                "icexpireddate": "2013-06-29",
-                                "icmemo": "Auto created with casesms-test",
-                                "icprio": 3
-                            }
-                        ]
-                    }
-                ],
-                "members": [
-                    {
-                        "oprid": 217,
-                        "caseid": 134,
-                        "userid": 9,
-                        "viewcase": 1,
-                        "managecase": 1,
-                        "analyzecase": 1,
-                        "monitorcase": 1
-                    },
-                    {
-                        "oprid": 218,
-                        "caseid": 134,
-                        "userid": 4,
-                        "viewcase": 1,
-                        "managecase": 0,
-                        "analyzecase": 0,
-                        "monitorcase": 1
-                    },
-                    {
-                        "oprid": 376,
-                        "caseid": 134,
-                        "userid": 1,
-                        "viewcase": 1,
-                        "managecase": 0,
-                        "analyzecase": 0,
-                        "monitorcase": 1
-                    }
-                ]
-            },
-            {
-                "caseid": 235,
-                "casename": "Case Test 166",
-                "casestatus": "EXPIRED",
-                "caseref": "20766969",
-                "casetype": "Basic",
-                "caseactivedate": "2013-10-01",
-                "caseclosedate": null,
-                "caseexpireddate": "2013-10-02",
-                "casecreatedate": "2013-07-25",
-                "casedesc": null,
-                "casememo": null,
-                "caseowner": null,
-                "caseautoact": 1,
-                "casecreator": "CaseManager11",
-                "targets": [
-                    {
-                        "targetid": 308,
-                        "targetname": "Case Test 166::test 1.6.6",
-                        "targetstatus": null,
-                        "targetmemo": null,
-                        "ics": [
-                            {
-                                "icid": 278,
-                                "icname": "IC-MSISDN-E-+263778309261",
-                                "ictype": "MSISDN",
-                                "icstatus": "ACTIVE",
-                                "iccreatedate": "2013-07-25",
-                                "iccreator": "CaseManager11",
-                                "icexpireddate": "2013-07-26",
-                                "icmemo": "Auto created with caseCase Test 166",
-                                "icprio": 3
-                            },
-                            {
-                                "icid": 286,
-                                "icname": "IC-IMSI-E-648040602547745",
-                                "ictype": "IMSI",
-                                "icstatus": "ACTIVE",
-                                "iccreatedate": "2013-07-26",
-                                "iccreator": "CaseManager11",
-                                "icexpireddate": "2013-07-27",
-                                "icmemo": "Auto created with caseCase Test 166",
-                                "icprio": 3
-                            },
-                            {
-                                "icid": 331,
-                                "icname": "IC-MSISDN-E-+263778309211",
-                                "ictype": "MSISDN",
-                                "icstatus": "ACTIVE",
-                                "iccreatedate": "2013-07-27",
-                                "iccreator": "CaseManager11",
-                                "icexpireddate": "2013-07-29",
-                                "icmemo": "Auto created with caseCase Test 166",
-                                "icprio": 3
-                            }
-                        ]
-                    }
-                ],
-                "members": [
-                    {
-                        "oprid": 382,
-                        "caseid": 235,
-                        "userid": 1,
-                        "viewcase": 1,
-                        "managecase": 1,
-                        "analyzecase": 1,
-                        "monitorcase": 1
-                    }
-                ]
-            },
-            {
-                "caseid": 304,
-                "casename": "Test Case 168",
-                "casestatus": "EXPIRED",
-                "caseref": "213271361",
-                "casetype": "Basic",
-                "caseactivedate": "2013-09-10",
-                "caseclosedate": null,
-                "caseexpireddate": "2013-09-10",
-                "casecreatedate": "2013-08-21",
-                "casedesc": null,
-                "casememo": null,
-                "caseowner": null,
-                "caseautoact": 1,
-                "casecreator": "CaseManager11",
-                "targets": [
-                    {
-                        "targetid": 439,
-                        "targetname": "Test Case 168::mmt",
-                        "targetstatus": null,
-                        "targetmemo": null,
-                        "ics": [
-                            {
-                                "icid": 537,
-                                "icname": "IC-IMSI-E-648040602227041",
-                                "ictype": "IMSI",
-                                "icstatus": "ACTIVE",
-                                "iccreatedate": "2013-08-21",
-                                "iccreator": "CaseManager11",
-                                "icexpireddate": "2013-08-22",
-                                "icmemo": "Auto created with caseTestCase169",
-                                "icprio": 3
-                            },
-                            {
-                                "icid": 538,
-                                "icname": "IC-MSISDN-E-+263779714511",
-                                "ictype": "MSISDN",
-                                "icstatus": "ACTIVE",
-                                "iccreatedate": "2013-08-21",
-                                "iccreator": "CaseManager11",
-                                "icexpireddate": "2013-08-22",
-                                "icmemo": "Auto created with caseTestCase169",
-                                "icprio": 3
-                            }
-                        ]
-                    },
-                    {
-                        "targetid": 480,
-                        "targetname": "Test Case 168::rwerere",
-                        "targetstatus": null,
-                        "targetmemo": null,
-                        "ics": [
-                            {
-                                "icid": 579,
-                                "icname": "IC-MSISDN-E-+263775647586",
-                                "ictype": "MSISDN",
-                                "icstatus": "ACTIVE",
-                                "iccreatedate": "2013-09-04",
-                                "iccreator": "CaseManager11",
-                                "icexpireddate": "2013-09-04",
-                                "icmemo": "Auto created with caseTest Case 168",
-                                "icprio": 3
-                            }
-                        ]
-                    }
-                ],
-                "members": [
-                    {
-                        "oprid": 515,
-                        "caseid": 304,
-                        "userid": 1,
-                        "viewcase": 1,
-                        "managecase": 1,
-                        "analyzecase": 1,
-                        "monitorcase": 1
-                    }
-                ]
-            },
-            {
-                "caseid": 114,
-                "casename": "TestAvram",
-                "casestatus": "CLOSED",
-                "caseref": "2019166178",
-                "casetype": "Basic",
-                "caseactivedate": "2013-06-18",
-                "caseclosedate": "2013-06-18",
-                "caseexpireddate": "2013-06-18",
-                "casecreatedate": "2013-06-18",
-                "casedesc": null,
-                "casememo": null,
-                "caseowner": null,
-                "caseautoact": 1,
-                "casecreator": "CaseManager11",
-                "targets": [
-                    {
-                        "targetid": 121,
-                        "targetname": "TestAvram::Avram",
-                        "targetstatus": null,
-                        "targetmemo": null,
-                        "ics": [
-                            {
-                                "icid": 123,
-                                "icname": "IC-MSISDN-E-+263779714516",
-                                "ictype": "MSISDN",
-                                "icstatus": "ACTIVE",
-                                "iccreatedate": "2013-06-18",
-                                "iccreator": "CaseManager11",
-                                "icexpireddate": "2013-06-18",
-                                "icmemo": "Auto created with caseTestAvram",
-                                "icprio": 3
-                            }
-                        ]
-                    }
-                ],
-                "members": [
-                    {
-                        "oprid": 177,
-                        "caseid": 114,
-                        "userid": 1,
-                        "viewcase": 1,
-                        "managecase": 1,
-                        "analyzecase": 1,
-                        "monitorcase": 1
-                    },
-                    {
-                        "oprid": 178,
-                        "caseid": 114,
-                        "userid": 4,
-                        "viewcase": 1,
-                        "managecase": 0,
-                        "analyzecase": 0,
                         "monitorcase": 1
                     }
                 ]

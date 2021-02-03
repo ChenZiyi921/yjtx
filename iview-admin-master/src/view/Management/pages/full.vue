@@ -23,8 +23,8 @@
           <div slot="top" class="demo-split-pane">
             <div>
               <Button class="mr10">Track</Button>
-              <Button class="mr10" type="success" ghost>Position</Button>
-              <Button class="mr10" type="success">Refresh</Button>
+              <Button class="mr10" type="success">Position</Button>
+              <Button class="mr10" type="success" ghost>Refresh</Button>
               <Button class="mr10" type="info">Export</Button>
               <Button type="info" ghost>Comment</Button>
             </div>

@@ -12,6 +12,7 @@ let queryUserApi = "";
 let modifyUserApi = "";
 let queryRolesApi = "";
 let queryResourcesApi = "";
+let queryUserResourceApi = "";
 let deleteRoleApi = "";
 let addRoleApi = "";
 let modifyRoleApi = "";
@@ -41,6 +42,7 @@ if (debug) {
   modifyUserApi = "/static/dbg/user/modifyUser.json";
   queryRolesApi = "/static/dbg/user/queryRoles.json";
   queryResourcesApi = "/static/dbg/user/queryResources.json";
+  queryUserResourceApi = "/static/dbg/user/queryUserResource.json";
   deleteRoleApi = "/static/dbg/user/deleteRole.json";
   addRoleApi = "/static/dbg/user/addRole.json";
   modifyRoleApi = "/static/dbg/user/modifyRole.json";
@@ -69,6 +71,7 @@ if (debug) {
   modifyUserApi = "/api/user/modifyUser.do";
   queryRolesApi = "/api/user/queryRoles.do";
   queryResourcesApi = "/api/user/queryResources.do";
+  queryUserResourceApi = "/api/user/queryUserResource.do";
   deleteRoleApi = "/api/user/deleteRole.do";
   addRoleApi = "/api/user/addRole.do";
   modifyRoleApi = "/api/user/modifyRole.do";
@@ -157,6 +160,13 @@ export const queryResources = params => {
     params,
     method: 'get'
   })
+}
+
+export const queryUserResource = data => {
+  return axios.request(Object.assign({
+    url: queryUserResourceApi,
+    method: post
+  }, post ? { params: data } : { data }))
 }
 
 export const deleteRole = params => {

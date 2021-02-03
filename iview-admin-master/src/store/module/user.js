@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import store from '@/store'
 import {
   logout,
   getUserInfo,
@@ -10,7 +11,7 @@ import {
   getUnreadCount
 } from '@/api/user'
 import { setToken, getToken } from '@/libs/util'
-import { login, queryUserByName } from "@/api/global"
+import { login, queryUserByName, queryUserResource } from "@/api/global"
 
 export default {
   state: {
@@ -122,6 +123,12 @@ export default {
 
         queryUserByName({ "loginname": state.userName }).then(({ data }) => {
           if (data.code === 200) {
+            commit('setUserId', data.data.content[0]);
+            // queryUserResource({
+            //   userid: data.data.content[0].userid
+            // }).then(({ data }) => {
+            //   console.log(data)
+            // })
             resolve(data)
           }
         });
