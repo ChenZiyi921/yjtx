@@ -11,9 +11,10 @@
             "targetname": "rre",
             "icid": 121,
             "icnum": "1238657658",
-            "network": "456423",
-            "status": null,
-            "updatetime": null
+            "network": "NETONE",
+            "status": "NORMAL",
+            "updatetime": "2021-02-02",
+            "ictype": "MSISDN"
         },
         {
             "userid": 1,
@@ -23,10 +24,11 @@
             "casename": "aaaa",
             "targetname": "Asd",
             "icid": 321,
-            "icnum": null,
-            "network": null,
-            "status": null,
-            "updatetime": null
+            "icnum": "86776655554",
+            "network": "TELECEL",
+            "status": "NORMAL",
+            "updatetime": "2021-02-02",
+            "ictype": "IMEI"
         },
         {
             "userid": 1,
@@ -36,10 +38,11 @@
             "casename": "case2",
             "targetname": "qq",
             "icid": 322,
-            "icnum": null,
-            "network": null,
-            "status": null,
-            "updatetime": null
+            "icnum": "6400009887",
+            "network": "ECONET",
+            "status": "NORMAL",
+            "updatetime": "2021-02-02",
+            "ictype": "IMSI"
         }
     ]
 }

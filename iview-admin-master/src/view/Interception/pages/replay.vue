@@ -45,6 +45,7 @@
           <Tree
             :data="queryTreeData"
             :render="renderContent"
+            @on-select-change="queryTreeDataChange"
             class="demo-tree-render"
           ></Tree>
         </div>
@@ -363,6 +364,7 @@ export default {
           title: "Query",
           expand: true,
           render: (h, { root, node, data }) => {
+            console.log(data);
             return h(
               "span",
               {
@@ -399,7 +401,9 @@ export default {
                         type: "primary"
                       }),
                       style: {
-                        width: "64px"
+                        width: "44px",
+                        height: "18px",
+                        padding: 0
                       },
                       on: {
                         click: () => {
@@ -430,7 +434,6 @@ export default {
   create() {},
   methods: {
     myCaseTreeDataChange(curArr, cur) {
-      console.log(cur);
       if (cur.icid) {
         this.queryCdrByIcForm.icid = cur.icid;
         this.queryCdrByIcForm.caseid = this.myCaseTreeData[0].children[
@@ -438,6 +441,9 @@ export default {
         ].caseid;
         this.queryCdrByIc();
       }
+    },
+    queryTreeDataChange(curArr, cur) {
+      console.log(cur);
     },
     renderContent(h, { root, node, data }) {
       return h(
@@ -470,23 +476,33 @@ export default {
               }
             },
             [
-              h("Button", {
-                props: Object.assign({}, this.buttonProps, {
-                  icon: "ios-add"
-                }),
-                style: {
-                  marginRight: "8px"
-                },
-                on: {
-                  click: () => {
-                    this.append(data);
-                  }
-                }
-              }),
+              data.level !== 3
+                ? h("Button", {
+                    props: Object.assign({}, this.buttonProps, {
+                      icon: "ios-add"
+                    }),
+                    style: {
+                      marginRight: "8px",
+                      width: "18px",
+                      height: "18px",
+                      padding: 0
+                    },
+                    on: {
+                      click: () => {
+                        this.append(data);
+                      }
+                    }
+                  })
+                : "",
               h("Button", {
                 props: Object.assign({}, this.buttonProps, {
                   icon: "ios-remove"
                 }),
+                style: {
+                  width: "18px",
+                  height: "18px",
+                  padding: 0
+                },
                 on: {
                   click: () => {
                     this.remove(root, node, data);
@@ -507,6 +523,7 @@ export default {
       this.$set(data, "children", children);
     },
     remove(root, node, data) {
+      console.log(data.level);
       const parentKey = root.find(el => el === node).parent;
       const parent = root.find(el => el.nodeKey === parentKey).node;
       const index = parent.children.indexOf(data);
@@ -562,24 +579,23 @@ export default {
     queryQuery() {
       queryQuery().then(({ data }) => {
         if (data.code === 200) {
-          //   this.queryTreeData[0].children = data.data;
-          //   let newData = [];
-          //   for (const key in data.data) {
-          //     data.data[key].title = key;
-          //     newData.push(data.data[key]);
-          //     let dataItem = [];
-          //     for (const k in data.data[key]) {
-          //       if (k !== "title") {
-          //         for (let i = 0; i < data.data[key][k].length; i++) {
-          //           data.data[key][k][i].title = data.data[key][k][i].queryname;
-          //           dataItem.push(data.data[key][k][i]);
-          //         }
-          //         data.data[key].children = dataItem;
-          //       }
-          //     }
-          //   }
-          //   // JSON.stringify(data.data)
-          //   console.log(newData);
+          for (let index = 0; index < data.data.length; index++) {
+            for (const key in data.data[index]) {
+              data.data[index].title = key;
+              let arr = [];
+              for (const k in data.data[index][key]) {
+                for (const l in data.data[index][key][k]) {
+                  data.data[index][key][k][l].title =
+                    data.data[index][key][k][l].queryname;
+                  data.data[index][key][k][l].level = 3;
+                  arr.push(data.data[index][key][k][l]);
+                }
+              }
+              data.data[index].children = arr;
+            }
+          }
+          this.queryTreeData[0].children = data.data;
+          console.log(this.queryTreeData[0].children);
         }
       });
     },

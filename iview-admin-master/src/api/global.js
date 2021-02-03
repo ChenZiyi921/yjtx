@@ -31,6 +31,7 @@ let execQueryApi = "";
 let queryQueryApi = "";
 let addQueryApi = "";
 let deleteQueryApi = "";
+let queryLiveConsoleApi = "";
 
 if (debug) {
   loginApi = "/static/dbg/user/login.json";
@@ -61,6 +62,7 @@ if (debug) {
   queryQueryApi = "/static/dbg/cdr/queryQuery.json";
   addQueryApi = "/static/dbg/cdr/addQuery.json";
   deleteQueryApi = "/static/dbg/cdr/deleteQuery.json";
+  queryLiveConsoleApi = "/static/dbg/cdr/queryLiveConsole.json";
 } else {
   loginApi = "/api/user/login.do";
   changeUserPasswordApi = "/api/user/changeUserPassword.do";
@@ -90,6 +92,7 @@ if (debug) {
   queryQueryApi = "/api/cdr/queryQuery.do";
   addQueryApi = "/api/cdr/addQuery.do";
   deleteQueryApi = "/api/cdr/deleteQuery.do";
+  queryLiveConsoleApi = "/api/cdr/queryLiveConsole.do";
 }
 
 export const login = params => {
@@ -282,6 +285,13 @@ export const addQuery = data => {
 export const deleteQuery = data => {
   return axios.request(Object.assign({
     url: deleteQueryApi,
+    method: post
+  }, post ? { params: data } : { data }))
+}
+
+export const queryLiveConsole = data => {
+  return axios.request(Object.assign({
+    url: queryLiveConsoleApi,
     method: post
   }, post ? { params: data } : { data }))
 }

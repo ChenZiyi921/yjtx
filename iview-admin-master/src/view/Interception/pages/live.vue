@@ -70,7 +70,7 @@
 </template>
 
 <script>
-import { queryCdrByIc } from "@/api/global";
+import { queryCdrByIc, queryLiveConsoleApi } from "@/api/global";
 
 export default {
   name: "",
@@ -271,15 +271,20 @@ export default {
   },
   computed: {},
   mounted() {
-    this.queryCdrByIc();
-    for (let i = 0; i < 20; i++) {
-      this.liveListCard.push({
-        index: i
-      });
-    }
+    this.queryLiveConsole();
   },
   create() {},
   methods: {
+    queryLiveConsole() {
+      // queryLiveConsole(this.queryForm).then(({ data }) => {
+      //   if (data.code === 200) {
+      //     this.loading = false;
+      //     this.data = data.data.content;
+      //     this.queryForm.currPage = data.data.currPage;
+      //     this.queryForm.total = data.data.totalCount;
+      //   }
+      // });
+    },
     queryCdrByIc() {
       this.loading = true;
       queryCdrByIc(this.queryForm).then(({ data }) => {
