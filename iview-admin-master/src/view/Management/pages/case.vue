@@ -248,26 +248,12 @@
         <Button type="info" size="large" @click="addCaseSave">Save</Button>
       </div>
     </Modal>
-    <Modal
-      v-model="commentModal"
-      class-name="vertical-center-modal"
-      :closable="false"
-      title="Comments"
-      width="700"
-    >
-      <div>
-        <Input
-          v-model="caseComment.comment"
-          type="textarea"
-          :rows="10"
-          style="width: 600px"
-        />
-      </div>
-      <div slot="footer">
-        <Button size="large" @click="commentModal = false">Cancel</Button>
-        <Button type="info" size="large" @click="commentCaseSave">Save</Button>
-      </div>
-    </Modal>
+    <case-comment
+      :commentModal="commentModal"
+      :caseComment="caseComment"
+      @cancel-comment="cancelComment"
+      @save-comment-success="saveCommentSuccess"
+    />
     <Modal
       v-model="delModal"
       class-name="vertical-center-modal"
@@ -324,8 +310,12 @@ import {
   addCase,
   checkCaseName
 } from "@/api/global";
+import caseComment from "@/components/case-comment/case-comment";
 
 export default {
+  components: {
+    caseComment
+  },
   data() {
     return {
       loading: false,
@@ -730,15 +720,6 @@ export default {
         }
       });
     },
-    commentCaseSave() {
-      commentCase(this.caseComment).then(({ data }) => {
-        if (data.code === 200) {
-          this.commentModal = false;
-          this.$Message.success("Operation success!");
-          this.queryCaseList();
-        }
-      });
-    },
     pageSizeChange(pageSize) {
       this.queryForm.pageSize = pageSize;
       this.queryCaseList();
@@ -793,6 +774,13 @@ export default {
           }
         });
       }
+    },
+    cancelComment() {
+      this.commentModal = false;
+    },
+    saveCommentSuccess() {
+      this.commentModal = false;
+      this.queryCaseList();
     },
     showCreateModal() {
       this.createModal = true;

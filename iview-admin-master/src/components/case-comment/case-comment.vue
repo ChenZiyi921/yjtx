@@ -15,7 +15,7 @@
       />
     </div>
     <div slot="footer">
-      <Button size="large" @click="commentModal = false">Cancel</Button>
+      <Button size="large" @click="cancelComment">Cancel</Button>
       <Button type="info" size="large" @click="commentCaseSave">Save</Button>
     </div>
   </Modal>
@@ -50,15 +50,14 @@ export default {
   },
   mounted() {},
   methods: {
-    changeUserPasswordCancel() {
-      this.$emit("change-password-cancel");
+    cancelComment() {
+      this.$emit("cancel-comment");
     },
     commentCaseSave() {
       commentCase(this.caseComment).then(({ data }) => {
         if (data.code === 200) {
-          this.commentModal = false;
+          this.$emit("save-comment-success");
           this.$Message.success("Operation success!");
-          this.queryCaseList();
         }
       });
     }

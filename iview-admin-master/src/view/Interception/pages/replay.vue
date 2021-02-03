@@ -68,7 +68,9 @@
               >
               <Button class="mr10" type="info">Export</Button>
               <Button class="mr10" type="info">Archive</Button>
-              <Button type="info" ghost>Comment</Button>
+              <Button type="info" ghost @click="showCommentModal"
+                >Comment</Button
+              >
             </div>
             <Table
               border
@@ -100,6 +102,12 @@
         </Split>
       </div>
     </Split>
+    <case-comment
+      :commentModal="commentModal"
+      :caseComment="caseComment"
+      @cancel-comment="cancelComment"
+      @save-comment-success="saveCommentSuccess"
+    />
   </div>
 </template>
 
@@ -111,11 +119,20 @@ import {
   queryQuery
 } from "@/api/global";
 import dayjs from "dayjs";
+import caseComment from "@/components/case-comment/case-comment";
 
 export default {
   name: "",
+  components: {
+    caseComment
+  },
   data() {
     return {
+      commentModal: false,
+      caseComment: {
+        caseid: "",
+        comment: ""
+      },
       loading: false,
       showType: "tree",
       split1: "500px",
@@ -565,6 +582,20 @@ export default {
           //   console.log(newData);
         }
       });
+    },
+    showCommentModal() {
+      if (this.queryCdrByIcForm.icid) {
+        this.caseComment.caseid = this.queryCdrByIcForm.caseid;
+        this.commentModal = true;
+      } else {
+        this.$Message.warning("Please select ics first");
+      }
+    },
+    cancelComment() {
+      this.commentModal = false;
+    },
+    saveCommentSuccess() {
+      this.commentModal = false;
     },
     pageSizeChange(pageSize) {
       this.queryForm.pageSize = pageSize;
