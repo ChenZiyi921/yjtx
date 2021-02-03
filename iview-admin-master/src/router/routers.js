@@ -55,7 +55,7 @@ export default [
     name: 'Management',
     meta: {
       hideInBread: true,
-      href: "http://localhost:8080/#/Management",
+      href: `${location.href.split("#")[0]}#/Management`,
     },
     component: Main,
     children: [
@@ -74,7 +74,7 @@ export default [
     name: 'Target',
     meta: {
       hideInBread: true,
-      href: `${location.href.split("#")[0]}${/\/$/.test(location.href.split("#")[0]) ? "" : '/'}#/Target/Target-Interception`,
+      href: `${location.href.split("#")[0]}#/Target/Target-Interception`,
     },
     component: Main,
     children: [

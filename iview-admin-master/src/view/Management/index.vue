@@ -41,7 +41,7 @@ export default {
   },
   computed: {},
   mounted() {
-    window.name = "http://localhost:8080/#/Management";
+    window.name = `${location.href.split("#")[0]}#/Management`;
   },
   create() {
     location.reload();
