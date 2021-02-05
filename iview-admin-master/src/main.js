@@ -16,6 +16,9 @@ import '@/assets/css/main.less'
 import TreeTable from 'tree-table-vue'
 import VOrgTree from 'v-org-tree'
 import 'v-org-tree/dist/v-org-tree.css'
+
+import Blob from '@/utils/Blob'
+import Export2Excel from '@/utils/Export2Excel.js'
 // 实际打包时应该不引入mock
 /* eslint-disable */
 if (process.env.NODE_ENV !== 'production') require('@/mock')

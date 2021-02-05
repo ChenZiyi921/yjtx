@@ -29,7 +29,7 @@
         show-elevator
         show-sizer
         show-total
-        style="margin-top:10px;"
+        style="padding: 10px; background: #fff;"
       />
     </div>
     <div class="role-detail">

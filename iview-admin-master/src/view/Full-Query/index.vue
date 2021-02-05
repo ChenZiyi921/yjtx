@@ -1,6 +1,6 @@
 <template>
   <div>
-    Full Query
+    BigData Query
   </div>
 </template>
 

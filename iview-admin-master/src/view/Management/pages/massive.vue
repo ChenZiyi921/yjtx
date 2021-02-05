@@ -1,9 +1,9 @@
 <template>
   <div>
-    <Tabs name="Massive" value="Full Query" :animated="false" class="tab1">
+    <Tabs name="Massive" value="BigData Query" :animated="false" class="tab1">
       <TabPane
-        label="Full Query"
-        name="Full Query"
+        label="BigData Query"
+        name="BigData Query"
         style="height: calc(100vh - 160px);"
         tab="Massive"
       >

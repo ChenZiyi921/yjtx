@@ -44,7 +44,7 @@ export default {
 
   Management: "Management",
   Target_Interception: "Target Interception",
-  Full_Query: "Full Query",
+  Full_Query: "BigData Query",
   GIS_Application: "GIS Application",
 
 

@@ -67,7 +67,9 @@
                 ghost
                 >Refresh</Button
               >
-              <Button class="mr10" type="info">Export</Button>
+              <Button class="mr10" type="info" @click="exportExcel"
+                >Export</Button
+              >
               <Button class="mr10" type="info">Archive</Button>
               <Button type="info" ghost @click="showCommentModal"
                 >Comment</Button
@@ -581,7 +583,6 @@ export default {
         this.saveType = "search";
         this.addQueryModal = true;
       }
-      console.log(this.saveType);
     },
     renderContent(h, { root, node, data }) {
       return h(
@@ -784,11 +785,27 @@ export default {
     },
     pageSizeChange(pageSize) {
       this.queryForm.pageSize = pageSize;
-      // this.queryList();
+      this.queryCdrByIc();
     },
     pageChange(index) {
       this.queryForm.currPage = index;
-      // this.queryList();
+      this.queryCdrByIc();
+    },
+    exportExcel() {
+      require.ensure([], () => {
+        let title = [],
+          keys = [];
+        this.columns.forEach(element => {
+          title.push(element.title);
+          keys.push(element.key);
+        });
+        const { export_json_to_excel } = require("@/utils/Export2Excel");
+        const data = this.formatJson(keys, this.data);
+        export_json_to_excel(title, data, "cdr_excel");
+      });
+    },
+    formatJson(filterVal, jsonData) {
+      return jsonData.map(v => filterVal.map(j => v[j]));
     }
   }
 };

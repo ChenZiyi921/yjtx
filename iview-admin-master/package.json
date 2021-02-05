@@ -18,6 +18,7 @@
     "cropperjs": "^1.2.2",
     "dayjs": "^1.10.4",
     "echarts": "^4.0.4",
+    "file-saver": "^2.0.5",
     "html2canvas": "^1.0.0-alpha.12",
     "iview-area": "^1.5.17",
     "js-cookie": "^2.2.0",
@@ -32,7 +33,7 @@
     "vuedraggable": "^2.16.0",
     "vuex": "^3.0.1",
     "wangeditor": "^3.1.1",
-    "xlsx": "^0.13.3"
+    "xlsx": "^0.13.5"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.1",
@@ -47,6 +48,7 @@
     "less-loader": "^4.0.5",
     "lint-staged": "^6.0.0",
     "mockjs": "^1.0.1-beta3",
+    "script-loader": "^0.7.2",
     "vue-template-compiler": "^2.5.13"
   },
   "browserslist": [

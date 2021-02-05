@@ -2,21 +2,26 @@
   <div>
     <div class="demo-split">
       <ul class="top-content">
-        <li v-for="(item, index) in liveListCard" :key="index">
+        <li
+          v-for="(item, index) in liveListCard"
+          :key="index"
+          @dblclick="queryList(item)"
+        >
           <div class="card-title">
-            <span>{{ item.index }}</span>
-            <span
+            <span>{{ index + 1 }}</span>
+            <span v-if="item.ictype === 'IMSI'"
               ><img style="width: 20px;" src="@/assets/images/i-sim.png" alt=""
             /></span>
-            <!-- <span
+            <span v-if="item.ictype === 'IMEI'"
               ><img
                 style="width: 20px;"
                 src="@/assets/images/i-phone.png"
                 alt=""
             /></span>
-            <span
+            <span v-if="item.ictype === 'MSISDN'"
               ><img style="width: 20px;" src="@/assets/images/i-123.png" alt=""
-            /></span> -->
+            /></span>
+            <span>{{ item.icnum }}</span>
             <Icon
               type="md-call"
               style="font-size: 20px; text-align: center; width: 60%; transform: rotate(180deg); color: red;"
@@ -24,8 +29,8 @@
             <span>2</span>
           </div>
           <div style="padding: 10px 0;">
-            {{ "Biden" }}<span style="padding: 0 20px;">OF</span
-            >{{ "Murder Case" }}
+            {{ item.casename }}<span style="padding: 0 20px;">OF</span
+            >{{ item.targetname }}
           </div>
           <div style="height: 40px">
             <div style="width: 50%; height: 100%; float: left;">
@@ -40,7 +45,18 @@
           <div>LOC：{{ "Railway station-2" }}</div>
         </li>
       </ul>
-      <div style="height: calc(100vh - 720px);">
+      <div style="background: #eee;">
+        <DatePicker
+          v-model="date"
+          :clearable="false"
+          type="datetimerange"
+          placeholder="Select date and time"
+          class="mr10"
+          style="width: 300px; display: inline-block;"
+        ></DatePicker>
+        <Checkbox class="mt10">Call Only</Checkbox>
+      </div>
+      <div style="height: calc(100vh - 740px); overflow-y: auto;">
         <Table
           border
           :columns="columns"
@@ -70,7 +86,8 @@
 </template>
 
 <script>
-import { queryCdrByIc, queryLiveConsoleApi } from "@/api/global";
+import dayjs from "dayjs";
+import { queryCdrByIc, queryLiveConsole } from "@/api/global";
 
 export default {
   name: "",
@@ -80,10 +97,57 @@ export default {
       loading: false,
       split2: 1,
       liveListCard: [],
+      consoleForm: {
+        userid: "",
+        consoles: [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20
+        ]
+      },
+      date: [
+        dayjs(
+          new Date(new Date().getTime() - 24 * 60 * 60 * 1000).setHours(
+            0,
+            0,
+            0,
+            0
+          )
+        ).format("YYYY-MM-DD HH:mm:ss"),
+        dayjs(new Date()).format("YYYY-MM-DD HH:mm:ss")
+      ],
       queryForm: {
         currPage: 1,
         pageSize: 10,
-        total: 100
+        total: 100,
+        caseid: "",
+        icid: "",
+        starttime: dayjs(
+          new Date(new Date().getTime() - 24 * 60 * 60 * 1000).setHours(
+            0,
+            0,
+            0,
+            0
+          )
+        ).format("YYYY-MM-DD HH:mm:ss"),
+        endtime: dayjs(new Date()).format("YYYY-MM-DD HH:mm:ss")
       },
       columns: [
         {
@@ -271,19 +335,22 @@ export default {
   },
   computed: {},
   mounted() {
+    this.consoleForm.userid = this.$store.state.user.userId.userid;
     this.queryLiveConsole();
   },
   create() {},
   methods: {
+    queryList(row) {
+      this.queryForm.caseid = row.caseid;
+      this.queryForm.icid = row.icid;
+      this.queryCdrByIc();
+    },
     queryLiveConsole() {
-      // queryLiveConsole(this.queryForm).then(({ data }) => {
-      //   if (data.code === 200) {
-      //     this.loading = false;
-      //     this.data = data.data.content;
-      //     this.queryForm.currPage = data.data.currPage;
-      //     this.queryForm.total = data.data.totalCount;
-      //   }
-      // });
+      queryLiveConsole(this.consoleForm).then(({ data }) => {
+        if (data.code === 200) {
+          this.liveListCard = data.data;
+        }
+      });
     },
     queryCdrByIc() {
       this.loading = true;
@@ -319,6 +386,7 @@ export default {
     float: left;
     border: 1px solid #eee;
     list-style: none;
+    cursor: pointer;
     .card-title {
       display: flex;
       align-items: center;

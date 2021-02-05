@@ -62,7 +62,7 @@ if (debug) {
   queryQueryApi = "/static/dbg/cdr/queryQuery.json";
   addQueryApi = "/static/dbg/cdr/addQuery.json";
   deleteQueryApi = "/static/dbg/cdr/deleteQuery.json";
-  queryLiveConsoleApi = "/static/dbg/cdr/queryLiveConsole.json";
+  queryLiveConsoleApi = "/static/dbg/case/queryLiveConsole.json";
 } else {
   loginApi = "/api/user/login.do";
   changeUserPasswordApi = "/api/user/changeUserPassword.do";
@@ -92,7 +92,7 @@ if (debug) {
   queryQueryApi = "/api/cdr/queryQuery.do";
   addQueryApi = "/api/cdr/addQuery.do";
   deleteQueryApi = "/api/cdr/deleteQuery.do";
-  queryLiveConsoleApi = "/api/cdr/queryLiveConsole.do";
+  queryLiveConsoleApi = "/api/case/queryLiveConsole.do";
 }
 
 export const login = params => {
