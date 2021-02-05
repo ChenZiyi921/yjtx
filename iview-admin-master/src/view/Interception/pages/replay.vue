@@ -109,6 +109,86 @@
       @cancel-comment="cancelComment"
       @save-comment-success="saveCommentSuccess"
     />
+    <Modal
+      v-model="addQueryModal"
+      class-name="vertical-center-modal"
+      :closable="false"
+      title="Query"
+      width="1100"
+    >
+      <div>
+        <Form inline :label-width="100">
+          <FormItem label="Query Name">
+            <Input v-model="addQueryForm.queryname" style="width: 243px;" />
+          </FormItem>
+          <FormItem label="Date From">
+            <DatePicker
+              :clearable="false"
+              type="datetimerange"
+              placeholder="Select date and time"
+              style="width: 300px;"
+            ></DatePicker>
+          </FormItem>
+          <FormItem label="Number">
+            <Input>
+              <Select slot="prepend" style="width: 80px">
+                <Option value="day">Day</Option>
+                <Option value="month">Month</Option>
+              </Select>
+            </Input>
+          </FormItem>
+          <FormItem label="LAC">
+            <Input v-model="addQueryForm.lac" style="width: 243px;" />
+          </FormItem>
+          <FormItem label="CELL ID">
+            <Input v-model="addQueryForm.cellid" style="width: 243px;" />
+          </FormItem>
+          <FormItem label="SMS">
+            <Input v-model="addQueryForm.sms" style="width: 243px;" />
+          </FormItem>
+          <FormItem label="Network">
+            <CheckboxGroup style="width: 243px;">
+              <Checkbox label="NetOne"></Checkbox>
+              <Checkbox label="EcoNet"></Checkbox>
+              <Checkbox label="Telecel"></Checkbox>
+            </CheckboxGroup>
+          </FormItem>
+          <FormItem label="Act Type">
+            <Input v-model="addQueryForm.acttype" style="width: 243px;" />
+          </FormItem>
+          <FormItem label="Dur From">
+            <Input
+              v-model="addQueryForm.duration.min"
+              style="width: 90px;"
+              class="mr10"
+            />
+            <span class="mr10">To</span>
+            <Input
+              v-model="addQueryForm.duration.max"
+              style="width: 90px;"
+              class="mr10"
+            />
+            <span>Sec</span>
+          </FormItem>
+          <FormItem label="Comment">
+            <Input v-model="addQueryForm.comment" style="width: 243px;" />
+          </FormItem>
+        </Form>
+      </div>
+      <div slot="footer">
+        <Button size="large" @click="addQueryModal = false">Cancel</Button>
+        <Button
+          v-if="saveType === 'add'"
+          type="info"
+          size="large"
+          @click="addQuerySave"
+          >Save</Button
+        >
+        <Button v-else type="info" size="large" @click="execQuery(queryid)"
+          >Search</Button
+        >
+      </div>
+    </Modal>
   </div>
 </template>
 
@@ -117,7 +197,9 @@ import {
   queryCdrByIc,
   execQuery,
   queryCasesByUser,
-  queryQuery
+  queryQuery,
+  addQuery,
+  deleteQuery
 } from "@/api/global";
 import dayjs from "dayjs";
 import caseComment from "@/components/case-comment/case-comment";
@@ -129,11 +211,32 @@ export default {
   },
   data() {
     return {
+      addQueryForm: {
+        queryname: "",
+        numbers: {
+          imsi: "",
+          msisdn: "",
+          imei: ""
+        },
+        starttime: "",
+        endtime: "",
+        lac: "",
+        cellid: "",
+        sms: "",
+        duration: {
+          min: "",
+          max: ""
+        },
+        network: [],
+        acttype: ""
+      },
+      addQueryModal: false,
       commentModal: false,
       caseComment: {
         caseid: "",
         comment: ""
       },
+      queryid: "",
       loading: false,
       showType: "tree",
       split1: "500px",
@@ -364,7 +467,6 @@ export default {
           title: "Query",
           expand: true,
           render: (h, { root, node, data }) => {
-            console.log(data);
             return h(
               "span",
               {
@@ -406,7 +508,8 @@ export default {
                         padding: 0
                       },
                       on: {
-                        click: () => {
+                        click: e => {
+                          e.stopPropagation();
                           this.append(data);
                         }
                       }
@@ -422,18 +525,47 @@ export default {
       buttonProps: {
         type: "default",
         size: "small"
-      }
+      },
+      isAppend: true,
+      saveType: ""
     };
   },
   computed: {},
   mounted() {
-    this.execQuery();
     this.queryQuery();
     this.queryCasesByUser();
-    console.log(this.$store.state.user.userId.userid);
   },
   create() {},
   methods: {
+    addQuerySave() {
+      addQuery(this.addQueryForm).then(({ data }) => {
+        if (data.code === 200) {
+          this.$Message.success("Operation success!");
+          this.queryQuery();
+          this.addQueryModal = false;
+          this.isAppend = true;
+        }
+      });
+    },
+    deleteQueryBefore(id, queryData) {
+      if (queryData.children && queryData.children.length > 0) {
+        queryData.children.forEach(current => {
+          this.deleteQuery(current.queryid);
+        });
+      } else {
+        this.deleteQuery(id);
+      }
+    },
+    deleteQuery(id) {
+      deleteQuery({
+        queryid: id
+      }).then(({ data }) => {
+        if (data.code === 200) {
+          this.$Message.success("Operation success!");
+          this.queryQuery();
+        }
+      });
+    },
     myCaseTreeDataChange(curArr, cur) {
       if (cur.icid) {
         this.queryCdrByIcForm.icid = cur.icid;
@@ -444,7 +576,12 @@ export default {
       }
     },
     queryTreeDataChange(curArr, cur) {
-      console.log(cur);
+      if (cur.level === 3) {
+        this.addQueryForm = cur;
+        this.saveType = "search";
+        this.addQueryModal = true;
+      }
+      console.log(this.saveType);
     },
     renderContent(h, { root, node, data }) {
       return h(
@@ -477,7 +614,8 @@ export default {
               }
             },
             [
-              data.level !== 3
+              data.level !== 3 &&
+              data.title === dayjs(new Date()).format("YYYY-MM-DD")
                 ? h("Button", {
                     props: Object.assign({}, this.buttonProps, {
                       icon: "ios-add"
@@ -489,8 +627,29 @@ export default {
                       padding: 0
                     },
                     on: {
-                      click: () => {
-                        this.append(data);
+                      click: e => {
+                        e.stopPropagation();
+                        this.addQueryForm = {
+                          queryname: "",
+                          numbers: {
+                            imsi: "",
+                            msisdn: "",
+                            imei: ""
+                          },
+                          starttime: "",
+                          endtime: "",
+                          lac: "",
+                          cellid: "",
+                          sms: "",
+                          duration: {
+                            min: "",
+                            max: ""
+                          },
+                          network: [],
+                          acttype: ""
+                        };
+                        this.addQueryModal = true;
+                        this.saveType = "add";
                       }
                     }
                   })
@@ -505,8 +664,9 @@ export default {
                   padding: 0
                 },
                 on: {
-                  click: () => {
-                    this.remove(root, node, data);
+                  click: e => {
+                    e.stopPropagation();
+                    this.deleteQueryBefore(data.queryid, data);
                   }
                 }
               })
@@ -517,18 +677,23 @@ export default {
     },
     append(data) {
       const children = data.children || [];
-      children.push({
-        title: "appended node",
-        expand: true
-      });
+      if (data.title !== dayjs(new Date()).format("YYYY-MM-DD")) {
+        data.children.forEach(current => {
+          if (current.title === dayjs(new Date()).format("YYYY-MM-DD")) {
+            this.isAppend = false;
+          }
+        });
+        if (this.isAppend) {
+          children.push({
+            title: dayjs(new Date()).format("YYYY-MM-DD"),
+            expand: true
+          });
+          this.isAppend = false;
+        } else {
+          this.$Message.warning("The current date already exists");
+        }
+      }
       this.$set(data, "children", children);
-    },
-    remove(root, node, data) {
-      console.log(data.level);
-      const parentKey = root.find(el => el === node).parent;
-      const parent = root.find(el => el.nodeKey === parentKey).node;
-      const index = parent.children.indexOf(data);
-      parent.children.splice(index, 1);
     },
     queryCasesByUser() {
       queryCasesByUser({
@@ -567,13 +732,16 @@ export default {
         }
       });
     },
-    execQuery() {
-      execQuery().then(({ data }) => {
+    execQuery(queryid) {
+      execQuery({
+        queryid
+      }).then(({ data }) => {
         if (data.code === 200) {
-          // this.loading = false;
-          // this.data = data.data.content;
-          // this.queryForm.currPage = data.data.currPage;
-          // this.queryForm.total = data.data.totalCount;
+          this.loading = false;
+          this.data = data.data.content;
+          this.queryForm.currPage = data.data.currPage;
+          this.queryForm.total = data.data.totalCount;
+          this.addQueryModal = false;
         }
       });
     },
@@ -583,6 +751,7 @@ export default {
           for (let index = 0; index < data.data.length; index++) {
             for (const key in data.data[index]) {
               data.data[index].title = key;
+              data.data[index].level = 2;
               let arr = [];
               for (const k in data.data[index][key]) {
                 for (const l in data.data[index][key][k]) {
@@ -596,7 +765,6 @@ export default {
             }
           }
           this.queryTreeData[0].children = data.data;
-          console.log(this.queryTreeData[0].children);
         }
       });
     },
@@ -639,6 +807,6 @@ export default {
   padding: 0;
 }
 .demo-tree-render /deep/.ivu-tree-title {
-  width: 100%;
+  width: 96%;
 }
 </style>
