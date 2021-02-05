@@ -332,7 +332,7 @@ export default {
     addTaskSubmit() {},
     queryCasesByUserList() {
       queryCasesByUser({
-        userid: 1
+        userid: this.$store.state.user.userId.userid
       }).then(({ data }) => {
         console.log(data);
       });

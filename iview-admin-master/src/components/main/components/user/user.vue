@@ -110,7 +110,7 @@ export default {
     };
   },
   mounted() {
-    this.userid = this.$store.state.user.userid;
+    this.userid = this.$store.state.user.userId.userid;
     queryUserByName({ loginname: "admin" }).then(({ data }) => {
       if (data.code === 200) {
         this.userInformation = data.data.content[0];

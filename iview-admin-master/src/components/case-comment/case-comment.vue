@@ -40,13 +40,7 @@ export default {
     }
   },
   data() {
-    return {
-      changePwd: {
-        userid: "",
-        password: ""
-      },
-      password: ""
-    };
+    return {};
   },
   mounted() {},
   methods: {

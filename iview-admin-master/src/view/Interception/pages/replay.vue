@@ -430,6 +430,7 @@ export default {
     this.execQuery();
     this.queryQuery();
     this.queryCasesByUser();
+    console.log(this.$store.state.user.userId.userid);
   },
   create() {},
   methods: {
@@ -531,7 +532,7 @@ export default {
     },
     queryCasesByUser() {
       queryCasesByUser({
-        userid: 1
+        userid: this.$store.state.user.userId.userid
       }).then(({ data }) => {
         if (data.code === 200) {
           for (let index = 0; index < data.data.content.length; index++) {

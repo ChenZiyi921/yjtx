@@ -740,7 +740,7 @@ export default {
     queryCaseList() {
       this.loading = true;
       queryCasesByUser({
-        userid: 1
+        userid: this.$store.state.user.userId.userid
       }).then(({ data }) => {
         if (data.code === 200) {
           this.loading = false;
