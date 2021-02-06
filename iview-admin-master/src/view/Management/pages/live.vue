@@ -1,127 +1,113 @@
 <template>
-  <div>
-    <div class="demo-split">
-      <ul class="top-content">
-        <li
-          v-for="(item, index) in liveListCard"
-          :key="index"
-          @dblclick="queryList(item)"
-        >
-          <div class="card-title">
-            <span>{{ index + 1 }}</span>
-            <span v-if="item.ictype === 'IMSI'"
-              ><img style="width: 20px;" src="@/assets/images/i-sim.png" alt=""
-            /></span>
-            <span v-if="item.ictype === 'IMEI'"
-              ><img
-                style="width: 20px;"
-                src="@/assets/images/i-phone.png"
-                alt=""
-            /></span>
-            <span v-if="item.ictype === 'MSISDN'"
-              ><img style="width: 20px;" src="@/assets/images/i-123.png" alt=""
-            /></span>
-            <span>{{ item.icnum }}</span>
-            <Icon
-              type="md-call"
-              style="font-size: 20px; text-align: center; width: 60%; transform: rotate(180deg); color: red;"
-            />
-            <span>2</span>
-          </div>
-          <div style="padding: 10px 0;">
-            {{ item.casename }}<span style="padding: 0 20px;">OF</span
-            >{{ item.targetname }}
-          </div>
-          <div style="height: 40px">
-            <div style="width: 50%; height: 100%; float: left;">
-              {{ "+2637912345648123456789" }}
-              {{ "+2623131312312312316789" }}
-            </div>
-            <div style="width: 50%; height: 100%; float: right;">
-              <span style="display: block;">{{ "CMO" }}</span>
-              <span>{{ "+263791222333441" }}</span>
-            </div>
-          </div>
-          <div>LOC：{{ "Railway station-2" }}</div>
-        </li>
-      </ul>
-      <div style="background: #eee;">
-        <DatePicker
-          v-model="date"
-          :clearable="false"
-          type="datetimerange"
-          placeholder="Select date and time"
+  <div class="demo-split" style="display: flex;">
+    <div
+      class="demo-split-pane"
+      style="width: 500px; height: 100%; background: #fff; overflow-y: auto;"
+    >
+      <div>
+        <Button
           class="mr10"
-          style="width: 300px; display: inline-block;"
-        ></DatePicker>
-        <Checkbox class="mt10">Call Only</Checkbox>
-      </div>
-      <div style="height: calc(100vh - 740px); overflow-y: auto;">
-        <Table
-          border
-          :columns="columns"
-          :data="data"
-          :loading="loading"
-          class="mt10"
-          style="background: #fff;"
+          @click="
+            (showType = 'tree'), (treeBtnType = 'info'), (condBtnType = '')
+          "
+          :type="treeBtnType"
+          >Tree</Button
         >
-          <template slot-scope="{ row }" slot="name">
-            <strong>{{ row.name }}</strong>
-          </template>
-        </Table>
-        <Page
-          :current="queryForm.currPage"
-          :total="queryForm.total"
-          :page-size="queryForm.pageSize"
-          @on-change="pageChange"
-          @on-page-size-change="pageSizeChange"
-          show-elevator
-          show-sizer
-          show-total
-          style="padding: 10px; background: #fff;"
-        />
+        <Button
+          @click="
+            (showType = 'cond'), (condBtnType = 'info'), (treeBtnType = '')
+          "
+          :type="condBtnType"
+          >Cond</Button
+        >
+      </div>
+      <div v-if="showType === 'tree'">
+        <div>
+          <span class="mr10">date</span>
+          <DatePicker
+            :clearable="false"
+            v-model="date"
+            type="datetimerange"
+            placeholder="Select date and time"
+            class="mt10"
+            style="width: 300px; display: inline-block;"
+          ></DatePicker>
+        </div>
+        <Checkbox v-model="single" class="mt10">Call & Voice</Checkbox>
+        <Tree
+          :data="myCaseTreeData"
+          @on-select-change="myCaseTreeDataChange"
+        ></Tree>
+      </div>
+    </div>
+    <div class="demo-split-pane" style="width: calc(100% - 500px);">
+      <ul class="live-list">
+        <li v-for="(item, index) in 20" :key="index"></li>
+      </ul>
+      <div class="mt10" style="text-align: right;">
+        <Button class="mr10" @click="addLiveCancel">Cancel</Button>
+        <Button type="info" @click="addLiveSave">Save</Button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import {
+  queryCdrByIc,
+  queryCasesByUser,
+  queryQuery,
+  addQuery,
+  deleteQuery
+} from "@/api/global";
 import dayjs from "dayjs";
-import { queryCdrByIc, queryLiveConsole } from "@/api/global";
+import caseComment from "@/components/case-comment/case-comment";
 
 export default {
   name: "",
-  components: {},
+  components: {
+    caseComment
+  },
   data() {
     return {
-      loading: false,
-      split2: 1,
-      liveListCard: [],
-      consoleForm: {
-        userid: "",
-        consoles: [
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9,
-          10,
-          11,
-          12,
-          13,
-          14,
-          15,
-          16,
-          17,
-          18,
-          19,
-          20
-        ]
+      addQueryForm: {
+        queryname: "",
+        numbers: {
+          imsi: "",
+          msisdn: "",
+          imei: ""
+        },
+        starttime: "",
+        endtime: "",
+        lac: "",
+        cellid: "",
+        sms: "",
+        duration: {
+          min: "",
+          max: ""
+        },
+        network: [],
+        acttype: ""
       },
+      addQueryModal: false,
+      commentModal: false,
+      caseComment: {
+        caseid: "",
+        comment: ""
+      },
+      queryid: "",
+      loading: false,
+      showType: "tree",
+      single: false,
+      treeBtnType: "info",
+      condBtnType: "",
+      myCaseTreeData: [
+        {
+          title: "My Case",
+          expand: true,
+          children: []
+        }
+      ],
       date: [
         dayjs(
           new Date(new Date().getTime() - 24 * 60 * 60 * 1000).setHours(
@@ -133,10 +119,7 @@ export default {
         ).format("YYYY-MM-DD HH:mm:ss"),
         dayjs(new Date()).format("YYYY-MM-DD HH:mm:ss")
       ],
-      queryForm: {
-        currPage: 1,
-        pageSize: 10,
-        total: 100,
+      queryCdrByIcForm: {
         caseid: "",
         icid: "",
         starttime: dayjs(
@@ -148,6 +131,11 @@ export default {
           )
         ).format("YYYY-MM-DD HH:mm:ss"),
         endtime: dayjs(new Date()).format("YYYY-MM-DD HH:mm:ss")
+      },
+      queryForm: {
+        currPage: 1,
+        pageSize: 10,
+        total: 100
       },
       columns: [
         {
@@ -330,31 +318,79 @@ export default {
         }
       ],
       data: [],
-      checkedCities: []
+      buttonProps: {
+        type: "default",
+        size: "small"
+      },
+      isAppend: true,
+      saveType: ""
     };
   },
   computed: {},
   mounted() {
-    this.consoleForm.userid = this.$store.state.user.userId.userid;
-    this.queryLiveConsole();
+    this.queryQuery();
+    this.queryCasesByUser();
   },
   created() {},
   methods: {
-    queryList(row) {
-      this.queryForm.caseid = row.caseid;
-      this.queryForm.icid = row.icid;
-      this.queryCdrByIc();
+    myCaseTreeDataChange(curArr, cur) {
+      if (cur.icid) {
+        this.queryCdrByIcForm.icid = cur.icid;
+        this.queryCdrByIcForm.caseid = this.myCaseTreeData[0].children[
+          cur.index
+        ].caseid;
+        this.queryCdrByIc();
+      }
     },
-    queryLiveConsole() {
-      queryLiveConsole(this.consoleForm).then(({ data }) => {
+    append(data) {
+      const children = data.children || [];
+      if (data.title !== dayjs(new Date()).format("YYYY-MM-DD")) {
+        data.children.forEach(current => {
+          if (current.title === dayjs(new Date()).format("YYYY-MM-DD")) {
+            this.isAppend = false;
+          }
+        });
+        if (this.isAppend) {
+          children.push({
+            title: dayjs(new Date()).format("YYYY-MM-DD"),
+            expand: true
+          });
+          this.isAppend = false;
+        } else {
+          this.$Message.warning("The current date already exists");
+        }
+      }
+      this.$set(data, "children", children);
+    },
+    queryCasesByUser() {
+      queryCasesByUser({
+        userid: this.$store.state.user.userId.userid
+      }).then(({ data }) => {
         if (data.code === 200) {
-          this.liveListCard = data.data;
+          for (let index = 0; index < data.data.content.length; index++) {
+            data.data.content[index].title = data.data.content[index].casename;
+            data.data.content[index].children = data.data.content[
+              index
+            ].targets.concat(data.data.content[index].ics);
+            data.data.content[index].children.map(item => {
+              item.title = item.targetname || item.icname;
+              item.index = index;
+              if (item.targetname) {
+                item.children = item.ics;
+                item.children.map(item => {
+                  item.title = item.icname;
+                  item.index = index;
+                });
+              }
+            });
+          }
+          this.myCaseTreeData[0].children = data.data.content;
         }
       });
     },
     queryCdrByIc() {
       this.loading = true;
-      queryCdrByIc(this.queryForm).then(({ data }) => {
+      queryCdrByIc(this.queryCdrByIcForm).then(({ data }) => {
         if (data.code === 200) {
           this.loading = false;
           this.data = data.data.content;
@@ -363,35 +399,53 @@ export default {
         }
       });
     },
-    pageSizeChange(pageSize) {
-      this.queryForm.pageSize = pageSize;
-      // this.queryList();
+    queryQuery() {
+      queryQuery().then(({ data }) => {
+        if (data.code === 200) {
+          for (let index = 0; index < data.data.length; index++) {
+            for (const key in data.data[index]) {
+              data.data[index].title = key;
+              data.data[index].level = 2;
+              let arr = [];
+              for (const k in data.data[index][key]) {
+                for (const l in data.data[index][key][k]) {
+                  data.data[index][key][k][l].title =
+                    data.data[index][key][k][l].queryname;
+                  data.data[index][key][k][l].level = 3;
+                  arr.push(data.data[index][key][k][l]);
+                }
+              }
+              data.data[index].children = arr;
+            }
+          }
+        }
+      });
     },
-    pageChange(index) {
-      this.queryForm.currPage = index;
-      // this.queryList();
-    }
+    addLiveCancel() {},
+    addLiveSave() {}
   }
 };
 </script>
 
 <style lang="less" scoped>
-.top-content {
-  height: 560px;
-  background: #fff;
+.demo-split {
+  height: 100%;
+  border: 1px solid #dcdee2;
+}
+.demo-split-pane {
+  padding: 10px;
+}
+.demo-tree-render /deep/.ivu-tree-title {
+  width: 96%;
+}
+.live-list {
+  overflow: hidden;
   li {
-    width: 20%;
-    height: 140px;
-    padding: 10px;
-    float: left;
+    width: 25%;
+    height: 150px;
     border: 1px solid #eee;
+    float: left;
     list-style: none;
-    cursor: pointer;
-    .card-title {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
   }
 }
 </style>

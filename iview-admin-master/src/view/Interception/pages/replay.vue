@@ -537,7 +537,7 @@ export default {
     this.queryQuery();
     this.queryCasesByUser();
   },
-  create() {},
+  created() {},
   methods: {
     addQuerySave() {
       addQuery(this.addQueryForm).then(({ data }) => {

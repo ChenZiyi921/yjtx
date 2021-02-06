@@ -283,7 +283,7 @@ export default {
   mounted() {
     this.queryCasesByUserList();
   },
-  create() {},
+  created() {},
   beforeCreate() {
     // 读取文件
     FileReader.prototype.reading = function({ encode } = pms) {

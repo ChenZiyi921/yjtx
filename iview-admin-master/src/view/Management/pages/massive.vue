@@ -84,8 +84,8 @@ export default {
       });
     }
   },
-  create() {
-    location.reload();
+  created() {
+    // location.reload();
   },
   methods: {
     pageSizeChange(pageSize) {

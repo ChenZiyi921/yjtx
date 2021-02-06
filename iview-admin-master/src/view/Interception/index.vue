@@ -43,8 +43,8 @@ export default {
   },
   computed: {},
   mounted() {},
-  create() {
-    location.reload();
+  created() {
+    // location.reload();
   },
   methods: {}
 };

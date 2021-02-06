@@ -9,6 +9,9 @@
           <TabPane label="IC Management" name="ic" tab="tab1">
             <Ic />
           </TabPane>
+          <TabPane label="Live Management" name="live" tab="tab1">
+            <Live />
+          </TabPane>
         </Tabs>
       </TabPane>
       <TabPane label="Tree" name="Tree" tab="Interception">标签2</TabPane>
@@ -19,12 +22,14 @@
 <script>
 import Case from "./case";
 import Ic from "./ic";
+import Live from "./live";
 
 export default {
   name: "",
   components: {
     Case,
-    Ic
+    Ic,
+    Live
   },
   data() {
     return {};
@@ -34,9 +39,6 @@ export default {
 </script>
 
 <style lang="less" scoped>
-// .management {
-//   background: #fff;
-// }
 #interception {
   /deep/.ivu-tabs-nav-scroll {
     float: left;
