@@ -4,45 +4,35 @@
       class="demo-split-pane"
       style="width: 500px; height: 100%; background: #fff; overflow-y: auto;"
     >
-      <div>
-        <Button
-          class="mr10"
-          @click="
-            (showType = 'tree'), (treeBtnType = 'info'), (condBtnType = '')
-          "
-          :type="treeBtnType"
-          >Tree</Button
-        >
-        <Button
-          @click="
-            (showType = 'cond'), (condBtnType = 'info'), (treeBtnType = '')
-          "
-          :type="condBtnType"
-          >Cond</Button
-        >
-      </div>
-      <div v-if="showType === 'tree'">
-        <div>
-          <span class="mr10">date</span>
-          <DatePicker
-            :clearable="false"
-            v-model="date"
-            type="datetimerange"
-            placeholder="Select date and time"
-            class="mt10"
-            style="width: 300px; display: inline-block;"
-          ></DatePicker>
-        </div>
-        <Checkbox v-model="single" class="mt10">Call & Voice</Checkbox>
-        <Tree
-          :data="myCaseTreeData"
-          @on-select-change="myCaseTreeDataChange"
-        ></Tree>
-      </div>
+      <Tree
+        :data="myCaseTreeData"
+        :render="renderContent"
+        @on-select-change="myCaseTreeDataChange"
+        class="demo-tree-render"
+      ></Tree>
     </div>
-    <div class="demo-split-pane" style="width: calc(100% - 500px);">
-      <ul class="live-list">
+    <div
+      class="demo-split-pane"
+      style="width: calc(100% - 500px); position: relative;"
+    >
+      <ul
+        class="live-list"
+        style="position: absolute; top: 0; left: 0; padding: 10px;"
+      >
         <li v-for="(item, index) in 20" :key="index"></li>
+      </ul>
+      <ul class="live-list">
+        <li v-for="(item, index) in consoleList" :key="index">
+          <p>{{ item.casename }}</p>
+          <p>{{ item.icname }}</p>
+          <!--           @click="delConsole(index)" -->
+          <Button
+            type="primary"
+            shape="circle"
+            icon="ios-close"
+            style="position: absolute; right: 10px; top: 10px;"
+          ></Button>
+        </li>
       </ul>
       <div class="mt10" style="text-align: right;">
         <Button class="mr10" @click="addLiveCancel">Cancel</Button>
@@ -53,23 +43,15 @@
 </template>
 
 <script>
-import {
-  queryCdrByIc,
-  queryCasesByUser,
-  queryQuery,
-  addQuery,
-  deleteQuery
-} from "@/api/global";
+import { queryCdrByIc, queryCasesByUser, queryQuery } from "@/api/global";
 import dayjs from "dayjs";
-import caseComment from "@/components/case-comment/case-comment";
 
 export default {
   name: "",
-  components: {
-    caseComment
-  },
+  components: {},
   data() {
     return {
+      consoleList: [],
       addQueryForm: {
         queryname: "",
         numbers: {
@@ -88,12 +70,6 @@ export default {
         },
         network: [],
         acttype: ""
-      },
-      addQueryModal: false,
-      commentModal: false,
-      caseComment: {
-        caseid: "",
-        comment: ""
       },
       queryid: "",
       loading: false,
@@ -333,6 +309,65 @@ export default {
   },
   created() {},
   methods: {
+    renderContent(h, { root, node, data }) {
+      return h(
+        "span",
+        {
+          style: {
+            display: "inline-block",
+            width: "100%"
+          }
+        },
+        [
+          h("span", [
+            h("span", data.title),
+            data.isIC
+              ? h(
+                  "Button",
+                  {
+                    props: {
+                      type: "info"
+                    },
+                    style: {
+                      marginRight: "8px",
+                      height: "18px",
+                      padding: "0 4px",
+                      float: "right"
+                    },
+                    on: {
+                      click: e => {
+                        e.stopPropagation();
+                        if (this.consoleList.length < 20) {
+                          this.consoleList.push({
+                            userid: this.$store.state.user.userId.userid,
+                            consolenum: this.consoleList.length,
+                            caseid: this.myCaseTreeData[0].children[data.index]
+                              .caseid,
+                            targetid: "",
+                            casename: this.myCaseTreeData[0].children[
+                              data.index
+                            ].casename,
+                            targetname: "",
+                            icid: data.icid,
+                            icname: data.icname,
+                            icnum: "",
+                            network: "",
+                            status: "",
+                            updatetime: ""
+                          });
+                        } else {
+                          this.$Message.warning("Maximum limit reached");
+                        }
+                      }
+                    }
+                  },
+                  "addLive"
+                )
+              : ""
+          ])
+        ]
+      );
+    },
     myCaseTreeDataChange(curArr, cur) {
       if (cur.icid) {
         this.queryCdrByIcForm.icid = cur.icid;
@@ -380,7 +415,11 @@ export default {
                 item.children.map(item => {
                   item.title = item.icname;
                   item.index = index;
+                  item.isIC = true;
                 });
+              }
+              if (item.icname) {
+                item.isIC = true;
               }
             });
           }
@@ -439,13 +478,21 @@ export default {
   width: 96%;
 }
 .live-list {
+  width: 100%;
   overflow: hidden;
   li {
-    width: 25%;
+    position: relative;
+    width: 20%;
     height: 150px;
     border: 1px solid #eee;
     float: left;
     list-style: none;
+    p {
+      text-align: center;
+    }
+    p:nth-of-type(1) {
+      margin-top: 60px;
+    }
   }
 }
 </style>
