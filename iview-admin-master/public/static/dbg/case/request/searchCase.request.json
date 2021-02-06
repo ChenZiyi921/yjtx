@@ -1,10 +1,12 @@
 {
-    "casename":"case",
-	"casename-cond":"include",
+    "casename":"case11",
+	"casename_cond":"exact",
     "targetname":"Simon",
     "caseowner":"Lion",
 	"status":"NEW",
-    "createdate-start":"2013-08-19",
-	"createdate-end":"2020-08-19",
-    "comment":"A word"
+    "createdate_start":"2013-08-19",
+	"createdate_end":"2020-08-19",
+    "comment":"A word",
+    "pageSize":20,
+	"currPage":1
 }

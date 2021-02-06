@@ -1,31 +1,31 @@
 {
-	"userid": 1,
-	"consoles": [
-		{
-			"userid": 1,
-			"consolenum": 1,
-			"caseid": 178,
-			"targetid": 123,
-			"casename": "fwe",
-			"targetname": "rre",
-			"icid": 121,
-			"icnum": "1238657658",
-			"network": "NETONE",
-			"status": "",
-			"updatetime": null
-		},
-		{
-			"userid": 1,
-			"consolenum": 2,
-			"caseid": 178,
-			"targetid": 124,
-			"casename": "fwe",
-			"targetname": "rre",
-			"icid": 151,
-			"icnum": "9998766",
-			"network": "NETONE",
-			"status": "",
-			"updatetime": null
-		}
-	]
+  "userid": 1,
+			  "consoles": [
+				{
+					"userid": 1,
+					"consolenum": 1,
+					"caseid": 178,
+					"targetid": 123,
+					"casename": "fwe",
+					"targetname": "rre",
+					"icid": 121,
+					"icnum": "1238657658",
+					"network": "NETONE",
+					"status": "",
+					"updatetime": null
+				},
+				{
+					"userid": 1,
+					"consolenum": 2,
+					"caseid": 178,
+					"targetid": 124,
+					"casename": "fwe",
+					"targetname": "rre",
+					"icid": 151,
+					"icnum": "9998766",
+					"network": "NETONE",
+					"status": "",
+					"updatetime": null
+				}
+			  ]
 }

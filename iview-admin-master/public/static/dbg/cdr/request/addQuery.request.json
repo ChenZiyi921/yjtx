@@ -1,4 +1,6 @@
 {
+	"userid":1,
+	"querydate": "2013-01-01",
 	"queryname": "query-for-test",
 	"numbers": {
 		"imsi": "460000020202",
@@ -15,5 +17,6 @@
 		"max": 20
 	},
 	"network": ["NETONE", "ECONET", "TELECEL"],
-	"acttype": "MO"
+	"acttype": "MO",
+	"comment": "comments to query"
 }
