@@ -85,7 +85,7 @@ export default {
         }).then(({ data }) => {
           if (data.code === 200) {
             commit('setToken', data.data.token)
-            commit('setUserName', data.data.user.loginname)
+            commit('setUserName', data.data.loginname)
             resolve(data)
           } else {
             resolve(data)
