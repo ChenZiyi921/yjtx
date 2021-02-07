@@ -21,20 +21,38 @@
       >
         <li v-for="(item, index) in 20" :key="index"></li>
       </ul>
-      <ul class="live-list">
-        <li v-for="(item, index) in consoleList" :key="index">
-          <p>{{ item.casename }}</p>
-          <p>{{ item.icname }}</p>
-          <!--           @click="delConsole(index)" -->
-          <Button
-            type="primary"
-            shape="circle"
-            icon="ios-close"
-            style="position: absolute; right: 10px; top: 10px;"
-          ></Button>
-        </li>
-      </ul>
-      <div class="mt10" style="text-align: right;">
+      <draggable
+        class="list-group live-list"
+        tag="ul"
+        v-model="consoleList"
+        v-bind="dragOptions"
+        @start="isDragging = true"
+        @end="isDragging = false"
+        @change="consoleListChange"
+        animation="300"
+      >
+        <transition-group type="transition" name="flip-list">
+          <li
+            class="list-group-item"
+            v-for="element in consoleList"
+            :key="element.consolenum"
+          >
+            <p>{{ element.casename }}</p>
+            <p>{{ element.icname }}</p>
+            <Button
+              @click="delConsole(element.consolenum)"
+              type="primary"
+              shape="circle"
+              icon="ios-close"
+              style="position: absolute; right: 10px; top: 10px;"
+            ></Button>
+          </li>
+        </transition-group>
+      </draggable>
+      <div
+        class="mt10"
+        style="text-align: right; position: absolute; top: 610px; right: 10px;"
+      >
         <Button class="mr10" @click="addLiveCancel">Cancel</Button>
         <Button type="info" @click="addLiveSave">Save</Button>
       </div>
@@ -43,12 +61,23 @@
 </template>
 
 <script>
-import { queryCdrByIc, queryCasesByUser, queryQuery } from "@/api/global";
+import draggable from "vuedraggable";
+import {
+  queryCdrByIc,
+  queryCasesByUser,
+  queryQuery,
+  addLiveConsole,
+  deleteLiveConsole
+} from "@/api/global";
 import dayjs from "dayjs";
 
 export default {
   name: "",
-  components: {},
+  display: "Transition",
+  order: 6,
+  components: {
+    draggable
+  },
   data() {
     return {
       consoleList: [],
@@ -308,7 +337,20 @@ export default {
     this.queryCasesByUser();
   },
   created() {},
+  computed: {
+    dragOptions() {
+      return {
+        animation: 0,
+        group: "description",
+        disabled: false,
+        ghostClass: "ghost"
+      };
+    }
+  },
   methods: {
+    sort() {
+      this.consoleList = this.consoleList.sort((a, b) => a.index - b.index);
+    },
     renderContent(h, { root, node, data }) {
       return h(
         "span",
@@ -340,7 +382,7 @@ export default {
                         if (this.consoleList.length < 20) {
                           this.consoleList.push({
                             userid: this.$store.state.user.userId.userid,
-                            consolenum: this.consoleList.length,
+                            consolenum: this.consoleList.length + 1,
                             caseid: this.myCaseTreeData[0].children[data.index]
                               .caseid,
                             targetid: "",
@@ -460,8 +502,20 @@ export default {
         }
       });
     },
+    delConsole(index) {
+      console.log(index);
+      this.consoleList.splice(index - 1, 1);
+      this.consoleListChange();
+    },
+    consoleListChange(data) {
+      this.consoleList.map((current, index) => {
+        return (current.consolenum = index + 1);
+      });
+    },
     addLiveCancel() {},
-    addLiveSave() {}
+    addLiveSave() {
+      console.log(this.consoleList);
+    }
   }
 };
 </script>
@@ -494,5 +548,27 @@ export default {
       margin-top: 60px;
     }
   }
+}
+.button {
+  margin-top: 35px;
+}
+.flip-list-move {
+  transition: transform 0.5s;
+}
+.no-move {
+  transition: transform 0s;
+}
+.ghost {
+  opacity: 0.5;
+  background: #c8ebfb;
+}
+.list-group {
+  min-height: 20px;
+}
+.list-group-item {
+  cursor: move;
+}
+.list-group-item i {
+  cursor: pointer;
 }
 </style>
