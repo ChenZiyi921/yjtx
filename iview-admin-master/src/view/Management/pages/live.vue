@@ -380,23 +380,37 @@ export default {
                       click: e => {
                         e.stopPropagation();
                         if (this.consoleList.length < 20) {
-                          this.consoleList.push({
-                            userid: this.$store.state.user.userId.userid,
-                            consolenum: this.consoleList.length + 1,
-                            caseid: this.myCaseTreeData[0].children[data.index]
-                              .caseid,
-                            targetid: "",
-                            casename: this.myCaseTreeData[0].children[
-                              data.index
-                            ].casename,
-                            targetname: "",
-                            icid: data.icid,
-                            icname: data.icname,
-                            icnum: "",
-                            network: "",
-                            status: "",
-                            updatetime: ""
-                          });
+                          let idArr = [];
+                          for (
+                            let index = 0;
+                            index < this.consoleList.length;
+                            index++
+                          ) {
+                            idArr.push(this.consoleList[index].icid);
+                          }
+                          if (idArr.includes(data.icid)) {
+                            this.$Message.error("It can't be repeated");
+                            return;
+                          } else {
+                            this.consoleList.push({
+                              userid: this.$store.state.user.userId.userid,
+                              consolenum: this.consoleList.length + 1,
+                              caseid: this.myCaseTreeData[0].children[
+                                data.index
+                              ].caseid,
+                              targetid: "",
+                              casename: this.myCaseTreeData[0].children[
+                                data.index
+                              ].casename,
+                              targetname: "",
+                              icid: data.icid,
+                              icname: data.icname,
+                              icnum: "",
+                              network: "",
+                              status: "",
+                              updatetime: ""
+                            });
+                          }
                         } else {
                           this.$Message.warning("Maximum limit reached");
                         }
@@ -503,7 +517,6 @@ export default {
       });
     },
     delConsole(index) {
-      console.log(index);
       this.consoleList.splice(index - 1, 1);
       this.consoleListChange();
     },
@@ -514,7 +527,11 @@ export default {
     },
     addLiveCancel() {},
     addLiveSave() {
-      console.log(this.consoleList);
+      addLiveConsole(this.consoleList).then(({ data }) => {
+        if (data.code === 200) {
+          this.$Message.success("Operation success!");
+        }
+      });
     }
   }
 };
