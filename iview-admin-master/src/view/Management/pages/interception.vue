@@ -14,7 +14,9 @@
           </TabPane>
         </Tabs>
       </TabPane>
-      <TabPane label="Tree" name="Tree" tab="Interception">标签2</TabPane>
+      <TabPane label="Tree" name="Tree" tab="Interception">
+        <Tree />
+      </TabPane>
     </Tabs>
   </div>
 </template>
@@ -23,13 +25,15 @@
 import Case from "./case";
 import Ic from "./ic";
 import Live from "./live";
+import Tree from "./tree";
 
 export default {
   name: "",
   components: {
     Case,
     Ic,
-    Live
+    Live,
+    Tree
   },
   data() {
     return {};

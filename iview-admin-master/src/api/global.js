@@ -34,6 +34,8 @@ let deleteQueryApi = "";
 let queryLiveConsoleApi = "";
 let addLiveConsoleApi = "";
 let deleteLiveConsoleApi = "";
+let deleteTargetIcApi = "";
+let deleteCaseIcApi = "";
 
 if (debug) {
   loginApi = "/static/dbg/user/login.json";
@@ -67,6 +69,8 @@ if (debug) {
   queryLiveConsoleApi = "/static/dbg/case/queryLiveConsole.json";
   addLiveConsoleApi = "/static/dbg/case/addLiveConsole.json";
   deleteLiveConsoleApi = "/static/dbg/case/deleteLiveConsole.json";
+  deleteTargetIcApi = "/static/dbg/case/deleteTargetIc.json";
+  deleteCaseIcApi = "/static/dbg/case/deleteCaseIc.json";
 } else {
   loginApi = "/api/user/login.do";
   changeUserPasswordApi = "/api/user/changeUserPassword.do";
@@ -99,6 +103,8 @@ if (debug) {
   queryLiveConsoleApi = "/api/case/queryLiveConsole.do";
   addLiveConsoleApi = "/api/case/addLiveConsole.do";
   deleteLiveConsoleApi = "/api/case/deleteLiveConsole.do";
+  deleteTargetIcApi = "/api/case/deleteTargetIc.do";
+  deleteCaseIcApi = "/api/case/deleteCaseIc.do";
 }
 
 export const login = params => {
@@ -308,9 +314,24 @@ export const addLiveConsole = data => {
     method: post
   }, post ? { params: data } : { data }))
 }
+
 export const deleteLiveConsole = data => {
   return axios.request(Object.assign({
     url: deleteLiveConsoleApi,
+    method: post
+  }, post ? { params: data } : { data }))
+}
+
+export const deleteTargetIc = data => {
+  return axios.request(Object.assign({
+    url: deleteTargetIcApi,
+    method: post
+  }, post ? { params: data } : { data }))
+}
+
+export const deleteCaseIc = data => {
+  return axios.request(Object.assign({
+    url: deleteCaseIcApi,
     method: post
   }, post ? { params: data } : { data }))
 }
