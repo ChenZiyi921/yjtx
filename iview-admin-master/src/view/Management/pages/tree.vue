@@ -28,6 +28,7 @@
         <Button type="info" size="large" @click="delCaseConfirm">Save</Button>
       </div>
     </Modal>
+    <add-ic :createModal="createModal" @add-ic-cancel="addICCancel" />
   </div>
 </template>
 
@@ -39,14 +40,18 @@ import {
   deleteCaseIc
 } from "@/api/global";
 import dayjs from "dayjs";
+import AddIc from "@/components/add-ic/add-ic";
 
 export default {
   name: "",
   display: "Transition",
   order: 6,
-  components: {},
+  components: {
+    AddIc
+  },
   data() {
     return {
+      createModal: false,
       delModal: false,
       delCasename: "",
       consoleList: [],
@@ -123,6 +128,9 @@ export default {
   created() {},
   computed: {},
   methods: {
+    addICCancel() {
+      this.createModal = false;
+    },
     deleteTargetIc(data) {
       deleteTargetIc({
         caseid: data.caseid,
@@ -226,6 +234,7 @@ export default {
                     },
                     on: {
                       click: e => {
+                        this.createModal = true;
                         e.stopPropagation();
                       }
                     }
