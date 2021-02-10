@@ -126,7 +126,9 @@ export default {
       },
       data: [],
       isAppend: true,
-      saveType: ""
+      saveType: "",
+      caseDetailModule: false,
+      ICDetailModule: false
     };
   },
   computed: {},
@@ -256,7 +258,14 @@ export default {
         ]
       );
     },
-    myCaseTreeDataChange(curArr, cur) {},
+    myCaseTreeDataChange(curArr, cur) {
+      if (cur.level === 2) {
+        this.caseDetailModule = true;
+      }
+      if (cur.isIC === true) {
+        this.ICDetailModule = true;
+      }
+    },
     append(data) {
       const children = data.children || [];
       if (data.title !== dayjs(new Date()).format("YYYY-MM-DD")) {

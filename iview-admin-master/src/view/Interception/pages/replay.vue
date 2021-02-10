@@ -232,6 +232,12 @@ export default {
   components: {
     caseComment
   },
+  props: {
+    wstModal: {
+      type: Boolean,
+      default: false
+    }
+  },
   data() {
     return {
       addQueryForm: {
@@ -253,7 +259,6 @@ export default {
         network: [],
         acttype: ""
       },
-      wstModal: false,
       addQueryModal: false,
       commentModal: false,
       caseComment: {

@@ -14,9 +14,7 @@ export default {
   },
   computed: {},
   mounted() {},
-  created() {
-    // location.reload();
-  }
+  created() {}
 };
 </script>
 

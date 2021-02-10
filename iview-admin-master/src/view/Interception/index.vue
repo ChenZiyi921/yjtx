@@ -1,19 +1,25 @@
 <template>
   <div>
-    <Tabs name="tab1" value="Replay" :animated="false" class="tab1">
+    <Tabs
+      name="tab1"
+      value="Replay"
+      :animated="false"
+      class="tab1"
+      @on-click="tabChange"
+    >
       <TabPane
         label="Replay Console"
         name="Replay"
         style="height: calc(100vh - 170px);"
       >
-        <Replay />
+        <Replay :wstModal="show" />
       </TabPane>
       <TabPane
         label="Live Console"
         name="Live"
         style="height: calc(100vh - 170px);"
       >
-        <Live />
+        <Live :wstModal="show" />
       </TabPane>
       <TabPane
         label="vHLR Console"
@@ -39,14 +45,19 @@ export default {
     Vhlr
   },
   data() {
-    return {};
+    return {
+      show: false
+    };
   },
   computed: {},
   mounted() {},
-  created() {
-    // location.reload();
-  },
-  methods: {}
+  created() {},
+  methods: {
+    tabChange(name) {
+      this.show = false;
+      console.log(name);
+    }
+  }
 };
 </script>
 

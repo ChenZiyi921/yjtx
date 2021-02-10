@@ -43,9 +43,7 @@ export default {
   mounted() {
     window.name = `${location.href.split("#")[0]}#/Management`;
   },
-  created() {
-    // location.reload();
-  }
+  created() {}
 };
 </script>
 

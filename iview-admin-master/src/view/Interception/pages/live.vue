@@ -1,87 +1,100 @@
 <template>
-  <div>
-    <div class="demo-split">
-      <ul class="top-content">
-        <li
-          v-for="(item, index) in liveListCard"
-          :key="index"
-          @dblclick="queryList(item)"
-        >
-          <div class="card-title">
-            <span>{{ index + 1 }}</span>
-            <span v-if="item.ictype === 'IMSI'"
-              ><img style="width: 20px;" src="@/assets/images/i-sim.png" alt=""
-            /></span>
-            <span v-if="item.ictype === 'IMEI'"
-              ><img
-                style="width: 20px;"
-                src="@/assets/images/i-phone.png"
-                alt=""
-            /></span>
-            <span v-if="item.ictype === 'MSISDN'"
-              ><img style="width: 20px;" src="@/assets/images/i-123.png" alt=""
-            /></span>
-            <span>{{ item.icnum }}</span>
-            <Icon
-              type="md-call"
-              style="font-size: 20px; text-align: center; width: 60%; transform: rotate(180deg); color: red;"
-            />
-            <span>2</span>
+  <div class="demo-split">
+    <ul class="top-content">
+      <li
+        v-for="(item, index) in liveListCard"
+        :key="index"
+        @dblclick="queryList(item)"
+      >
+        <div class="card-title">
+          <span>{{ index + 1 }}</span>
+          <span v-if="item.ictype === 'IMSI'"
+            ><img style="width: 20px;" src="@/assets/images/i-sim.png" alt=""
+          /></span>
+          <span v-if="item.ictype === 'IMEI'"
+            ><img style="width: 20px;" src="@/assets/images/i-phone.png" alt=""
+          /></span>
+          <span v-if="item.ictype === 'MSISDN'"
+            ><img style="width: 20px;" src="@/assets/images/i-123.png" alt=""
+          /></span>
+          <span>{{ item.icnum }}</span>
+          <Icon
+            type="md-call"
+            style="font-size: 20px; text-align: center; width: 60%; transform: rotate(180deg); color: red;"
+          />
+          <span>2</span>
+        </div>
+        <div style="padding: 10px 0;">
+          {{ item.casename }}<span style="padding: 0 20px;">OF</span
+          >{{ item.targetname }}
+        </div>
+        <div style="height: 40px">
+          <div style="width: 50%; height: 100%; float: left;">
+            {{ "+2637912345648123456789" }}
+            {{ "+2623131312312312316789" }}
           </div>
-          <div style="padding: 10px 0;">
-            {{ item.casename }}<span style="padding: 0 20px;">OF</span
-            >{{ item.targetname }}
+          <div style="width: 50%; height: 100%; float: right;">
+            <span style="display: block;">{{ "CMO" }}</span>
+            <span>{{ "+263791222333441" }}</span>
           </div>
-          <div style="height: 40px">
-            <div style="width: 50%; height: 100%; float: left;">
-              {{ "+2637912345648123456789" }}
-              {{ "+2623131312312312316789" }}
-            </div>
-            <div style="width: 50%; height: 100%; float: right;">
-              <span style="display: block;">{{ "CMO" }}</span>
-              <span>{{ "+263791222333441" }}</span>
-            </div>
-          </div>
-          <div>LOC：{{ "Railway station-2" }}</div>
-        </li>
-      </ul>
-      <div style="background: #eee;">
-        <DatePicker
-          v-model="date"
-          :clearable="false"
-          type="datetimerange"
-          placeholder="Select date and time"
-          class="mr10"
-          style="width: 300px; display: inline-block;"
-        ></DatePicker>
-        <Checkbox class="mt10">Call Only</Checkbox>
-      </div>
-      <div style="height: calc(100vh - 740px); overflow-y: auto;">
-        <Table
-          border
-          :columns="columns"
-          :data="data"
-          :loading="loading"
-          class="mt10"
-          style="background: #fff;"
-        >
-          <template slot-scope="{ row }" slot="name">
-            <strong>{{ row.name }}</strong>
-          </template>
-        </Table>
-        <Page
-          :current="queryForm.currPage"
-          :total="queryForm.total"
-          :page-size="queryForm.pageSize"
-          @on-change="pageChange"
-          @on-page-size-change="pageSizeChange"
-          show-elevator
-          show-sizer
-          show-total
-          style="padding: 10px; background: #fff;"
-        />
-      </div>
+        </div>
+        <div>LOC：{{ "Railway station-2" }}</div>
+      </li>
+    </ul>
+    <div style="background: #eee;">
+      <DatePicker
+        v-model="date"
+        :clearable="false"
+        type="datetimerange"
+        placeholder="Select date and time"
+        class="mr10"
+        style="width: 300px; display: inline-block;"
+      ></DatePicker>
+      <Checkbox class="mt10">Call Only</Checkbox>
     </div>
+    <div style="height: calc(100vh - 740px); overflow-y: auto;">
+      <Table
+        border
+        :columns="columns"
+        :data="data"
+        :loading="loading"
+        class="mt10"
+        style="background: #fff;"
+      >
+        <template slot-scope="{ row }" slot="name">
+          <strong>{{ row.name }}</strong>
+        </template>
+      </Table>
+      <Page
+        :current="queryForm.currPage"
+        :total="queryForm.total"
+        :page-size="queryForm.pageSize"
+        @on-change="pageChange"
+        @on-page-size-change="pageSizeChange"
+        show-elevator
+        show-sizer
+        show-total
+        style="padding: 10px; background: #fff;"
+      />
+    </div>
+    <Modal
+      v-model="wstModal"
+      draggable
+      scrollable
+      footer-hide
+      title="Modal"
+      width="600"
+      :styles="{
+        height: '200px',
+        top: '600px'
+      }"
+    >
+      <iframe
+        src="/wst/wst.html"
+        frameborder="0"
+        style="width: 100%; height: 100%;"
+      ></iframe>
+    </Modal>
   </div>
 </template>
 
@@ -92,6 +105,12 @@ import { queryCdrByIc, queryLiveConsole } from "@/api/global";
 export default {
   name: "",
   components: {},
+  props: {
+    wstModal: {
+      type: Boolean,
+      default: false
+    }
+  },
   data() {
     return {
       loading: false,
@@ -338,6 +357,12 @@ export default {
     this.consoleForm.userid = this.$store.state.user.userId.userid;
     this.queryLiveConsole();
   },
+  watch: {
+    wstModal(newVal) {
+      console.log(newVal);
+      this.wstModal = newVal;
+    }
+  },
   created() {},
   methods: {
     queryList(row) {
@@ -393,5 +418,11 @@ export default {
       justify-content: space-between;
     }
   }
+}
+/deep/.ivu-modal-content-drag {
+  height: 100%;
+}
+/deep/.ivu-modal-body {
+  height: 200px;
 }
 </style>
