@@ -29,6 +29,10 @@
       </div>
     </Modal>
     <add-ic :createModal="createModal" @add-ic-cancel="addICCancel" />
+    <add-case-modal
+      :createModal="createCaseModal"
+      @createmodalcancel="createModalCancel"
+    />
   </div>
 </template>
 
@@ -41,17 +45,20 @@ import {
 } from "@/api/global";
 import dayjs from "dayjs";
 import AddIc from "@/components/add-ic/add-ic";
+import addCaseModal from "@/components/add-case/add-case";
 
 export default {
   name: "",
   display: "Transition",
   order: 6,
   components: {
-    AddIc
+    AddIc,
+    addCaseModal
   },
   data() {
     return {
       createModal: false,
+      createCaseModal: false,
       delModal: false,
       delCasename: "",
       consoleList: [],
@@ -103,7 +110,8 @@ export default {
                 on: {
                   click: e => {
                     e.stopPropagation();
-                    this.append(data);
+                    this.createCaseModal = true;
+                    // this.append(data);
                   }
                 }
               })
@@ -128,6 +136,9 @@ export default {
   created() {},
   computed: {},
   methods: {
+    createModalCancel() {
+      this.createCaseModal = false;
+    },
     addICCancel() {
       this.createModal = false;
     },
