@@ -70,7 +70,9 @@
               <Button class="mr10" type="info" @click="exportExcel"
                 >Export</Button
               >
-              <Button class="mr10" type="info">Archive</Button>
+              <Button class="mr10" type="info" @click="exportCase"
+                >Archive</Button
+              >
               <Button type="info" ghost @click="showCommentModal"
                 >Comment</Button
               >
@@ -201,7 +203,8 @@ import {
   queryCasesByUser,
   queryQuery,
   addQuery,
-  deleteQuery
+  deleteQuery,
+  exportCase
 } from "@/api/global";
 import dayjs from "dayjs";
 import caseComment from "@/components/case-comment/case-comment";
@@ -529,7 +532,14 @@ export default {
         size: "small"
       },
       isAppend: true,
-      saveType: ""
+      saveType: "",
+      exportCaseForm: {
+        userid: "",
+        caseid: "",
+        starttime: "",
+        endtime: "",
+        exporttype: ""
+      }
     };
   },
   computed: {},
@@ -539,6 +549,24 @@ export default {
   },
   created() {},
   methods: {
+    exportCase() {
+      if (this.queryCdrByIcForm.icid) {
+        this.exportCaseForm = {
+          userid: this.$store.state.user.userId.userid,
+          caseid: this.queryCdrByIcForm.caseid,
+          starttime: this.queryCdrByIcForm.starttime,
+          endtime: this.queryCdrByIcForm.endtime,
+          exporttype: "full"
+        };
+        exportCase(this.exportCaseForm).then(({ data }) => {
+          if (data.code === 200) {
+            window.location.href = data.data.downloadpath;
+          }
+        });
+      } else {
+        this.$Message.warning("Please select ics first");
+      }
+    },
     addQuerySave() {
       addQuery(this.addQueryForm).then(({ data }) => {
         if (data.code === 200) {
@@ -825,5 +853,8 @@ export default {
 }
 .demo-tree-render /deep/.ivu-tree-title {
   width: 96%;
+}
+/deep/.ivu-split-pane.top-pane {
+  overflow-y: auto;
 }
 </style>

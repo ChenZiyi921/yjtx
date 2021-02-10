@@ -4,21 +4,21 @@
       <TabPane
         label="Replay Console"
         name="Replay"
-        style="height: calc(100vh - 160px);"
+        style="height: calc(100vh - 170px);"
       >
         <Replay />
       </TabPane>
       <TabPane
         label="Live Console"
         name="Live"
-        style="height: calc(100vh - 160px);"
+        style="height: calc(100vh - 170px);"
       >
         <Live />
       </TabPane>
       <TabPane
         label="vHLR Console"
         name="vHLR"
-        style="height: calc(100vh - 160px);"
+        style="height: calc(100vh - 170px);"
       >
         <Vhlr />
       </TabPane>

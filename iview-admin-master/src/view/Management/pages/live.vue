@@ -37,7 +37,6 @@
             v-for="element in consoleList"
             :key="element.consolenum"
           >
-            <p>{{ element.casename }}</p>
             <p>{{ element.icname }}</p>
             <Button
               @click="delConsole(element.consolenum)"
@@ -67,7 +66,8 @@ import {
   queryCasesByUser,
   queryQuery,
   addLiveConsole,
-  deleteLiveConsole
+  deleteLiveConsole,
+  queryLiveConsole
 } from "@/api/global";
 import dayjs from "dayjs";
 
@@ -335,6 +335,7 @@ export default {
   mounted() {
     this.queryQuery();
     this.queryCasesByUser();
+    this.queryLiveConsole();
   },
   created() {},
   computed: {
@@ -348,8 +349,12 @@ export default {
     }
   },
   methods: {
-    sort() {
-      this.consoleList = this.consoleList.sort((a, b) => a.index - b.index);
+    queryLiveConsole() {
+      queryLiveConsole(this.consoleForm).then(({ data }) => {
+        if (data.code === 200) {
+          this.consoleList = data.data;
+        }
+      });
     },
     renderContent(h, { root, node, data }) {
       return h(
@@ -562,7 +567,7 @@ export default {
       text-align: center;
     }
     p:nth-of-type(1) {
-      margin-top: 60px;
+      margin-top: 70px;
     }
   }
 }

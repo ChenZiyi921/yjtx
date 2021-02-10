@@ -36,6 +36,7 @@ let addLiveConsoleApi = "";
 let deleteLiveConsoleApi = "";
 let deleteTargetIcApi = "";
 let deleteCaseIcApi = "";
+let exportCaseApi = "";
 
 if (debug) {
   loginApi = "/static/dbg/user/login.json";
@@ -71,6 +72,7 @@ if (debug) {
   deleteLiveConsoleApi = "/static/dbg/case/deleteLiveConsole.json";
   deleteTargetIcApi = "/static/dbg/case/deleteTargetIc.json";
   deleteCaseIcApi = "/static/dbg/case/deleteCaseIc.json";
+  exportCaseApi = "/static/dbg/cdr/exportCase.json";
 } else {
   loginApi = "/api/user/login.do";
   changeUserPasswordApi = "/api/user/changeUserPassword.do";
@@ -105,6 +107,7 @@ if (debug) {
   deleteLiveConsoleApi = "/api/case/deleteLiveConsole.do";
   deleteTargetIcApi = "/api/case/deleteTargetIc.do";
   deleteCaseIcApi = "/api/case/deleteCaseIc.do";
+  exportCaseApi = "/api/cdr/exportCase.do";
 }
 
 export const login = params => {
@@ -332,6 +335,13 @@ export const deleteTargetIc = data => {
 export const deleteCaseIc = data => {
   return axios.request(Object.assign({
     url: deleteCaseIcApi,
+    method: post
+  }, post ? { params: data } : { data }))
+}
+
+export const exportCase = data => {
+  return axios.request(Object.assign({
+    url: exportCaseApi,
     method: post
   }, post ? { params: data } : { data }))
 }
