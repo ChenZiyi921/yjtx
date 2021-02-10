@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Media Player</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="pragma" content="no-cache" />
+  <meta http-equiv="content-type" content="no-cache, must-revalidate" />
+  <style type="text/css">
+    div {
+      text-align: center;
+      valign: middle;
+      margin: 0 auto;
+    }
+  </style>
+  <script type="text/javascript" src="js/avplayerplugin.js"></script>
+</head>
+
+<body>
+
+  <div id="avplayerdiv"></div>
+  <script type="text/javascript">
+    AvPlayerPlugin.init("avplayerdiv", "ws://192.168.0.150:8081/");
+    AvPlayerPlugin.debugDisplay = "RcvDataStr";
+    AvPlayerPlugin.debugCMD = "CmdStr";
+
+    var msgGet = function (msg) {
+      document.getElementById('RcvInfo').value += msg;
+    }
+    AvPlayerPlugin.RevMsgCbk(msgGet);
+  </script>
+
+</body>
+
+</HTML>

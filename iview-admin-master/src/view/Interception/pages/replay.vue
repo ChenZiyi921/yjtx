@@ -193,6 +193,24 @@
         >
       </div>
     </Modal>
+    <Modal
+      v-model="wstModal"
+      draggable
+      scrollable
+      footer-hide
+      title="Modal"
+      width="600"
+      :styles="{
+        height: '200px',
+        top: '600px'
+      }"
+    >
+      <iframe
+        src="/wst/wst.html"
+        frameborder="0"
+        style="width: 100%; height: 100%;"
+      ></iframe>
+    </Modal>
   </div>
 </template>
 
@@ -235,6 +253,7 @@ export default {
         network: [],
         acttype: ""
       },
+      wstModal: false,
       addQueryModal: false,
       commentModal: false,
       caseComment: {
@@ -856,5 +875,11 @@ export default {
 }
 /deep/.ivu-split-pane.top-pane {
   overflow-y: auto;
+}
+/deep/.ivu-modal-content-drag {
+  height: 100%;
+}
+/deep/.ivu-modal-body {
+  height: 200px;
 }
 </style>
