@@ -268,7 +268,7 @@ export default {
       queryid: "",
       loading: false,
       showType: "tree",
-      split1: "500px",
+      split1: "360px",
       split2: 0.9,
       replayModal1: false,
       single: false,
@@ -312,13 +312,9 @@ export default {
       },
       columns: [
         {
-          type: "index",
-          title: "Index",
-          key: "name"
-        },
-        {
-          title: "VOC",
+          title: "",
           key: "",
+          width: "100px",
           render: (h, { row, index }) => {
             if (row.fileName) {
               return h("div", [
@@ -338,75 +334,29 @@ export default {
           }
         },
         {
-          title: "Status",
-          key: "",
-          render: (h, { row, index }) => {
-            if (row.ifHeard && row.ifKeep) {
-              return h("div", [
-                h("img", {
-                  style: {
-                    width: "20px",
-                    verticalAlign: "middle",
-                    marginRight: "10px"
-                  },
-                  attrs: {
-                    src: require("@/assets/images/i-heard.png")
-                  }
-                }),
-                h("img", {
-                  style: {
-                    width: "20px",
-                    verticalAlign: "middle"
-                  },
-                  attrs: {
-                    src: require("@/assets/images/i-keep.png")
-                  }
-                })
-              ]);
-            } else if (row.ifHeard) {
-              return h("div", [
-                h("img", {
-                  style: {
-                    width: "20px",
-                    verticalAlign: "middle"
-                  },
-                  attrs: {
-                    src: require("@/assets/images/i-heard.png")
-                  }
-                })
-              ]);
-            } else if (row.ifKeep) {
-              return h("div", [
-                h("img", {
-                  style: {
-                    width: "20px",
-                    verticalAlign: "middle"
-                  },
-                  attrs: {
-                    src: require("@/assets/images/i-keep.png")
-                  }
-                })
-              ]);
-            } else {
-              return "";
-            }
-          }
+          title: "CdrNo",
+          key: "objid",
+          width: "80px"
         },
         {
           title: "MSISDN",
-          key: "msisdn"
+          key: "msisdn",
+          width: "140px"
         },
         {
           title: "IMSI",
-          key: "imsi"
+          key: "imsi",
+          width: "140px"
         },
         {
           title: "IMEI",
-          key: "imei"
+          key: "imei",
+          width: "140px"
         },
         {
-          title: "ActType",
+          title: "Type",
           key: "acttype",
+          width: "100px",
           // 101	位置更新	NLU
           // 102	周期更新	PLU
           // 103	开机	PON
@@ -486,8 +436,47 @@ export default {
           }
         },
         {
-          title: "Partner No.",
-          key: "objNbr"
+          title: "PartyNum",
+          key: "objnbr",
+          width: "140px"
+        },
+        {
+          title: "StartTime",
+          key: "starttime",
+          width: "140px"
+        },
+        {
+          title: "Duration",
+          key: "duration",
+          width: "100px"
+        },
+        {
+          title: "CGI",
+          key: "basestation",
+          width: "100px",
+          render: (h, { row }) => {
+            return <span>{row.basestation + " " + row.laccellid}</span>;
+          }
+        },
+        {
+          title: "Extra",
+          key: "dtmfno",
+          width: "100px"
+        },
+        {
+          title: "Network",
+          key: "netid",
+          width: "100px"
+        },
+        {
+          title: "Comments",
+          key: "cdrcomment",
+          width: "140px"
+        },
+        {
+          title: "SmsText",
+          key: "smstext",
+          width: "400px"
         }
       ],
       data: [],

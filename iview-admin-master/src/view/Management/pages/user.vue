@@ -11,52 +11,29 @@
         style="display: flex;"
       >
         <div style="flex: 1;">
-          <Form label-position="left" :label-width="0" inline>
-            <FormItem label="">
-              <Button type="success" ghost @click="queryUserList"
-                >Refresh</Button
-              >
-            </FormItem>
-            <FormItem label="">
-              <Button type="success" @click="newUserInfo">New</Button>
-            </FormItem>
-            <!-- <FormItem label="">
-              <Button type="info">Search</Button>
-            </FormItem> -->
-          </Form>
+          <Button type="success" ghost @click="queryUserList" class="mr10"
+            >Refresh</Button
+          >
+          <Button type="success" @click="newUserInfo" class="mr10">New</Button>
+          <Button type="info" ghost class="mr10" @click.stop="editUserInfo"
+            >Edit</Button
+          >
+          <Button type="error" class="mr10" @click.stop="delUserInfo"
+            >Delete</Button
+          >
+          <Button type="error" @click.stop="changeUserPwd" ghost
+            >Password</Button
+          >
           <Table
             border
             :columns="columns"
             :data="data"
             :loading="loading"
             @on-row-click="onRowClick"
+            class="mt10"
           >
             <template slot-scope="{ row }" slot="name">
               <strong>{{ row.name }}</strong>
-            </template>
-            <template slot-scope="{ row }" slot="action">
-              <Button
-                type="info"
-                ghost
-                size="small"
-                class="mr10"
-                @click.stop="editUserInfo(row)"
-                >Edit</Button
-              >
-              <Button
-                type="error"
-                size="small"
-                class="mr10"
-                @click.stop="delUserInfo(row)"
-                >Delete</Button
-              >
-              <Button
-                type="error"
-                size="small"
-                @click.stop="changeUserPwd(row)"
-                ghost
-                >Password</Button
-              >
             </template>
           </Table>
           <Page
@@ -272,22 +249,20 @@ export default {
           width: 120
         },
         {
-          title: "Address",
-          key: "useraddr"
+          title: "LastLoginTime",
+          key: "userlastlogin"
+        },
+        {
+          title: "LastLoginIp",
+          key: "userlastip"
         },
         {
           title: "Create Date",
           key: "usercreatedate"
         },
         {
-          title: "Last Login",
-          key: "userlastlogin"
-        },
-        {
-          title: "Action",
-          slot: "action",
-          width: 240,
-          align: "center"
+          title: "ExpireDate",
+          key: "userexpiredate"
         }
       ],
       data: [],

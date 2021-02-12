@@ -1,89 +1,60 @@
 <template>
   <div class="">
-    <Form label-position="left" :label-width="0" inline>
-      <FormItem>
-        <Button type="success" class="mr10" ghost @click="queryCaseList"
-          >Refresh</Button
+    <template>
+      <Button type="success" class="mr10" ghost @click="queryCaseList"
+        >Refresh</Button
+      >
+      <Button type="success" class="mr10" @click="showCreateModal">New</Button>
+      <Button type="info" class="mr10" @click="showSearchModal">Search</Button>
+      <template v-if="true">
+        <Button class="mr10" @click="showCommonModal('deactive')"
+          >DeActive</Button
         >
-      </FormItem>
-      <FormItem>
-        <Button type="success" class="mr10" @click="showCreateModal"
-          >New</Button
+        <Button type="info" class="mr10" @click="showCommonModal('active')"
+          >Active</Button
         >
-      </FormItem>
-      <FormItem>
-        <Button type="info" class="mr10" @click="showSearchModal"
-          >Search</Button
+        <Button type="success" class="mr10" @click="showCommonModal('submit')"
+          >Submit</Button
         >
-      </FormItem>
-    </Form>
-    <Table border :columns="columns" :data="data" :loading="loading">
+        <Button type="info" ghost class="mr10" @click="showCreateModal"
+          >Edit</Button
+        >
+        <Button type="error" class="mr10" @click="delCase(row)">Delete</Button>
+        <Button
+          :disabled="rowData.casestatus === 'CLOSED'"
+          type="error"
+          class="mr10"
+          @click="closeCaseConfirm(row, 'close')"
+          ghost
+          >Close</Button
+        >
+      </template>
+      <template v-if="false">
+        <Button
+          type="success"
+          class="mr10"
+          @click="closeCaseConfirm(row, 'approve')"
+          >Approve</Button
+        >
+        <Button type="error" class="mr10" @click="closeCaseConfirm(row, 'deny')"
+          >Deny</Button
+        >
+      </template>
+
+      <Button type="success" ghost @click="showCommentModal(row)"
+        >Comment</Button
+      >
+    </template>
+
+    <Table
+      border
+      :columns="columns"
+      :data="data"
+      :loading="loading"
+      class="mt10"
+    >
       <template slot-scope="{ row }" slot="name">
         <strong>{{ row.name }}</strong>
-      </template>
-      <template slot-scope="{ row }" slot="action">
-        <template v-if="true">
-          <Button
-            size="small"
-            class="mr10"
-            @click="showCommonModal(row, 'deactive')"
-            >DeActive</Button
-          >
-          <Button
-            type="info"
-            size="small"
-            class="mr10"
-            @click="showCommonModal(row, 'active')"
-            >Active</Button
-          >
-          <Button
-            type="success"
-            size="small"
-            class="mr10"
-            @click="showCommonModal(row, 'submit')"
-            >Submit</Button
-          >
-          <Button
-            type="info"
-            ghost
-            size="small"
-            class="mr10"
-            @click="showCreateModal"
-            >Edit</Button
-          >
-          <Button type="error" size="small" class="mr10" @click="delCase(row)"
-            >Delete</Button
-          >
-          <Button
-            :disabled="row.casestatus === 'CLOSED'"
-            type="error"
-            size="small"
-            class="mr10"
-            @click="closeCaseConfirm(row, 'close')"
-            ghost
-            >Close</Button
-          >
-        </template>
-        <template v-if="false">
-          <Button
-            type="success"
-            size="small"
-            class="mr10"
-            @click="closeCaseConfirm(row, 'approve')"
-            >Approve</Button
-          >
-          <Button
-            type="error"
-            size="small"
-            class="mr10"
-            @click="closeCaseConfirm(row, 'deny')"
-            >Deny</Button
-          >
-        </template>
-
-        <Button type="success" ghost size="small" @click="showCommentModal(row)"
-          >Comment</Button
-        >
       </template>
     </Table>
     <Page
@@ -272,9 +243,8 @@ export default {
       },
       columns: [
         {
-          type: "index",
-          title: "Index",
-          key: "name"
+          title: "ID",
+          key: "caseid"
         },
         {
           title: "Name",
@@ -289,24 +259,24 @@ export default {
           key: "casetype"
         },
         {
-          title: "Expired",
+          title: "Domain",
+          key: "casedomain"
+        },
+        {
+          title: "ExpireDate",
           key: "caseexpireddate"
         },
         {
-          title: "Auto Active",
-          key: "caseautoact"
-        },
-        {
-          title: "Active Date",
+          title: "ActiveDate",
           key: "caseactivedate"
         },
         {
-          title: "Close Date",
-          key: "caseclosedate"
+          title: "CreateDate",
+          key: "casecreatedate"
         },
         {
-          title: "Create Date",
-          key: "casecreatedate"
+          title: "CloseDate",
+          key: "caseclosedate"
         },
         {
           title: "Creator",
@@ -322,12 +292,6 @@ export default {
               ""
             );
           }
-        },
-        {
-          title: "Action",
-          slot: "action",
-          width: 500,
-          align: "center"
         }
       ],
       data: [],
@@ -415,14 +379,18 @@ export default {
       this.setOperatorType(row, type);
       this.closeModal = true;
     },
-    showCommonModal(row, type) {
-      this.setOperatorType(row, type);
-      this.commonModal = {
-        title: type,
-        content: `Are you sure you want to execute ${type}?`,
-        show: true,
-        type
-      };
+    showCommonModal(type) {
+      if (this.rowData.caseid) {
+        this.setOperatorType(this.rowData, type);
+        this.commonModal = {
+          title: type,
+          content: `Are you sure you want to execute ${type}?`,
+          show: true,
+          type
+        };
+      } else {
+        this.$Message.warning("Please select a line first!");
+      }
     },
     caseOperationCommon() {
       caseOperation(this.caseOperatorForm).then(({ data }) => {

@@ -201,25 +201,33 @@ export default {
           key: "imei"
         },
         {
-          title: "ActType",
+          title: "Type",
           key: "acttype"
         },
         {
-          title: "Current Base Station",
+          title: "ActiveCGI",
           key: "currbs"
         },
 
         {
-          title: "Last Base Station",
-          key: "lastbs"
-        },
-        {
-          title: "Active Time",
+          title: "ActiveTime",
           key: "acttime"
         },
         {
           title: "Stay Time",
           key: "staytime"
+        },
+        {
+          title: "LastCGI",
+          key: "lastbs"
+        },
+        {
+          title: "LastTime",
+          key: "lastacttime"
+        },
+        {
+          title: "Network",
+          key: "netid"
         }
       ],
       data: [],

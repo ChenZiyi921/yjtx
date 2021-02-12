@@ -1,50 +1,32 @@
 <template>
   <div class="">
-    <Form label-position="left" :label-width="0" inline>
-      <FormItem>
-        <Button type="success" class="mr10" ghost @click="queryList"
-          >Refresh</Button
+    <template>
+      <Button type="success" class="mr10" ghost @click="queryList"
+        >Refresh</Button
+      >
+      <Button type="success" class="mr10" @click="showCreateModal">New</Button>
+      <Button type="info" class="mr10" @click="showSearchModal">Search</Button>
+      <template v-if="true">
+        <Button type="info" ghost class="mr10" @click="show(row)">Copy</Button>
+        <Button type="info" class="mr10" @click="show(row)">Submit</Button>
+        <Button type="error" class="mr10" @click="remove(index)">Delete</Button>
+      </template>
+      <template v-if="false">
+        <Button type="success" class="mr10" @click="remove(index)"
+          >Approve</Button
         >
-      </FormItem>
-      <FormItem>
-        <Button type="success" class="mr10" @click="showCreateModal"
-          >New</Button
-        >
-      </FormItem>
-      <FormItem>
-        <Button type="info" class="mr10" @click="showSearchModal"
-          >Search</Button
-        >
-      </FormItem>
-    </Form>
-    <Table border :columns="columns" :data="data" :loading="loading">
+        <Button type="error" class="mr10" @click="remove(index)">Deny</Button>
+      </template>
+    </template>
+    <Table
+      border
+      :columns="columns"
+      :data="data"
+      :loading="loading"
+      class="mt10"
+    >
       <template slot-scope="{ row }" slot="name">
         <strong>{{ row.name }}</strong>
-      </template>
-      <template slot-scope="{ row, index }" slot="action">
-        <template v-if="true">
-          <Button type="info" ghost size="small" class="mr10" @click="show(row)"
-            >Copy</Button
-          >
-          <Button type="info" size="small" class="mr10" @click="show(row)"
-            >Submit</Button
-          >
-          <Button type="error" size="small" class="mr10" @click="remove(index)"
-            >Delete</Button
-          >
-        </template>
-        <template v-if="false">
-          <Button
-            type="success"
-            size="small"
-            class="mr10"
-            @click="remove(index)"
-            >Approve</Button
-          >
-          <Button type="error" size="small" class="mr10" @click="remove(index)"
-            >Deny</Button
-          >
-        </template>
       </template>
     </Table>
     <Page
@@ -178,34 +160,40 @@ export default {
       },
       columns: [
         {
+          title: "ID",
+          key: "icid"
+        },
+        {
+          title: "Name",
+          key: "icname"
+        },
+        {
           title: "Status",
-          key: "age"
-        },
-        {
-          title: "Case",
-          key: "name"
-        },
-        {
-          title: "Target",
-          key: "name"
+          key: "icstatus"
         },
         {
           title: "Type",
-          key: "age"
+          key: "ictype"
         },
         {
-          title: "Live",
-          key: "address"
+          title: "ExpireDate",
+          key: "icexpireddate"
         },
         {
-          title: "Content",
-          key: "address"
+          title: "CreateDate",
+          key: "iccreator"
         },
         {
-          title: "Action",
-          slot: "action",
-          width: 300,
-          align: "center"
+          title: "Creator",
+          key: "iccreator"
+        },
+        {
+          title: "Case",
+          key: "casename"
+        },
+        {
+          title: "Comment",
+          key: "icmemo"
         }
       ],
       data: [],
@@ -224,13 +212,6 @@ export default {
   },
   mounted() {
     this.queryList();
-    for (let i = 0; i < 10; i++) {
-      this.data.push({
-        name: "Jon Snow",
-        age: i,
-        address: "Ottawa No. 2 Lake Park"
-      });
-    }
   },
   methods: {
     addICCancel() {

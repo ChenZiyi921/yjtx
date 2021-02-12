@@ -1,20 +1,23 @@
 <template>
   <div style="display: flex;" class="role">
     <div style="flex: 1;">
-      <Form label-position="left" :label-width="0" inline>
-        <FormItem label="">
-          <Button type="success" ghost @click="queryRolesList">Refresh</Button>
-        </FormItem>
-        <FormItem label="">
-          <Button type="success" @click="newRole">New</Button>
-        </FormItem>
-      </Form>
+      <template>
+        <Button type="success" ghost @click="queryRolesList" class="mr10"
+          >Refresh</Button
+        >
+        <Button type="success" @click="newRole" class="mr10">New</Button>
+        <Button type="info" ghost @click="queryRolesList" class="mr10"
+          >Edit</Button
+        >
+        <Button type="error" @click="newRole">Delete</Button>
+      </template>
       <Table
         border
         :columns="column"
         :data="data"
         :loading="loading"
         @on-row-click="onRowClick"
+        class="mt10"
       >
         <template slot-scope="{ row }" slot="name">
           <strong>{{ row.name }}</strong>
@@ -136,7 +139,6 @@ export default {
       editIndex: -1,
       column: [
         {
-          type: "index",
           width: 100,
           align: "center",
           title: "ID",
@@ -171,66 +173,73 @@ export default {
           }
         },
         {
-          title: "Action",
+          title: "Description",
+          key: "rolememo",
           render: (h, { row, index }) => {
-            if (this.editIndex === index) {
-              return [
-                h(
-                  "Button",
-                  {
-                    props: {},
-                    style: {},
-                    on: {
-                      click: () => {
-                        this.editIndex = -1;
-                      }
-                    }
-                  },
-                  "Cancel"
-                )
-              ];
-            } else {
-              return [
-                h(
-                  "Button",
-                  {
-                    props: {
-                      type: "info",
-                      ghost: true,
-                      disabled: row.rolename ? false : true
-                    },
-                    on: {
-                      click: e => {
-                        e.stopPropagation();
-                        this.saveType = "edit";
-                        this.editRole(row);
-                        this.editIndex = index;
-                      }
-                    }
-                  },
-                  "Edit"
-                ),
-                h(
-                  "Button",
-                  {
-                    props: {
-                      type: "error"
-                    },
-                    style: {
-                      marginLeft: "10px"
-                    },
-                    on: {
-                      click: () => {
-                        this.delRole(row);
-                      }
-                    }
-                  },
-                  "Delete"
-                )
-              ];
-            }
+            return h("div", [row.modifydate]);
           }
         }
+        // {
+        //   title: "Action",
+        //   render: (h, { row, index }) => {
+        //     if (this.editIndex === index) {
+        //       return [
+        //         h(
+        //           "Button",
+        //           {
+        //             props: {},
+        //             style: {},
+        //             on: {
+        //               click: () => {
+        //                 this.editIndex = -1;
+        //               }
+        //             }
+        //           },
+        //           "Cancel"
+        //         )
+        //       ];
+        //     } else {
+        //       return [
+        //         h(
+        //           "Button",
+        //           {
+        //             props: {
+        //               type: "info",
+        //               ghost: true,
+        //               disabled: row.rolename ? false : true
+        //             },
+        //             on: {
+        //               click: e => {
+        //                 e.stopPropagation();
+        //                 this.saveType = "edit";
+        //                 this.editRole(row);
+        //                 this.editIndex = index;
+        //               }
+        //             }
+        //           },
+        //           "Edit"
+        //         ),
+        //         h(
+        //           "Button",
+        //           {
+        //             props: {
+        //               type: "error"
+        //             },
+        //             style: {
+        //               marginLeft: "10px"
+        //             },
+        //             on: {
+        //               click: () => {
+        //                 this.delRole(row);
+        //               }
+        //             }
+        //           },
+        //           "Delete"
+        //         )
+        //       ];
+        //     }
+        //   }
+        // }
       ]
     };
   },

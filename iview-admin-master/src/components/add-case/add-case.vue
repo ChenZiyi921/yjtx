@@ -4,7 +4,7 @@
     class-name="vertical-center-modal"
     :closable="false"
     title="Create/Edit"
-    fullscreen
+    width="1000"
   >
     <Form :model="queryForm" label-position="left" :label-width="100">
       <FormItem label="Case Name">
@@ -64,7 +64,7 @@
           </CheckboxGroup>
         </FormItem> -->
       <FormItem label="Authorization">
-        <div style="width: 1200px; text-align: right;">
+        <div style="width: 800px; text-align: right;">
           <Button type="success" @click="createData.push({})">Add</Button>
         </div>
         <Table
@@ -72,7 +72,7 @@
           :columns="createColumns"
           :data="createData"
           class="mt10"
-          width="1200"
+          width="800"
         >
           <template slot-scope="{ row }" slot="name">
             <strong>{{ row.name }}</strong>
@@ -399,4 +399,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="less" scoped>
+/deep/.ivu-modal-body {
+  max-height: calc(100vh - 20px);
+  overflow-y: auto;
+}
+</style>
