@@ -137,6 +137,8 @@
 </template>
 
 <script>
+import { addCaseIc } from "@/api/global";
+
 export default {
   props: {
     createModal: {

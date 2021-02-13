@@ -11,19 +11,23 @@
         style="display: flex;"
       >
         <div style="flex: 1;">
-          <Button type="success" ghost @click="queryUserList" class="mr10"
-            >Refresh</Button
-          >
-          <Button type="success" @click="newUserInfo" class="mr10">New</Button>
-          <Button type="info" ghost class="mr10" @click.stop="editUserInfo"
-            >Edit</Button
-          >
-          <Button type="error" class="mr10" @click.stop="delUserInfo"
-            >Delete</Button
-          >
-          <Button type="error" @click.stop="changeUserPwd" ghost
-            >Password</Button
-          >
+          <div style="text-align: right;">
+            <Button type="success" ghost @click="queryUserList" class="mr10"
+              >Refresh</Button
+            >
+            <Button type="success" @click="newUserInfo" class="mr10"
+              >New</Button
+            >
+            <Button type="info" ghost class="mr10" @click.stop="editUserInfo"
+              >Edit</Button
+            >
+            <Button type="error" class="mr10" @click.stop="delUserInfo"
+              >Delete</Button
+            >
+            <Button type="error" @click.stop="changeUserPwd" ghost
+              >Password</Button
+            >
+          </div>
           <Table
             border
             :columns="columns"

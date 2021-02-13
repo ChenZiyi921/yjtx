@@ -6,8 +6,13 @@
   <div class="login">
     <div class="login-con">
       <h1 class="login-title">ZiVA Intelligence Center</h1>
-      <div class="form-con">
-        <login-form @on-success-valid="handleSubmit"></login-form>
+      <div class="login-main">
+        <div class="login-logo">
+          <img src="../../assets/images/login-logo.png" alt="" />
+        </div>
+        <div class="form-con">
+          <login-form @on-success-valid="handleSubmit"></login-form>
+        </div>
       </div>
     </div>
     <Modal
@@ -57,13 +62,24 @@ export default {
 
 <style lang="less" scoped>
 .login-con {
-  width: 400px;
+  width: 600px;
   padding: 20px 20px 0 20px;
   border-radius: 10px;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.5);
 }
 .login-title {
   padding-bottom: 20px;
   font-size: 30px;
+}
+.login {
+  &-main {
+    display: flex;
+  }
+  &-logo {
+    margin-right: 40px;
+    img {
+      width: 200px;
+    }
+  }
 }
 </style>

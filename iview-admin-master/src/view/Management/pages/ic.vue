@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <template>
+    <div style="text-align: right;">
       <Button type="success" class="mr10" ghost @click="queryList"
         >Refresh</Button
       >
@@ -17,7 +17,7 @@
         >
         <Button type="error" class="mr10" @click="remove(index)">Deny</Button>
       </template>
-    </template>
+    </div>
     <Table
       border
       :columns="columns"
@@ -137,7 +137,7 @@
 
 <script>
 import AddIc from "@/components/add-ic/add-ic";
-// import { getTableData } from "@/api/global";
+import { deleteCaseIc } from "@/api/global";
 
 export default {
   components: {

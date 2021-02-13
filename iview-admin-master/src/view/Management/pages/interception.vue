@@ -45,7 +45,7 @@ export default {
 <style lang="less" scoped>
 #interception {
   /deep/.ivu-tabs-nav-scroll {
-    float: left;
+    // float: left;
   }
 }
 </style>

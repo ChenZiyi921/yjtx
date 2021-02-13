@@ -1,7 +1,7 @@
 <template>
   <div style="display: flex;" class="role">
     <div style="flex: 1;">
-      <template>
+      <div style="text-align: right;">
         <Button type="success" ghost @click="queryRolesList" class="mr10"
           >Refresh</Button
         >
@@ -10,7 +10,7 @@
           >Edit</Button
         >
         <Button type="error" @click="newRole">Delete</Button>
-      </template>
+      </div>
       <Table
         border
         :columns="column"

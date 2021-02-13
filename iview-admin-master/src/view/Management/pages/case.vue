@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <template>
+    <div style="text-align: right;">
       <Button type="success" class="mr10" ghost @click="queryCaseList"
         >Refresh</Button
       >
@@ -44,7 +44,7 @@
       <Button type="success" ghost @click="showCommentModal(row)"
         >Comment</Button
       >
-    </template>
+    </div>
 
     <Table
       border

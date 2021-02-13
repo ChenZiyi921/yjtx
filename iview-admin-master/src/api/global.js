@@ -24,6 +24,8 @@ let commentCaseApi = "";
 let searchCaseApi = "";
 let addCaseApi = "";
 let checkCaseNameApi = "";
+let addCaseIcApi = "";
+let deleteCaseIcApi = "";
 
 let queryVhlrApi = "";
 let queryCdrByIcApi = "";
@@ -35,7 +37,6 @@ let queryLiveConsoleApi = "";
 let addLiveConsoleApi = "";
 let deleteLiveConsoleApi = "";
 let deleteTargetIcApi = "";
-let deleteCaseIcApi = "";
 let exportCaseApi = "";
 
 if (debug) {
@@ -60,6 +61,8 @@ if (debug) {
   searchCaseApi = "/static/dbg/case/searchCase.json";
   addCaseApi = "/static/dbg/case/addCase.json";
   checkCaseNameApi = "/static/dbg/case/checkCaseName.json";
+  addCaseIcApi = "/static/dbg/case/addCaseIc.json";
+  deleteCaseIcApi = "/static/dbg/case/deleteCaseIc.json";
 
   queryVhlrApi = "/static/dbg/cdr/queryVhlr.json";
   queryCdrByIcApi = "/static/dbg/cdr/queryCdrByIc.json";
@@ -71,7 +74,6 @@ if (debug) {
   addLiveConsoleApi = "/static/dbg/case/addLiveConsole.json";
   deleteLiveConsoleApi = "/static/dbg/case/deleteLiveConsole.json";
   deleteTargetIcApi = "/static/dbg/case/deleteTargetIc.json";
-  deleteCaseIcApi = "/static/dbg/case/deleteCaseIc.json";
   exportCaseApi = "/static/dbg/cdr/exportCase.json";
 } else {
   loginApi = "/api/user/login.do";
@@ -95,6 +97,8 @@ if (debug) {
   searchCaseApi = "/api/case/searchCase.do";
   addCaseApi = "/api/case/addCase.do";
   checkCaseNameApi = "/api/case/checkCaseName.do";
+  addCaseIcApi = "/api/case/addCaseIc.do";
+  deleteCaseIcApi = "/api/case/deleteCaseIc.do";
 
   queryVhlrApi = "/api/cdr/queryVhlr.do";
   queryCdrByIcApi = "/api/cdr/queryCdrByIc.do";
@@ -106,7 +110,6 @@ if (debug) {
   addLiveConsoleApi = "/api/case/addLiveConsole.do";
   deleteLiveConsoleApi = "/api/case/deleteLiveConsole.do";
   deleteTargetIcApi = "/api/case/deleteTargetIc.do";
-  deleteCaseIcApi = "/api/case/deleteCaseIc.do";
   exportCaseApi = "/api/cdr/exportCase.do";
 }
 
@@ -261,6 +264,20 @@ export const checkCaseName = data => {
   }, post ? { params: data } : { data }))
 }
 
+export const addCaseIc = data => {
+  return axios.request(Object.assign({
+    url: addCaseIcApi,
+    method: post
+  }, post ? { params: data } : { data }))
+}
+
+export const deleteCaseIc = data => {
+  return axios.request(Object.assign({
+    url: deleteCaseIcApi,
+    method: post
+  }, post ? { params: data } : { data }))
+}
+
 // 
 export const queryVhlr = data => {
   return axios.request(Object.assign({
@@ -328,13 +345,6 @@ export const deleteLiveConsole = data => {
 export const deleteTargetIc = data => {
   return axios.request(Object.assign({
     url: deleteTargetIcApi,
-    method: post
-  }, post ? { params: data } : { data }))
-}
-
-export const deleteCaseIc = data => {
-  return axios.request(Object.assign({
-    url: deleteCaseIcApi,
     method: post
   }, post ? { params: data } : { data }))
 }
