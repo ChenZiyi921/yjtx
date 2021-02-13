@@ -16,6 +16,7 @@
 		"caseowner":null,
 		"caseautoact":1,
 		"casecreator":"CaseManager11",
+		"casedomain":"li",
 		"targets":[
 			{
 				"targetid":431,

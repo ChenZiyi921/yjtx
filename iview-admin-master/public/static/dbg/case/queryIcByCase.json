@@ -1,0 +1,84 @@
+{
+    "code": 200,
+    "msg": "Success",
+    "data": [
+        {
+            "icid": 227,
+            "icname": "IC-MSISDN-E-+263772223917",
+            "ictype": "MSISDN",
+            "icstatus": "ACTIVE",
+            "iccreatedate": "2013-07-15",
+            "iccreator": "LionHeart",
+            "icexpireddate": "2013-08-15",
+            "icmemo": "Auto created with caseCase011150713",
+            "icprio": 3,
+            "network": null,
+            "num": null
+        },
+        {
+            "icid": 314,
+            "icname": "IC-IMSI-E-648044400700427",
+            "ictype": "IMSI",
+            "icstatus": "ACTIVE",
+            "iccreatedate": "2013-07-27",
+            "iccreator": "LionHeart",
+            "icexpireddate": "2013-08-15",
+            "icmemo": "Auto created with caseCase011150713",
+            "icprio": 3,
+            "network": null,
+            "num": null
+        },
+        {
+            "icid": 228,
+            "icname": "IC-MSISDN-E-+263772486668",
+            "ictype": "MSISDN",
+            "icstatus": "ACTIVE",
+            "iccreatedate": "2013-07-15",
+            "iccreator": "LionHeart",
+            "icexpireddate": "2013-08-15",
+            "icmemo": "Auto created with caseCase011150713",
+            "icprio": 3,
+            "network": null,
+            "num": null
+        },
+        {
+            "icid": 313,
+            "icname": "IC-IMSI-E-648040450573582",
+            "ictype": "IMSI",
+            "icstatus": "ACTIVE",
+            "iccreatedate": "2013-07-27",
+            "iccreator": "LionHeart",
+            "icexpireddate": "2013-08-15",
+            "icmemo": "Auto created with caseCase011150713",
+            "icprio": 3,
+            "network": null,
+            "num": null
+        },
+        {
+            "icid": 229,
+            "icname": "IC-MSISDN-E-+263777056475",
+            "ictype": "MSISDN",
+            "icstatus": "ACTIVE",
+            "iccreatedate": "2013-07-15",
+            "iccreator": "LionHeart",
+            "icexpireddate": "2013-08-15",
+            "icmemo": "Auto created with caseCase011150713",
+            "icprio": 3,
+            "network": null,
+            "num": null
+        },
+        {
+            "icid": 315,
+            "icname": "IC-IMSI-E-648043600766055",
+            "ictype": "IMSI",
+            "icstatus": "ACTIVE",
+            "iccreatedate": "2013-07-27",
+            "iccreator": "LionHeart",
+            "icexpireddate": "2013-08-15",
+            "icmemo": "Auto created with caseCase011150713",
+            "icprio": 3,
+            "network": null,
+            "num": null
+        }
+    ]
+}
