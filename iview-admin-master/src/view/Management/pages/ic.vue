@@ -137,7 +137,7 @@
 
 <script>
 import AddIc from "@/components/add-ic/add-ic";
-import { deleteCaseIc } from "@/api/global";
+import { deleteCaseIc, queryIc } from "@/api/global";
 
 export default {
   components: {
@@ -232,10 +232,13 @@ export default {
       this.queryList();
     },
     queryList() {
-      // this.loading = true;
-      // getTableData().then(res => {
-      //   console.log(res);
-      // });
+      this.loading = true;
+      queryIc().then(({ data }) => {
+        if (data.code === 200) {
+          this.loading = false;
+          this.data = data.data.content;
+        }
+      });
     },
     showCreateModal() {
       this.createModal = true;
@@ -262,8 +265,4 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
-// .management {
-//   background: #fff;
-// }
-</style>
+<style lang="less" scoped></style>

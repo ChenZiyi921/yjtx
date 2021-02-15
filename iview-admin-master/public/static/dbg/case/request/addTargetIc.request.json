@@ -13,7 +13,8 @@
 						"NETONE",
 						"TELECEL"
 					],
-					"voice": true
+					"voice": true,
+					"domain": "li"
 				},
 				{
 					"isdn": "33333333",
@@ -23,7 +24,8 @@
 						"NETONE",
 						"TELECEL"
 					],
-					"voice": false
+					"voice": false,
+					"domain": "li"
 				}
 			]
 		}]

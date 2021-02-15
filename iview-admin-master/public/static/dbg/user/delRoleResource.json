@@ -1,0 +1,8 @@
+{
+    "code": 500,
+    "msg": "Failed to delete",
+    "data": {
+        "roleid": "100",
+        "resourceid": "500"
+    }
+}

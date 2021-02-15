@@ -21,7 +21,17 @@
       <FormItem label="Description">
         <Input type="textarea" :rows="4" style="width: 300px" />
       </FormItem>
-      <FormItem label="Target Name">
+      <FormItem label="Domain">
+        <RadioGroup
+          v-model="queryForm.casedomain"
+          @on-change="casedomainChange"
+        >
+          <Radio label="LI"></Radio>
+          <Radio label="BigData"></Radio>
+          <Radio label="GIS"></Radio>
+        </RadioGroup>
+      </FormItem>
+      <FormItem label="Target Name" v-if="queryForm.casedomain === 'LI'">
         <Input style="width: 150px; float: left;" class="mr10" />
         <Button
           type="success"
@@ -161,25 +171,7 @@ export default {
           title: "Name",
           key: "rolename",
           render: (h, { row, index }) => {
-            let edit;
-            if (this.editIndex === index) {
-              // this.roleDetail.rolename = row.rolename;
-              edit = [
-                h("Input", {
-                  props: {
-                    value: row.rolename
-                  },
-                  on: {
-                    input: val => {
-                      this.roleDetail.rolename = val;
-                    }
-                  }
-                })
-              ];
-            } else {
-              edit = row.rolename;
-            }
-            return h("div", [edit]);
+            return h("div", [row.rolename]);
           }
         },
         {
@@ -190,12 +182,12 @@ export default {
             if (this.editIndex === index) {
               // this.roleDetail.rolestatus = row.rolestatus;
               edit = [
-                h("Select", {
+                h("Checkbox", {
                   props: {
                     value: row.rolestatus
                   },
                   on: {
-                    input: val => {
+                    change: val => {
                       this.roleDetail.rolestatus = val;
                     }
                   }
@@ -215,12 +207,12 @@ export default {
             if (this.editIndex === index) {
               // this.roleDetail.createdate = row.createdate;
               edit = [
-                h("Input", {
+                h("Checkbox", {
                   props: {
                     value: row.createdate
                   },
                   on: {
-                    input: val => {
+                    change: val => {
                       this.roleDetail.createdate = val;
                     }
                   }
@@ -240,12 +232,12 @@ export default {
             if (this.editIndex === index) {
               // this.roleDetail.modifydate = row.modifydate;
               edit = [
-                h("Input", {
+                h("Checkbox", {
                   props: {
                     value: row.modifydate
                   },
                   on: {
-                    input: val => {
+                    change: val => {
                       this.roleDetail.modifydate = val;
                     }
                   }
@@ -265,12 +257,12 @@ export default {
             if (this.editIndex === index) {
               // this.roleDetail.modifydate = row.modifydate;
               edit = [
-                h("Input", {
+                h("Checkbox", {
                   props: {
                     value: row.modifydate
                   },
                   on: {
-                    input: val => {
+                    change: val => {
                       this.roleDetail.modifydate = val;
                     }
                   }
@@ -355,6 +347,9 @@ export default {
     this.createData.push({});
   },
   methods: {
+    casedomainChange(val) {
+      console.log(val);
+    },
     createModalCancel() {
       this.$emit("createmodalcancel");
     },

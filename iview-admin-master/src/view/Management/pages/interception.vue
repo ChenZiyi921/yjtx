@@ -38,6 +38,8 @@ export default {
   data() {
     return {};
   },
+  methods: {},
+  mounted() {},
   computed: {}
 };
 </script>

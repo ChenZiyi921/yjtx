@@ -281,7 +281,7 @@ export default {
   },
   computed: {},
   mounted() {
-    this.queryCasesByUserList();
+    // this.queryCasesByUserList();
   },
   created() {},
   beforeCreate() {

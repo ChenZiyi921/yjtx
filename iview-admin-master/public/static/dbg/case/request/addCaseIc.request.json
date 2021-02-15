@@ -9,7 +9,8 @@
                 "NetCell-111-223",
                 "NetCell-111-223",
                 "NetCell-111-223"
-            ]
+            ],
+			"domain":["li","gis"]
         }
     ],
     "targets": []

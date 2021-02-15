@@ -26,6 +26,7 @@ let addCaseApi = "";
 let checkCaseNameApi = "";
 let addCaseIcApi = "";
 let deleteCaseIcApi = "";
+let queryIcApi = "";
 
 let queryVhlrApi = "";
 let queryCdrByIcApi = "";
@@ -63,6 +64,7 @@ if (debug) {
   checkCaseNameApi = "/static/dbg/case/checkCaseName.json";
   addCaseIcApi = "/static/dbg/case/addCaseIc.json";
   deleteCaseIcApi = "/static/dbg/case/deleteCaseIc.json";
+  queryIcApi = "/static/dbg/case/queryIc.json";
 
   queryVhlrApi = "/static/dbg/cdr/queryVhlr.json";
   queryCdrByIcApi = "/static/dbg/cdr/queryCdrByIc.json";
@@ -99,6 +101,7 @@ if (debug) {
   checkCaseNameApi = "/api/case/checkCaseName.do";
   addCaseIcApi = "/api/case/addCaseIc.do";
   deleteCaseIcApi = "/api/case/deleteCaseIc.do";
+  queryIcApi = "/api/case/queryIc.do";
 
   queryVhlrApi = "/api/cdr/queryVhlr.do";
   queryCdrByIcApi = "/api/cdr/queryCdrByIc.do";
@@ -274,6 +277,13 @@ export const addCaseIc = data => {
 export const deleteCaseIc = data => {
   return axios.request(Object.assign({
     url: deleteCaseIcApi,
+    method: post
+  }, post ? { params: data } : { data }))
+}
+
+export const queryIc = data => {
+  return axios.request(Object.assign({
+    url: queryIcApi,
     method: post
   }, post ? { params: data } : { data }))
 }
