@@ -7,6 +7,7 @@
         ghost
         @click="queryList"
         custom-icon="iconfont icon-refresh"
+        size="small"
         >Refresh</Button
       >
       <Button
@@ -14,6 +15,7 @@
         class="mr10"
         @click="showCreateModal"
         custom-icon="iconfont icon-new"
+        size="small"
         >New</Button
       >
       <Button
@@ -21,6 +23,7 @@
         class="mr10"
         @click="showSearchModal"
         custom-icon="iconfont icon-search"
+        size="small"
         >Search</Button
       >
       <template v-if="true">
@@ -30,6 +33,7 @@
           class="mr10"
           @click="show(row)"
           custom-icon="iconfont icon-copy"
+          size="small"
           >Copy</Button
         >
         <Button
@@ -37,6 +41,7 @@
           class="mr10"
           @click="show(row)"
           custom-icon="iconfont icon-submit"
+          size="small"
           >Submit</Button
         >
         <Button
@@ -44,6 +49,7 @@
           class="mr10"
           @click="remove(index)"
           custom-icon="iconfont icon-delete"
+          size="small"
           >Delete</Button
         >
       </template>
@@ -53,6 +59,7 @@
           class="mr10"
           @click="remove(index)"
           custom-icon="iconfont icon-approve"
+          size="small"
           >Approve</Button
         >
         <Button
@@ -60,6 +67,7 @@
           class="mr10"
           @click="remove(index)"
           custom-icon="iconfont icon-deny"
+          size="small"
           >Deny</Button
         >
       </template>

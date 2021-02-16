@@ -6,6 +6,7 @@
         class="vhlr-search-button"
         @click="queryVhlrList"
         custom-icon="iconfont icon-search"
+        size="small"
         >Search</Button
       >
       <RadioGroup

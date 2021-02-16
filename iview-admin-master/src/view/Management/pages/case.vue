@@ -7,6 +7,7 @@
         ghost
         @click="queryCaseList"
         custom-icon="iconfont icon-refresh"
+        size="small"
         >Refresh</Button
       >
       <Button
@@ -14,6 +15,7 @@
         class="mr10"
         @click="showCreateModal"
         custom-icon="iconfont icon-new"
+        size="small"
       >
         New</Button
       >
@@ -22,6 +24,7 @@
         class="mr10"
         @click="showSearchModal"
         custom-icon="iconfont icon-search"
+        size="small"
         >Search</Button
       >
       <template v-if="true">
@@ -29,6 +32,7 @@
           class="mr10"
           @click="showCommonModal('deactive')"
           custom-icon="iconfont icon-deactive"
+          size="small"
           >DeActive</Button
         >
         <Button
@@ -36,6 +40,7 @@
           class="mr10"
           @click="showCommonModal('active')"
           custom-icon="iconfont icon-active"
+          size="small"
           >Active</Button
         >
         <Button
@@ -43,6 +48,7 @@
           class="mr10"
           @click="showCommonModal('submit')"
           custom-icon="iconfont icon-submit"
+          size="small"
           >Submit</Button
         >
         <Button
@@ -51,6 +57,7 @@
           class="mr10"
           @click="showCreateModal"
           custom-icon="iconfont icon-edit"
+          size="small"
           >Edit</Button
         >
         <Button
@@ -58,6 +65,7 @@
           class="mr10"
           @click="delCase(row)"
           custom-icon="iconfont icon-delete"
+          size="small"
           >Delete</Button
         >
         <Button
@@ -67,6 +75,7 @@
           @click="closeCaseConfirm(row, 'close')"
           ghost
           custom-icon="iconfont icon-close"
+          size="small"
           >Close</Button
         >
       </template>
@@ -76,6 +85,7 @@
           class="mr10"
           @click="closeCaseConfirm(row, 'approve')"
           custom-icon="iconfont icon-approve"
+          size="small"
           >Approve</Button
         >
         <Button
@@ -83,6 +93,7 @@
           class="mr10"
           @click="closeCaseConfirm(row, 'deny')"
           custom-icon="iconfont icon-deny"
+          size="small"
           >Deny</Button
         >
       </template>
@@ -92,6 +103,7 @@
         ghost
         @click="showCommentModal(row)"
         custom-icon="iconfont icon-comment"
+        size="small"
         >Comment</Button
       >
     </div>

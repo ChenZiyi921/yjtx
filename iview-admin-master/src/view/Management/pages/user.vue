@@ -18,6 +18,7 @@
               @click="queryUserList"
               class="mr10"
               custom-icon="iconfont icon-refresh"
+              size="small"
               >Refresh</Button
             >
             <Button
@@ -25,6 +26,7 @@
               @click="newUserInfo"
               class="mr10"
               custom-icon="iconfont icon-new"
+              size="small"
               >New</Button
             >
             <Button
@@ -33,6 +35,7 @@
               class="mr10"
               @click.stop="editUserInfo"
               custom-icon="iconfont icon-edit"
+              size="small"
               >Edit</Button
             >
             <Button
@@ -40,6 +43,7 @@
               class="mr10"
               @click.stop="delUserInfo"
               custom-icon="iconfont icon-delete"
+              size="small"
               >Delete</Button
             >
             <Button
@@ -47,6 +51,7 @@
               @click.stop="changeUserPwd"
               ghost
               custom-icon="iconfont icon-password"
+              size="small"
               >Password</Button
             >
           </div>

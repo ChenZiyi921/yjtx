@@ -8,6 +8,7 @@
           @click="queryRolesList"
           class="mr10"
           custom-icon="iconfont icon-refresh"
+          size="small"
           >Refresh</Button
         >
         <Button
@@ -15,6 +16,7 @@
           @click="newRole"
           class="mr10"
           custom-icon="iconfont icon-new"
+          size="small"
           >New</Button
         >
         <Button
@@ -23,9 +25,14 @@
           @click="queryRolesList"
           class="mr10"
           custom-icon="iconfont icon-edit"
+          size="small"
           >Edit</Button
         >
-        <Button type="error" @click="newRole" custom-icon="iconfont icon-delete"
+        <Button
+          type="error"
+          @click="newRole"
+          custom-icon="iconfont icon-delete"
+          size="small"
           >Delete</Button
         >
       </div>
