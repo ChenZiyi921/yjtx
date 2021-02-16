@@ -38,79 +38,119 @@
           <Icon type="Fuzzy Query"></Icon>
           <span>Fuzzy Query</span>
         </Radio>
-        <Form
-          :model="queryForm"
-          label-position="left"
-          :label-width="60"
-          style="padding-left: 24px; margin-top: 10px;"
-        >
-          <FormItem label="User:">
-            <RadioGroup v-model="verticalUser" @on-change="verticalUserChange">
-              <Radio label="All" :disabled="disabled">
-                <Icon type="All"></Icon>
-                <span>All</span>
-              </Radio>
-              <Radio label="Domestic users" :disabled="disabled">
-                <Icon type="Domestic users"></Icon>
-                <span>Domestic users</span>
-              </Radio>
-              <Radio label="Overseas users" :disabled="disabled">
-                <Icon type="Overseas users"></Icon>
-                <span>Overseas users</span>
-              </Radio>
-            </RadioGroup>
-          </FormItem>
-          <FormItem label="dateTime:">
-            <RadioGroup v-model="verticalTime" @on-change="verticalTimeChange">
-              <Radio label="All" :disabled="disabled">
-                <Icon type="All"></Icon>
-                <span>All</span>
-              </Radio>
-              <Radio label="Time" :disabled="disabled">
-                <Icon type="Time"></Icon>
-                <span>Time</span>
-              </Radio>
-              <Select
-                v-if="datetimeIsshow"
-                class="mr10"
-                style="width: 100px"
-                v-model="queryForm.fuzzy.datetime.time.val"
+        <div style="display: flex;">
+          <Form
+            :model="queryForm"
+            label-position="left"
+            :label-width="60"
+            style="padding-left: 24px; margin-top: 10px;"
+          >
+            <FormItem label="User:">
+              <RadioGroup
+                v-model="verticalUser"
+                @on-change="verticalUserChange"
               >
-                <Option
-                  v-for="item in timeList"
-                  :value="item.value"
-                  :key="item.value"
-                  >{{ item.label }}</Option
+                <Radio label="All" :disabled="disabled">
+                  <Icon type="All"></Icon>
+                  <span>All</span>
+                </Radio>
+                <Radio label="Domestic users" :disabled="disabled">
+                  <Icon type="Domestic users"></Icon>
+                  <span>Domestic users</span>
+                </Radio>
+                <Radio label="Overseas users" :disabled="disabled">
+                  <Icon type="Overseas users"></Icon>
+                  <span>Overseas users</span>
+                </Radio>
+              </RadioGroup>
+            </FormItem>
+            <FormItem label="dateTime:">
+              <RadioGroup
+                v-model="verticalTime"
+                @on-change="verticalTimeChange"
+              >
+                <Radio label="All" :disabled="disabled">
+                  <Icon type="All"></Icon>
+                  <span>All</span>
+                </Radio>
+                <Radio label="Time" :disabled="disabled">
+                  <Icon type="Time"></Icon>
+                  <span>Time</span>
+                </Radio>
+                <Select
+                  v-if="datetimeIsshow"
+                  class="mr10"
+                  style="width: 100px"
+                  v-model="queryForm.fuzzy.datetime.time.val"
                 >
-              </Select>
-              <Radio label="History Time" :disabled="disabled">
-                <Icon type="History Time"></Icon>
-                <span>History Time</span>
-              </Radio>
-              <DatePicker
-                v-if="historyTimeIsshow"
-                @on-change="queryFormDateChange"
-                type="datetimerange"
-                placeholder="Select date and time"
-                style="width: 300px"
-              ></DatePicker>
-            </RadioGroup>
-          </FormItem>
-          <FormItem label="Operator:">
-            <Checkbox-group
-              v-model="checkedCities"
-              @on-change="handleCheckedCitiesChange"
-            >
-              <Checkbox
-                v-for="city in cities"
-                :label="city"
-                :key="city"
-                :disabled="disabled"
-                >{{ city }}</Checkbox
+                  <Option
+                    v-for="item in timeList"
+                    :value="item.value"
+                    :key="item.value"
+                    >{{ item.label }}</Option
+                  >
+                </Select>
+                <Radio label="History Time" :disabled="disabled">
+                  <Icon type="History Time"></Icon>
+                  <span>History Time</span>
+                </Radio>
+                <DatePicker
+                  v-if="historyTimeIsshow"
+                  @on-change="queryFormDateChange"
+                  type="datetimerange"
+                  placeholder="Select date and time"
+                  style="width: 300px"
+                ></DatePicker>
+              </RadioGroup>
+            </FormItem>
+            <FormItem label="Operator:">
+              <Checkbox-group
+                v-model="checkedCities"
+                @on-change="handleCheckedCitiesChange"
               >
-            </Checkbox-group>
-          </FormItem>
-        </Form>
+                <Checkbox
+                  v-for="city in cities"
+                  :label="city"
+                  :key="city"
+                  :disabled="disabled"
+                  >{{ city }}</Checkbox
+                >
+              </Checkbox-group>
+            </FormItem>
+          </Form>
+          <div class="mt10">
+            <div class="mr10" style="float: left; line-height: 32px;">
+              Base Station
+            </div>
+            <div class="mr10" style="float: left; line-height: 32px;">Lai</div>
+            <Input style="width: 150px; float: left;" class="mr10" />
+            <div class="mr10" style="float: left; line-height: 32px;">
+              Cellid
+            </div>
+            <Input style="width: 150px; float: left;" class="mr10" />
+            <Button
+              type="success"
+              class="mr10"
+              style="float: left; width: 32px; height: 32px; text-align: center; padding: 0; font-size: 16px;"
+              @click="handleAdd"
+              >+</Button
+            >
+            <div
+              style="float: left; width: 200px; min-height: 100px; padding: 0 20px; border: 1px solid #eee;"
+            >
+              <Tag
+                type="dot"
+                closable
+                color="success"
+                :name="item"
+                @on-close="handleClose"
+                v-for="(item, index) in tagList"
+                :key="index"
+                >{{ item }}</Tag
+              >
+            </div>
+          </div>
+        </div>
       </RadioGroup>
     </div>
     <Split
@@ -266,7 +306,8 @@ export default {
           value: "1year",
           label: "1year"
         }
-      ]
+      ],
+      tagList: []
     };
   },
   mounted() {
@@ -408,6 +449,17 @@ export default {
     handleCheckedCitiesChange(value) {
       this.operatorCheckbox = value;
       this.queryForm.fuzzy.operator = [];
+    },
+    handleAdd() {
+      if (this.tagList.length) {
+        this.tagList.push(this.tagList[this.tagList.length - 1] + 1);
+      } else {
+        this.tagList.push(0);
+      }
+    },
+    handleClose(event, name) {
+      const index = this.tagList.indexOf(name);
+      this.tagList.splice(index, 1);
     }
   }
 };

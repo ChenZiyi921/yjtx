@@ -70,6 +70,8 @@
       :data="data"
       :loading="loading"
       class="mt10"
+      :row-class-name="rowClassName"
+      @on-row-click="rowClick"
     >
       <template slot-scope="{ row }" slot="name">
         <strong>{{ row.name }}</strong>
@@ -253,13 +255,23 @@ export default {
           label: "London"
         }
       ],
-      tagList: []
+      tagList: [],
+      selectRow: {}
     };
   },
   mounted() {
     this.queryList();
   },
   methods: {
+    rowClick(row, index) {
+      this.selectRow = row;
+    },
+    rowClassName(row, index) {
+      if (this.selectRow.icid === row.icid) {
+        return "ivu-table-row-click";
+      }
+      return "";
+    },
     addICCancel() {
       this.createModal = false;
     },

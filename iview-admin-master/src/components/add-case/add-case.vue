@@ -21,17 +21,7 @@
       <FormItem label="Description">
         <Input type="textarea" :rows="4" style="width: 300px" />
       </FormItem>
-      <FormItem label="Domain">
-        <RadioGroup
-          v-model="queryForm.casedomain"
-          @on-change="casedomainChange"
-        >
-          <Radio label="LI"></Radio>
-          <Radio label="BigData"></Radio>
-          <Radio label="GIS"></Radio>
-        </RadioGroup>
-      </FormItem>
-      <FormItem label="Target Name" v-if="queryForm.casedomain === 'LI'">
+      <FormItem label="Target Name">
         <Input style="width: 150px; float: left;" class="mr10" />
         <Button
           type="success"
@@ -65,14 +55,6 @@
           >
         </Select>
       </FormItem>
-      <!-- <FormItem label="Authorization">
-          <CheckboxGroup @on-change="checkAllGroupChange">
-            <Checkbox label="Manage"></Checkbox>
-            <Checkbox label="Monitor"></Checkbox>
-            <Checkbox label="View"></Checkbox>
-            <Checkbox label="Analyze"></Checkbox>
-          </CheckboxGroup>
-        </FormItem> -->
       <FormItem label="Authorization">
         <div style="width: 800px; text-align: right;">
           <Button type="success" @click="createData.push({})">Add</Button>
@@ -343,13 +325,8 @@ export default {
       editIndex: -1
     };
   },
-  mounted() {
-    this.createData.push({});
-  },
+  mounted() {},
   methods: {
-    casedomainChange(val) {
-      console.log(val);
-    },
     createModalCancel() {
       this.$emit("createmodalcancel");
     },

@@ -43,6 +43,13 @@
         </div>
       </div>
       <div>
+        <div style="display: flex; padding-bottom: 20px;">
+          <span class="mr10">Domain</span>
+          <CheckboxGroup>
+            <Checkbox label="LI"></Checkbox>
+            <Checkbox label="GIS APP"></Checkbox>
+          </CheckboxGroup>
+        </div>
         <RadioGroup v-model="vertical1" vertical style="padding-left: 10px;">
           <Radio label="Target ID">
             <Icon type="Target ID"></Icon>

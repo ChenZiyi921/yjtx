@@ -104,6 +104,8 @@
               :loading="loading"
               class="mt10"
               style="background: #fff;"
+              :row-class-name="rowClassName"
+              @on-row-click="rowClick"
             >
               <template slot-scope="{ row }" slot="name">
                 <strong>{{ row.name }}</strong>
@@ -332,19 +334,23 @@ export default {
       },
       columns: [
         {
-          title: "",
+          title: " ",
           key: "",
           width: "100px",
           render: (h, { row, index }) => {
             if (row.fileName) {
               return h("div", [
-                h("img", {
+                h("Icon", {
                   style: {
-                    width: "20px",
-                    verticalAlign: "middle"
+                    cursor: "pointer"
                   },
                   attrs: {
-                    src: require("@/assets/images/i-music.png")
+                    custom: "iconfont icon-voice"
+                  },
+                  on: {
+                    click: e => {
+                      e.stopPropagation();
+                    }
                   }
                 })
               ]);
@@ -572,7 +578,8 @@ export default {
         starttime: "",
         endtime: "",
         exporttype: ""
-      }
+      },
+      selectRow: {}
     };
   },
   computed: {},
@@ -582,6 +589,21 @@ export default {
   },
   created() {},
   methods: {
+    rowClick(row, index) {
+      this.selectRow = row;
+    },
+    rowClassName(row, index) {
+      if (this.selectRow.objid === row.objid) {
+        return "ivu-table-row-click";
+      }
+      if (row.ifkeep === "1") {
+        return "ifkeep";
+      }
+      if (row.ifheard === "1") {
+        return "ifheard";
+      }
+      return "";
+    },
     exportCase() {
       if (this.queryCdrByIcForm.icid) {
         this.exportCaseForm = {

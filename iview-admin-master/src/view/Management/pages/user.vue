@@ -57,6 +57,7 @@
             :loading="loading"
             @on-row-click="onRowClick"
             class="mt10"
+            :row-class-name="rowClassName"
           >
             <template slot-scope="{ row }" slot="name">
               <strong>{{ row.name }}</strong>
@@ -310,7 +311,8 @@ export default {
           value: "LOCKED",
           label: "LOCKED"
         }
-      ]
+      ],
+      selectRow: {}
     };
   },
   computed: {},
@@ -319,6 +321,12 @@ export default {
     this.queryRolesList();
   },
   methods: {
+    rowClassName(row, index) {
+      if (this.selectRow.userid === row.userid) {
+        return "ivu-table-row-click";
+      }
+      return "";
+    },
     queryRolesList() {
       queryRoles().then(({ data }) => {
         if (data.code === 200) {
@@ -367,6 +375,7 @@ export default {
       this.userDetailDisabled = true;
       this.showPassword = false;
       this.queryUserInfo(row);
+      this.selectRow = row;
     },
     editUserInfo(row) {
       this.userDetailIsEdit = true;

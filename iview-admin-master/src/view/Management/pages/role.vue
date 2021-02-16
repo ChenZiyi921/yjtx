@@ -36,6 +36,7 @@
         :loading="loading"
         @on-row-click="onRowClick"
         class="mt10"
+        :row-class-name="rowClassName"
       >
         <template slot-scope="{ row }" slot="name">
           <strong>{{ row.name }}</strong>
@@ -258,7 +259,8 @@ export default {
         //     }
         //   }
         // }
-      ]
+      ],
+      selectRow: {}
     };
   },
   computed: {},
@@ -267,6 +269,12 @@ export default {
     this.queryResources();
   },
   methods: {
+    rowClassName(row, index) {
+      if (this.selectRow.roleid === row.roleid) {
+        return "ivu-table-row-click";
+      }
+      return "";
+    },
     queryRolesList() {
       this.loading = true;
       queryRoles(this.queryForm).then(({ data }) => {
@@ -344,6 +352,7 @@ export default {
       this.isEdit = false;
       this.disabled = true;
       this.disableCheckbox();
+      this.selectRow = row;
     },
     editRole(row) {
       this.isEdit = true;

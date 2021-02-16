@@ -38,6 +38,11 @@
             <span>{{ "+263791222333441" }}</span>
           </div>
         </div>
+        <div
+          style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+        >
+          {{ "11111111111" }}
+        </div>
         <div>LOC：{{ "Railway station-2" }}</div>
       </li>
     </ul>
@@ -60,6 +65,8 @@
         :loading="loading"
         class="mt10"
         style="background: #fff;"
+        :row-class-name="rowClassName"
+        @on-row-click="rowClick"
       >
         <template slot-scope="{ row }" slot="name">
           <strong>{{ row.name }}</strong>
@@ -170,19 +177,23 @@ export default {
       },
       columns: [
         {
-          title: "",
+          title: " ",
           key: "",
           width: "100px",
           render: (h, { row, index }) => {
             if (row.fileName) {
               return h("div", [
-                h("img", {
+                h("Icon", {
                   style: {
-                    width: "20px",
-                    verticalAlign: "middle"
+                    cursor: "pointer"
                   },
                   attrs: {
-                    src: require("@/assets/images/i-music.png")
+                    custom: "iconfont icon-voice"
+                  },
+                  on: {
+                    click: e => {
+                      e.stopPropagation();
+                    }
                   }
                 })
               ]);
@@ -338,7 +349,8 @@ export default {
         }
       ],
       data: [],
-      checkedCities: []
+      checkedCities: [],
+      selectRow: {}
     };
   },
   computed: {},
@@ -354,6 +366,21 @@ export default {
   },
   created() {},
   methods: {
+    rowClick(row, index) {
+      // this.selectRow = row;
+    },
+    rowClassName(row, index) {
+      if (this.selectRow.objid === row.objid) {
+        return "ivu-table-row-click";
+      }
+      if (row.ifkeep === "1") {
+        return "ifkeep";
+      }
+      if (row.ifheard === "1") {
+        return "ifheard";
+      }
+      return "";
+    },
     queryList(row) {
       this.queryForm.caseid = row.caseid;
       this.queryForm.icid = row.icid;
@@ -379,11 +406,11 @@ export default {
     },
     pageSizeChange(pageSize) {
       this.queryForm.pageSize = pageSize;
-      // this.queryList();
+      this.queryList();
     },
     pageChange(index) {
       this.queryForm.currPage = index;
-      // this.queryList();
+      this.queryList();
     }
   }
 };
@@ -391,11 +418,11 @@ export default {
 
 <style lang="less" scoped>
 .top-content {
-  height: 560px;
+  height: 608px;
   background: #fff;
   li {
     width: 20%;
-    height: 140px;
+    height: 152px;
     padding: 10px;
     float: left;
     border: 1px solid #eee;

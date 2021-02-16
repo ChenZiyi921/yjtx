@@ -102,6 +102,8 @@
       :data="data"
       :loading="loading"
       class="mt10"
+      :row-class-name="rowClassName"
+      @on-row-click="rowClick"
     >
       <template slot-scope="{ row }" slot="name">
         <strong>{{ row.name }}</strong>
@@ -395,13 +397,23 @@ export default {
           label: "DENIED"
         }
       ],
-      rowData: {}
+      rowData: {},
+      selectRow: {}
     };
   },
   mounted() {
     this.queryCaseList();
   },
   methods: {
+    rowClick(row, index) {
+      this.selectRow = row;
+    },
+    rowClassName(row, index) {
+      if (this.selectRow.caseid === row.caseid) {
+        return "ivu-table-row-click";
+      }
+      return "";
+    },
     delCase(row) {
       this.delCasename = row.casename;
       this.delModal = true;
