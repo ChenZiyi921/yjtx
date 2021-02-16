@@ -2,14 +2,32 @@
   <div style="display: flex;" class="role">
     <div style="flex: 1;">
       <div style="text-align: right;">
-        <Button type="success" ghost @click="queryRolesList" class="mr10"
+        <Button
+          type="success"
+          ghost
+          @click="queryRolesList"
+          class="mr10"
+          custom-icon="iconfont icon-refresh"
           >Refresh</Button
         >
-        <Button type="success" @click="newRole" class="mr10">New</Button>
-        <Button type="info" ghost @click="queryRolesList" class="mr10"
+        <Button
+          type="success"
+          @click="newRole"
+          class="mr10"
+          custom-icon="iconfont icon-new"
+          >New</Button
+        >
+        <Button
+          type="info"
+          ghost
+          @click="queryRolesList"
+          class="mr10"
+          custom-icon="iconfont icon-edit"
           >Edit</Button
         >
-        <Button type="error" @click="newRole">Delete</Button>
+        <Button type="error" @click="newRole" custom-icon="iconfont icon-delete"
+          >Delete</Button
+        >
       </div>
       <Table
         border

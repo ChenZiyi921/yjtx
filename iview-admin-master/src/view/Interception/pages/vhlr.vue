@@ -1,7 +1,11 @@
 <template>
   <div class="demo-split">
     <div class="vhlr-top-content">
-      <Button type="info" class="vhlr-search-button" @click="queryVhlrList"
+      <Button
+        type="info"
+        class="vhlr-search-button"
+        @click="queryVhlrList"
+        custom-icon="iconfont icon-search"
         >Search</Button
       >
       <RadioGroup

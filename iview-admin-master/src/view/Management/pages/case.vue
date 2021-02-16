@@ -1,31 +1,72 @@
 <template>
   <div class="">
     <div style="text-align: right;">
-      <Button type="success" class="mr10" ghost @click="queryCaseList"
+      <Button
+        type="success"
+        class="mr10"
+        ghost
+        @click="queryCaseList"
+        custom-icon="iconfont icon-refresh"
         >Refresh</Button
       >
-      <Button type="success" class="mr10" @click="showCreateModal">New</Button>
-      <Button type="info" class="mr10" @click="showSearchModal">Search</Button>
+      <Button
+        type="success"
+        class="mr10"
+        @click="showCreateModal"
+        custom-icon="iconfont icon-new"
+      >
+        New</Button
+      >
+      <Button
+        type="info"
+        class="mr10"
+        @click="showSearchModal"
+        custom-icon="iconfont icon-search"
+        >Search</Button
+      >
       <template v-if="true">
-        <Button class="mr10" @click="showCommonModal('deactive')"
+        <Button
+          class="mr10"
+          @click="showCommonModal('deactive')"
+          custom-icon="iconfont icon-deactive"
           >DeActive</Button
         >
-        <Button type="info" class="mr10" @click="showCommonModal('active')"
+        <Button
+          type="info"
+          class="mr10"
+          @click="showCommonModal('active')"
+          custom-icon="iconfont icon-active"
           >Active</Button
         >
-        <Button type="success" class="mr10" @click="showCommonModal('submit')"
+        <Button
+          type="success"
+          class="mr10"
+          @click="showCommonModal('submit')"
+          custom-icon="iconfont icon-submit"
           >Submit</Button
         >
-        <Button type="info" ghost class="mr10" @click="showCreateModal"
+        <Button
+          type="info"
+          ghost
+          class="mr10"
+          @click="showCreateModal"
+          custom-icon="iconfont icon-edit"
           >Edit</Button
         >
-        <Button type="error" class="mr10" @click="delCase(row)">Delete</Button>
+        <Button
+          type="error"
+          class="mr10"
+          @click="delCase(row)"
+          custom-icon="iconfont icon-delete"
+          >Delete</Button
+        >
         <Button
           :disabled="rowData.casestatus === 'CLOSED'"
           type="error"
           class="mr10"
           @click="closeCaseConfirm(row, 'close')"
           ghost
+          custom-icon="iconfont icon-close"
           >Close</Button
         >
       </template>
@@ -34,14 +75,23 @@
           type="success"
           class="mr10"
           @click="closeCaseConfirm(row, 'approve')"
+          custom-icon="iconfont icon-approve"
           >Approve</Button
         >
-        <Button type="error" class="mr10" @click="closeCaseConfirm(row, 'deny')"
+        <Button
+          type="error"
+          class="mr10"
+          @click="closeCaseConfirm(row, 'deny')"
+          custom-icon="iconfont icon-deny"
           >Deny</Button
         >
       </template>
 
-      <Button type="success" ghost @click="showCommentModal(row)"
+      <Button
+        type="success"
+        ghost
+        @click="showCommentModal(row)"
+        custom-icon="iconfont icon-comment"
         >Comment</Button
       >
     </div>

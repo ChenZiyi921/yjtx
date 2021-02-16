@@ -1,0 +1,149 @@
+{
+  "id": "2373214",
+  "name": "ZiVA",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "11488087",
+      "name": "password",
+      "font_class": "password",
+      "unicode": "e75b",
+      "unicode_decimal": 59227
+    },
+    {
+      "icon_id": "11474243",
+      "name": "copy",
+      "font_class": "copy",
+      "unicode": "e6f3",
+      "unicode_decimal": 59123
+    },
+    {
+      "icon_id": "16035526",
+      "name": "route-fill",
+      "font_class": "track",
+      "unicode": "e701",
+      "unicode_decimal": 59137
+    },
+    {
+      "icon_id": "11474291",
+      "name": "integral",
+      "font_class": "submit",
+      "unicode": "e6f9",
+      "unicode_decimal": 59129
+    },
+    {
+      "icon_id": "11488080",
+      "name": "map",
+      "font_class": "position",
+      "unicode": "e758",
+      "unicode_decimal": 59224
+    },
+    {
+      "icon_id": "11488132",
+      "name": "Right button",
+      "font_class": "active",
+      "unicode": "e765",
+      "unicode_decimal": 59237
+    },
+    {
+      "icon_id": "12011693",
+      "name": "comments",
+      "font_class": "comment",
+      "unicode": "e7b2",
+      "unicode_decimal": 59314
+    },
+    {
+      "icon_id": "12011697",
+      "name": "search",
+      "font_class": "search",
+      "unicode": "e7b3",
+      "unicode_decimal": 59315
+    },
+    {
+      "icon_id": "11488010",
+      "name": "confirm",
+      "font_class": "complete",
+      "unicode": "e749",
+      "unicode_decimal": 59209
+    },
+    {
+      "icon_id": "11488033",
+      "name": "editor",
+      "font_class": "edit",
+      "unicode": "e74d",
+      "unicode_decimal": 59213
+    },
+    {
+      "icon_id": "11488093",
+      "name": "packing-labeling",
+      "font_class": "archive",
+      "unicode": "e75c",
+      "unicode_decimal": 59228
+    },
+    {
+      "icon_id": "11488105",
+      "name": "reeor",
+      "font_class": "close",
+      "unicode": "e75e",
+      "unicode_decimal": 59230
+    },
+    {
+      "icon_id": "11488109",
+      "name": "resonse rate",
+      "font_class": "export",
+      "unicode": "e75f",
+      "unicode_decimal": 59231
+    },
+    {
+      "icon_id": "11488140",
+      "name": "success",
+      "font_class": "approve",
+      "unicode": "e767",
+      "unicode_decimal": 59239
+    },
+    {
+      "icon_id": "11488146",
+      "name": "suspended",
+      "font_class": "deactive",
+      "unicode": "e768",
+      "unicode_decimal": 59240
+    },
+    {
+      "icon_id": "11488212",
+      "name": "voice",
+      "font_class": "voice",
+      "unicode": "e774",
+      "unicode_decimal": 59252
+    },
+    {
+      "icon_id": "11488213",
+      "name": "exchange rate",
+      "font_class": "refresh",
+      "unicode": "e772",
+      "unicode_decimal": 59250
+    },
+    {
+      "icon_id": "14041617",
+      "name": "block",
+      "font_class": "deny",
+      "unicode": "e7de",
+      "unicode_decimal": 59358
+    },
+    {
+      "icon_id": "11487984",
+      "name": "ashbin",
+      "font_class": "delete",
+      "unicode": "e744",
+      "unicode_decimal": 59204
+    },
+    {
+      "icon_id": "11487973",
+      "name": "add",
+      "font_class": "new",
+      "unicode": "e742",
+      "unicode_decimal": 59202
+    }
+  ]
+}

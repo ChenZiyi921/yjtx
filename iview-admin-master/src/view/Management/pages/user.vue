@@ -12,19 +12,41 @@
       >
         <div style="flex: 1;">
           <div style="text-align: right;">
-            <Button type="success" ghost @click="queryUserList" class="mr10"
+            <Button
+              type="success"
+              ghost
+              @click="queryUserList"
+              class="mr10"
+              custom-icon="iconfont icon-refresh"
               >Refresh</Button
             >
-            <Button type="success" @click="newUserInfo" class="mr10"
+            <Button
+              type="success"
+              @click="newUserInfo"
+              class="mr10"
+              custom-icon="iconfont icon-new"
               >New</Button
             >
-            <Button type="info" ghost class="mr10" @click.stop="editUserInfo"
+            <Button
+              type="info"
+              ghost
+              class="mr10"
+              @click.stop="editUserInfo"
+              custom-icon="iconfont icon-edit"
               >Edit</Button
             >
-            <Button type="error" class="mr10" @click.stop="delUserInfo"
+            <Button
+              type="error"
+              class="mr10"
+              @click.stop="delUserInfo"
+              custom-icon="iconfont icon-delete"
               >Delete</Button
             >
-            <Button type="error" @click.stop="changeUserPwd" ghost
+            <Button
+              type="error"
+              @click.stop="changeUserPwd"
+              ghost
+              custom-icon="iconfont icon-password"
               >Password</Button
             >
           </div>

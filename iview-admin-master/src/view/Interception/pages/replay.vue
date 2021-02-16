@@ -54,8 +54,15 @@
         <Split v-model="split2" mode="vertical">
           <div slot="top" class="demo-split-pane">
             <div>
-              <Button class="mr10">Track</Button>
-              <Button class="mr10" type="success">Position</Button>
+              <Button class="mr10" custom-icon="iconfont icon-track"
+                >Track</Button
+              >
+              <Button
+                class="mr10"
+                type="success"
+                custom-icon="iconfont icon-position"
+                >Position</Button
+              >
               <Button
                 class="mr10"
                 type="success"
@@ -65,15 +72,28 @@
                   }
                 "
                 ghost
+                custom-icon="iconfont icon-refresh"
                 >Refresh</Button
               >
-              <Button class="mr10" type="info" @click="exportExcel"
+              <Button
+                class="mr10"
+                type="info"
+                @click="exportExcel"
+                custom-icon="iconfont icon-export"
                 >Export</Button
               >
-              <Button class="mr10" type="info" @click="exportCase"
+              <Button
+                class="mr10"
+                type="info"
+                @click="exportCase"
+                custom-icon="iconfont icon-archive"
                 >Archive</Button
               >
-              <Button type="info" ghost @click="showCommentModal"
+              <Button
+                type="info"
+                ghost
+                @click="showCommentModal"
+                custom-icon="iconfont icon-comment"
                 >Comment</Button
               >
             </div>
