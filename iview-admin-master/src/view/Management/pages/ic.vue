@@ -217,35 +217,43 @@ export default {
       columns: [
         {
           title: "ID",
-          key: "icid"
+          key: "icid",
+          width: "60px"
         },
         {
           title: "Name",
-          key: "icname"
+          key: "icname",
+          width: "220px"
         },
         {
           title: "Status",
-          key: "icstatus"
+          key: "icstatus",
+          width: "100px"
         },
         {
           title: "Type",
-          key: "ictype"
+          key: "ictype",
+          width: "100px"
         },
         {
           title: "ExpireDate",
-          key: "icexpireddate"
+          key: "icexpireddate",
+          width: "100px"
         },
         {
           title: "CreateDate",
-          key: "iccreator"
+          key: "iccreatedate",
+          width: "110px"
         },
         {
           title: "Creator",
-          key: "iccreator"
+          key: "iccreator",
+          width: "130px"
         },
         {
           title: "Case",
-          key: "casename"
+          key: "casename",
+          width: "160px"
         },
         {
           title: "Comment",

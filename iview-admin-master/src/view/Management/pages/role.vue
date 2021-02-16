@@ -165,14 +165,15 @@ export default {
       editIndex: -1,
       column: [
         {
-          width: 100,
           align: "center",
           title: "ID",
-          key: "roleid"
+          key: "roleid",
+          width: "60px"
         },
         {
           title: "Name",
           key: "rolename",
+          width: "160px",
           render: (h, { row, index }) => {
             return h("div", [row.rolename]);
           }
@@ -180,6 +181,7 @@ export default {
         {
           title: "Status",
           key: "rolestatus",
+          width: "100px",
           render: (h, { row, index }) => {
             return h("div", [row.rolestatus]);
           }
@@ -187,6 +189,7 @@ export default {
         {
           title: "Create Date",
           key: "createdate",
+          width: "120px",
           render: (h, { row, index }) => {
             return h("div", [row.createdate]);
           }
@@ -194,6 +197,7 @@ export default {
         {
           title: "Modify Date",
           key: "modifydate",
+          width: "120px",
           render: (h, { row, index }) => {
             return h("div", [row.modifydate]);
           }

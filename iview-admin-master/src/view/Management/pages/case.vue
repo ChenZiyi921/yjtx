@@ -308,43 +308,53 @@ export default {
       columns: [
         {
           title: "ID",
-          key: "caseid"
+          key: "caseid",
+          width: "60px"
         },
         {
           title: "Name",
-          key: "casename"
+          key: "casename",
+          width: "160px"
         },
         {
           title: "Status",
-          key: "casestatus"
+          key: "casestatus",
+          width: "120px"
         },
         {
           title: "Type",
-          key: "casetype"
+          key: "casetype",
+          width: "100px"
         },
         {
           title: "Domain",
-          key: "casedomain"
+          key: "casedomain",
+          width: "90px"
         },
         {
           title: "ExpireDate",
-          key: "caseexpireddate"
+          key: "caseexpireddate",
+          width: "100px"
         },
         {
           title: "ActiveDate",
-          key: "caseactivedate"
+          key: "caseactivedate",
+          width: "100px"
         },
         {
           title: "CreateDate",
-          key: "casecreatedate"
+          key: "casecreatedate",
+          width: "110px"
         },
         {
           title: "CloseDate",
-          key: "caseclosedate"
+          key: "caseclosedate",
+          width: "100px"
         },
         {
           title: "Creator",
-          key: "casecreator"
+          key: "casecreator",
+          width: "130px"
         },
         {
           title: "Comments",

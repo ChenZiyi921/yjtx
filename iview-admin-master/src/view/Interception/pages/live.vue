@@ -57,7 +57,7 @@
       ></DatePicker>
       <Checkbox class="mt10">Call Only</Checkbox>
     </div>
-    <div style="height: calc(100vh - 740px); overflow-y: auto;">
+    <div style="height: calc(100vh - 800px); overflow-y: auto;">
       <Table
         border
         :columns="columns"
@@ -179,7 +179,7 @@ export default {
         {
           title: " ",
           key: "",
-          width: "100px",
+          width: "60px",
           render: (h, { row, index }) => {
             if (row.fileName) {
               return h("div", [
@@ -210,22 +210,22 @@ export default {
         {
           title: "MSISDN",
           key: "msisdn",
-          width: "140px"
+          width: "160px"
         },
         {
           title: "IMSI",
           key: "imsi",
-          width: "140px"
+          width: "160px"
         },
         {
           title: "IMEI",
           key: "imei",
-          width: "140px"
+          width: "160px"
         },
         {
           title: "Type",
           key: "acttype",
-          width: "100px",
+          width: "80px",
           // 101	位置更新	NLU
           // 102	周期更新	PLU
           // 103	开机	PON
@@ -307,12 +307,12 @@ export default {
         {
           title: "PartyNum",
           key: "objnbr",
-          width: "140px"
+          width: "180px"
         },
         {
           title: "StartTime",
           key: "starttime",
-          width: "140px"
+          width: "180px"
         },
         {
           title: "Duration",
@@ -322,7 +322,7 @@ export default {
         {
           title: "CGI",
           key: "basestation",
-          width: "100px",
+          width: "250px",
           render: (h, { row }) => {
             return <span>{row.basestation + " " + row.laccellid}</span>;
           }
@@ -330,7 +330,7 @@ export default {
         {
           title: "Extra",
           key: "dtmfno",
-          width: "100px"
+          width: "80px"
         },
         {
           title: "Network",
@@ -340,7 +340,7 @@ export default {
         {
           title: "Comments",
           key: "cdrcomment",
-          width: "140px"
+          width: "100px"
         },
         {
           title: "SmsText",

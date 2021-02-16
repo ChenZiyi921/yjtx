@@ -235,44 +235,54 @@ export default {
       columns: [
         {
           title: "MSISDN",
-          key: "msisdn"
+          key: "msisdn",
+          width: "160px"
         },
         {
           title: "IMSI",
-          key: "imsi"
+          key: "imsi",
+          width: "160px"
         },
         {
           title: "IMEI",
-          key: "imei"
+          key: "imei",
+          width: "160px"
         },
         {
           title: "Type",
-          key: "acttype"
+          key: "acttype",
+          width: "100px"
         },
         {
           title: "ActiveCGI",
-          key: "currbs"
+          key: "currbs",
+          width: "120px"
         },
 
         {
           title: "ActiveTime",
-          key: "acttime"
+          key: "acttime",
+          width: "180px"
         },
         {
           title: "Stay Time",
-          key: "staytime"
+          key: "staytime",
+          width: "240px"
         },
         {
           title: "LastCGI",
-          key: "lastbs"
+          key: "lastbs",
+          width: "120px"
         },
         {
           title: "LastTime",
-          key: "lastacttime"
+          key: "lastacttime",
+          width: "180px"
         },
         {
           title: "Network",
-          key: "netid"
+          key: "netid",
+          width: "100px"
         }
       ],
       data: [],

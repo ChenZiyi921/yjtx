@@ -272,29 +272,33 @@ export default {
         },
         {
           title: "Name",
-          key: "loginname",
-          width: 120
+          key: "loginname"
+          // width: 160
         },
         {
           title: "Status",
           key: "userstatus",
-          width: 120
+          width: 100
         },
         {
           title: "LastLoginTime",
-          key: "userlastlogin"
+          key: "userlastlogin",
+          width: "180px"
         },
         {
           title: "LastLoginIp",
-          key: "userlastip"
+          key: "userlastip",
+          width: "180px"
         },
         {
           title: "Create Date",
-          key: "usercreatedate"
+          key: "usercreatedate",
+          width: "120px"
         },
         {
           title: "ExpireDate",
-          key: "userexpiredate"
+          key: "userexpiredate",
+          width: "120px"
         }
       ],
       data: [],
